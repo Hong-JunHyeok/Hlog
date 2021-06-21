@@ -1,22 +1,18 @@
-import Document, { Head, Main, NextScript } from "next/document";
+import Document, { Head, Html, Main, NextScript } from "next/document";
 
 export default class MyDocument extends Document {
   render() {
     return (
-      <html>
+      <Html>
         <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-          />
+          <meta charSet="utf-8" />
+          <meta name="description" content="개발을 공유하다." />
         </Head>
         <body>
-          <div id="root">
-            <Main />
-            <NextScript />
-          </div>
+          <Main />
         </body>
-      </html>
+        <NextScript />
+      </Html>
     );
   }
 }
