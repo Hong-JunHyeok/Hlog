@@ -1,14 +1,9 @@
-import styled from "@emotion/styled";
 import { useAppSelector } from "hooks/useSelector";
-
-const Head = styled.h1`
-  font-size: 200px;
-`;
+import { useDispatch } from "react-redux";
+import { fetchPost } from "store/slices/post";
 
 const Home = () => {
-  const { number } = useAppSelector((state) => state.counter);
-  console.log(number);
-  return <Head>{number}</Head>;
+  return <></>;
 };
 
 export default Home;
