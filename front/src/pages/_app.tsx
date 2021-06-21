@@ -1,5 +1,6 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
+import wrapper from "store/configureStore";
 import GlobalStyle from "styles/GlobalStyle";
 
 const MyApp = ({ Component }: AppProps) => {
@@ -9,13 +10,13 @@ const MyApp = ({ Component }: AppProps) => {
         <meta charSet="utf-8" />
         <meta name="description" content="개발을 공유하다." />
         <title>HLOG</title>
+        <GlobalStyle />
       </Head>
       <body>
-        <GlobalStyle />
         <Component />
       </body>
     </>
   );
 };
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);
