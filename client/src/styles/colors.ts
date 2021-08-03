@@ -9,4 +9,8 @@ export const colorsModule = {
   hlog_error: "#fa7970",
   hlog_warning: "#faa356",
   hlog_success: "#7ce38b",
+
+  hlog_blue: "#0070f3",
+
+  hlog_primary: "#F20519",
 };

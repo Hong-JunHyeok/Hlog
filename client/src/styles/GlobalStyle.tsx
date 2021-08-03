@@ -1,5 +1,6 @@
 import { css, Global } from "@emotion/react";
 import emotionResetCSS from "emotion-reset";
+import { colorsModule } from "./colors";
 
 const GlobalStyle = () => {
   return (
@@ -15,7 +16,9 @@ const GlobalStyle = () => {
         body {
           margin: 0px;
           padding: 0px;
-          font-family: "NanumSquare", sans-serif !important;
+        }
+        .special {
+          color: ${colorsModule.hlog_primary};
         }
       `}
     />

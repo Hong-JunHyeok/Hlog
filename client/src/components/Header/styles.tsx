@@ -10,21 +10,22 @@ export const StyledHeader = styled.header`
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   position: fixed;
   ${mixinModules.flexLayoutCenterSort}
-
   .container {
+    ${mixinModules.flexLayoutCenterSort}
     display: flex;
     justify-content: space-between;
     width: 100%;
     max-width: ${sizesModule.pageMaxWidth};
     margin: 0 auto;
     & > .logo {
+      font-weight: bold;
       font-size: ${sizesModule.bigFontSize};
     }
     & > .menus {
       ${mixinModules.flexLayoutCenterSort}
       font-size: ${sizesModule.middleFontSize};
       & > li {
-        margin-left: 10px;
+        margin-left: 20px;
       }
     }
   }
