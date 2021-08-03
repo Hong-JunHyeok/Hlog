@@ -1,5 +1,5 @@
 import { SerializedStyles } from "@emotion/utils";
-import { CSSProperties, FC } from "react";
+import { CSSProperties, FC, ReactNode } from "react";
 import { StyledButton } from "./styles";
 
 interface ButtonProps {
@@ -7,6 +7,7 @@ interface ButtonProps {
   buttonTextColor?: string;
   customStyle?: CSSProperties | SerializedStyles;
   buttonHover?: boolean;
+  handleFunc?: () => void;
 }
 
 export const ButtonComponent: FC<ButtonProps> = ({
@@ -15,6 +16,7 @@ export const ButtonComponent: FC<ButtonProps> = ({
   buttonTextColor,
   customStyle,
   buttonHover,
+  handleFunc,
 }) => {
   return (
     <StyledButton
@@ -22,6 +24,7 @@ export const ButtonComponent: FC<ButtonProps> = ({
       buttonTextColor={buttonTextColor}
       style={customStyle}
       buttonHover={buttonHover}
+      onClick={handleFunc}
     >
       {children}
     </StyledButton>
