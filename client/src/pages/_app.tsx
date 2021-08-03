@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { AppProps } from "next/app";
-import Script from "next/script";
 import GlobalStyle from "../styles/GlobalStyle";
 import Layout from "../components/Layout";
-import { chkValidPlatform } from "../utils/chkValidPlatform";
+import wrapper from "../config/configureStore";
 
 const AppComponent = ({ Component, pageProps }: AppProps) => {
   return (
@@ -28,4 +27,4 @@ const AppComponent = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default AppComponent;
+export default wrapper.withRedux(AppComponent);
