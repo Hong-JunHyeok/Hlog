@@ -4,6 +4,7 @@ import { mixinModules } from "../../../styles/modules";
 import { sizesModule } from "../../../styles/sizes";
 
 export const StyledPost = styled.div`
+  width: ${sizesModule.pageMaxWidth};
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   padding: 2rem 1rem;
   border-radius: 10px;

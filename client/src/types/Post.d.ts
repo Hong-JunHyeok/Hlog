@@ -8,4 +8,5 @@ export interface Post {
   author: string;
   createdAt: string;
   likes: string[];
+  thumnail: string;
 }

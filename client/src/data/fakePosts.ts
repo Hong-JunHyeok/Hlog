@@ -13,6 +13,7 @@ export const generateFakePosts = (genCount: number) => {
       comments: [shortId.generate(), shortId.generate(), shortId.generate()],
       likes: [shortId.generate(), shortId.generate()],
       createdAt: faker.date.recent(10).toDateString(),
+      thumnail: faker.image.image(),
     }));
 };
 
