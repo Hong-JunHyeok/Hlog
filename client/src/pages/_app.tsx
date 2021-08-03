@@ -1,7 +1,6 @@
 import React from "react";
 import { AppProps } from "next/app";
 import GlobalStyle from "../styles/GlobalStyle";
-import Layout from "../components/Layout";
 import wrapper from "../config/configureStore";
 
 const AppComponent = ({ Component, pageProps }: AppProps) => {
@@ -20,9 +19,7 @@ const AppComponent = ({ Component, pageProps }: AppProps) => {
       />
 
       <GlobalStyle />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Component {...pageProps} />
     </>
   );
 };

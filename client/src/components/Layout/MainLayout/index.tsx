@@ -1,6 +1,6 @@
 import { FC } from "react";
-import FooterComponent from "../Footer";
-import HeaderComponent from "../Header";
+import FooterComponent from "../../Footer";
+import HeaderComponent from "../../Header";
 import { StyledLayout } from "./styles";
 
 const Layout: FC = ({ children }) => {

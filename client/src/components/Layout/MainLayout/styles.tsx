@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { sizesModule } from "../../styles/sizes";
+import { sizesModule } from "../../../styles/sizes";
 
 export const StyledLayout = styled.div`
   width: 100%;

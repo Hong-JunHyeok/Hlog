@@ -3,13 +3,14 @@ import React from "react";
 import { ButtonComponent } from "../components/Common/Button";
 import { StyledHomeLayout } from "../components/Home/HomeLayout/styles";
 import { StyledWelcome } from "../components/Home/Welcome/styles";
+import Layout from "../components/Layout/MainLayout";
 import { useLink } from "../hooks/useLink";
 
 const MainPage = () => {
   const { handlePushLink } = useLink("/post");
 
   return (
-    <>
+    <Layout>
       <Head>
         <title>HLOG | 메인</title>
       </Head>
@@ -23,7 +24,7 @@ const MainPage = () => {
         </StyledWelcome>
         <ButtonComponent handleFunc={handlePushLink}>시작하기</ButtonComponent>
       </StyledHomeLayout>
-    </>
+    </Layout>
   );
 };
 
