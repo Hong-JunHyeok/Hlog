@@ -9,6 +9,12 @@ export const StyledPost = styled.div`
   padding: 2rem 1rem;
   border-radius: 10px;
   margin: 2rem 0;
+  cursor: pointer;
+  transition: ease-in-out 0.2s;
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 22px 39px 0px;
+  }
   h1 {
     font-size: ${sizesModule.bigFontSize};
   }

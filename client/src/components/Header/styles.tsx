@@ -24,11 +24,12 @@ export const StyledHeader = styled.header`
       cursor: pointer;
     }
     & > .menus {
-      ${mixinModules.flexLayoutCenterSort}
+      display: flex;
       font-size: ${sizesModule.middleFontSize};
       & > li {
         ${mixinModules.flexLayoutCenterSort}
         margin-left: 20px;
+        cursor: pointer;
       }
     }
   }

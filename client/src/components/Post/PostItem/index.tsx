@@ -4,10 +4,13 @@ import { Post } from "../../../types/Post";
 import { getArrayLength } from "../../../utils/getArrayLength";
 import { StyledPost } from "./styles";
 import { sizesModule } from "../../../styles/sizes";
+import { useLink } from "../../../hooks/useLink";
 
 const PostItem: VFC<Post> = (post) => {
+  const { handlePushLink } = useLink(`/post/${post.id}`);
+
   return (
-    <StyledPost>
+    <StyledPost onClick={handlePushLink}>
       <Image
         src={post.thumnail}
         alt=""

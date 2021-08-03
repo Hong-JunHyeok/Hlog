@@ -1,5 +1,4 @@
-import { css } from "@emotion/react";
-import { CSSProperties, FC } from "react";
+import { CSSProperties, VFC } from "react";
 import { useLink } from "../../hooks/useLink";
 import { colorsModule } from "../../styles/colors";
 import { ButtonComponent } from "../Common/Button";
@@ -10,9 +9,12 @@ const buttonCustomStyle: CSSProperties = {
   width: "100px",
 };
 
-const HeaderComponent: FC = ({ children }) => {
+const HeaderComponent: VFC = () => {
   const { handlePushLink: pushMainPage } = useLink("/");
   const { handlePushLink: pushLoginPage } = useLink("/auth/login");
+
+  const { handlePushLink: pushPostPage } = useLink("/post");
+  const { handlePushLink: pushProfilePage } = useLink("/profile");
 
   return (
     <StyledHeader>
@@ -21,8 +23,8 @@ const HeaderComponent: FC = ({ children }) => {
           HLOG
         </div>
         <ul className="menus">
-          <li>포스트</li>
-          <li>프로필</li>
+          <li onClick={pushPostPage}>포스트</li>
+          <li onClick={pushProfilePage}>프로필</li>
           <ButtonComponent
             buttonColor={colorsModule.hlog_blue}
             customStyle={buttonCustomStyle}
