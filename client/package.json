@@ -1,0 +1,19 @@
+{
+  "name": "hlog_client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next -p 3060"
+  },
+  "author": "Hong-JunHyeok",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^11.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  }
+}
