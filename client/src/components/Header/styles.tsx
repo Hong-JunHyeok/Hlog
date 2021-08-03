@@ -21,6 +21,7 @@ export const StyledHeader = styled.header`
     & > .logo {
       font-weight: bold;
       font-size: ${sizesModule.bigFontSize};
+      cursor: pointer;
     }
     & > .menus {
       ${mixinModules.flexLayoutCenterSort}

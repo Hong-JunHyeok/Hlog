@@ -12,6 +12,7 @@ const GlobalStyle = () => {
         *::after,
         *::before {
           box-sizing: border-box;
+          font-family: "Noto Sans KR", sans-serif;
         }
         body {
           margin: 0px;

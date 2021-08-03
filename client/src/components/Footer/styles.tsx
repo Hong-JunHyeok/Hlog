@@ -3,6 +3,7 @@ import { colorsModule } from "../../styles/colors";
 import { sizesModule } from "../../styles/sizes";
 
 export const StyledFooter = styled.footer`
+  position: fixed;
   width: 100%;
   background-color: ${colorsModule.hlog_dark_2};
   .footer-container {
