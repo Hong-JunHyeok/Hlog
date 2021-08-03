@@ -6,6 +6,7 @@ interface ButtonProps {
   buttonColor?: string;
   buttonTextColor?: string;
   customStyle?: CSSProperties | SerializedStyles;
+  buttonHover?: boolean;
 }
 
 export const ButtonComponent: FC<ButtonProps> = ({
@@ -13,14 +14,20 @@ export const ButtonComponent: FC<ButtonProps> = ({
   buttonColor,
   buttonTextColor,
   customStyle,
+  buttonHover,
 }) => {
   return (
     <StyledButton
       buttonBackgroundColor={buttonColor}
       buttonTextColor={buttonTextColor}
       style={customStyle}
+      buttonHover={buttonHover}
     >
       {children}
     </StyledButton>
   );
+};
+
+ButtonComponent.defaultProps = {
+  buttonHover: true,
 };

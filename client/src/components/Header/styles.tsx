@@ -10,6 +10,7 @@ export const StyledHeader = styled.header`
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   position: fixed;
   ${mixinModules.flexLayoutCenterSort}
+  z-index: 10;
   .container {
     ${mixinModules.flexLayoutCenterSort}
     display: flex;
@@ -25,6 +26,7 @@ export const StyledHeader = styled.header`
       ${mixinModules.flexLayoutCenterSort}
       font-size: ${sizesModule.middleFontSize};
       & > li {
+        ${mixinModules.flexLayoutCenterSort}
         margin-left: 20px;
       }
     }
