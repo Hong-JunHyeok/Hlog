@@ -5,9 +5,11 @@ import { StyledButton } from "./styles";
 interface ButtonProps {
   buttonColor?: string;
   buttonTextColor?: string;
-  customStyle?: CSSProperties | SerializedStyles;
+  customStyle?: CSSProperties;
   buttonHover?: boolean;
   handleFunc?: () => void;
+  loading?: boolean;
+  loadingMsg?: string;
 }
 
 export const ButtonComponent: FC<ButtonProps> = ({
@@ -17,6 +19,8 @@ export const ButtonComponent: FC<ButtonProps> = ({
   customStyle,
   buttonHover,
   handleFunc,
+  loading,
+  loadingMsg,
 }) => {
   return (
     <StyledButton
@@ -26,7 +30,7 @@ export const ButtonComponent: FC<ButtonProps> = ({
       buttonHover={buttonHover}
       onClick={handleFunc}
     >
-      {children}
+      {loading ? (loadingMsg ? loadingMsg : "Loading...") : children}
     </StyledButton>
   );
 };

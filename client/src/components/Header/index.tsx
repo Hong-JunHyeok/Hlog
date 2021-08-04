@@ -12,7 +12,7 @@ const buttonCustomStyle: CSSProperties = {
 };
 
 const HeaderComponent: VFC = () => {
-  const { loginDone, me } = useUserState();
+  const { loginDone, me, loginLoading } = useUserState();
   const { dispatchLogOut } = useUserDispatch();
 
   const { handlePushLink: pushMainPage } = useLink("/");
@@ -42,6 +42,7 @@ const HeaderComponent: VFC = () => {
               buttonColor={colorsModule.hlog_blue}
               customStyle={buttonCustomStyle}
               handleFunc={pushLoginPage}
+              loading={loginLoading}
             >
               로그인
             </ButtonComponent>

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { useCallback, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useUserDispatch } from "../../../hooks/dispatches/useUserDispatch";
 import { useUserState } from "../../../hooks/states/useUserState";
 import useInput from "../../../hooks/useInput";
@@ -10,7 +9,7 @@ import { LoginFormContainer } from "./styles";
 
 const LoginForm = () => {
   const { handlePushLink: pushHome } = useLink("/");
-  const { loginDone } = useUserState();
+  const { loginDone, loginLoading } = useUserState();
   const { dispatchLogIn } = useUserDispatch();
 
   const [id, onChangeId] = useInput("");
@@ -51,7 +50,7 @@ const LoginForm = () => {
           onChange={onChangePw}
         />
         <button type="submit" className="login-button" onClick={handleLogin}>
-          로그인
+          {loginLoading ? "로딩 중..." : "로그인"}
         </button>
         <span className="login-goto_join">
           회원이 아니신가요? <Link href="/auth/join">회원가입</Link>
