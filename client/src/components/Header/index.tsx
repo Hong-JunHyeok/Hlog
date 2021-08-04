@@ -1,5 +1,4 @@
-import { CSSProperties, useCallback, VFC } from "react";
-import { useDispatch } from "react-redux";
+import { CSSProperties, VFC } from "react";
 import { useUserDispatch } from "../../hooks/dispatches/useUserDispatch";
 import { useUserState } from "../../hooks/states/useUserState";
 import { useLink } from "../../hooks/useLink";

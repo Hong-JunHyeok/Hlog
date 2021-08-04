@@ -25,7 +25,7 @@ export const StyledHeader = styled.header`
     }
     & > .menus {
       display: flex;
-      font-size: ${sizesModule.middleFontSize};
+      font-size: 18px;
       & > li {
         ${mixinModules.flexLayoutCenterSort}
         margin-left: 20px;
