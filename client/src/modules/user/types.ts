@@ -1,8 +1,11 @@
 import { ActionType } from "typesafe-actions";
+import { AxiosError } from "axios";
 import * as userActions from "./actions";
 
 export type UserAction = ActionType<typeof userActions>;
 
 export interface IUserState {
-  isLoggedIn: boolean;
+  loginDone: boolean;
+  loginError: null | AxiosError;
+  loginLoading: boolean;
 }

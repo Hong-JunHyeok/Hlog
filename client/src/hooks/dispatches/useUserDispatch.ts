@@ -1,12 +1,12 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { logInAction, logOutAction } from "../../modules/user/actions";
+import { loginAsyncAction, logOutAction } from "../../modules/user/actions";
 
 export const useUserDispatch = () => {
   const dispatch = useDispatch();
 
   const dispatchLogIn = useCallback(() => {
-    dispatch(logInAction());
+    dispatch(loginAsyncAction.request());
   }, []);
 
   const dispatchLogOut = useCallback(() => {

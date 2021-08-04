@@ -1,7 +1,9 @@
 import { useTypedSelector } from "../../modules";
 
 export const useUserState = () => {
-  const { isLoggedIn } = useTypedSelector((state) => state.user);
+  const { loginDone, loginError, loginLoading } = useTypedSelector(
+    (state) => state.user,
+  );
 
-  return { isLoggedIn };
+  return { loginDone, loginError, loginLoading };
 };

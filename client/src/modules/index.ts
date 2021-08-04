@@ -1,8 +1,9 @@
 import { HYDRATE } from "next-redux-wrapper";
 import { AnyAction, CombinedState, combineReducers } from "redux";
-import { IUserState } from "./user/types";
-import user from "./user/reducer";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
+import { IUserState } from "./user/types";
+
+import user from "./user/reducer";
 
 interface State {
   user: IUserState;

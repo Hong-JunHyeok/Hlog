@@ -7,6 +7,6 @@ export const StyledLayout = styled.div`
     max-width: ${sizesModule.pageMaxWidth};
     margin: 0 auto;
     padding-top: ${sizesModule.headerHeight};
-    min-height: 80vh;
+    padding-bottom: ${sizesModule.headerHeight};
   }
 `;
