@@ -16,6 +16,7 @@ const ViewPostsPage = () => {
         <List
           items={generateFakePosts(30)}
           renderItems={(post: Post) => <PostItem {...post} key={post.id} />}
+          className="post-conainer"
         />
       </PostPageLayout>
     </Layout>

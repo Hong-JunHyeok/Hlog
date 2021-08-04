@@ -8,7 +8,7 @@ const PostPageLayout: FC = ({ children }) => {
         <div className="nav-item">트렌드</div>
         <div className="nav-item">최신</div>
       </nav>
-      {children}
+      <div className="post-container">{children}</div>
     </StyledPostPageLayout>
   );
 };
