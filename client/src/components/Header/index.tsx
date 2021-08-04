@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { useUserDispatch } from "../../hooks/dispatches/useUserDispatch";
 import { useUserState } from "../../hooks/states/useUserState";
 import { useLink } from "../../hooks/useLink";
-import { logInAction } from "../../modules/user/actions";
 import { colorsModule } from "../../styles/colors";
 import { ButtonComponent } from "../Common/Button";
 import { StyledHeader } from "./styles";
@@ -14,7 +13,7 @@ const buttonCustomStyle: CSSProperties = {
 };
 
 const HeaderComponent: VFC = () => {
-  const { isLoggedIn } = useUserState();
+  const { loginDone, me } = useUserState();
   const { dispatchLogOut } = useUserDispatch();
 
   const { handlePushLink: pushMainPage } = useLink("/");
@@ -31,8 +30,8 @@ const HeaderComponent: VFC = () => {
         </div>
         <ul className="menus">
           <li onClick={pushPostPage}>포스트</li>
-          <li onClick={pushProfilePage}>프로필</li>
-          {isLoggedIn ? (
+          {me && <li onClick={pushProfilePage}>{me.name}님의 프로필</li>}
+          {loginDone ? (
             <ButtonComponent
               handleFunc={dispatchLogOut}
               customStyle={buttonCustomStyle}

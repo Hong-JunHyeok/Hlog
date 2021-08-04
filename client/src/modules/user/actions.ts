@@ -1,5 +1,5 @@
 import { createAction, createAsyncAction } from "typesafe-actions";
-import { AxiosError } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 
 export const LOG_IN_REQUEST = "user/LOG_IN_REQUEST" as const;
 export const LOG_IN_SUCCESS = "user/LOG_IN_SUCCESS" as const;
@@ -11,6 +11,6 @@ export const loginAsyncAction = createAsyncAction(
   LOG_IN_REQUEST,
   LOG_IN_SUCCESS,
   LOG_IN_FAILURE,
-)<void, void, AxiosError<any>>();
+)<any, AxiosResponse, AxiosError<any>>();
 
 export const logOutAction = createAction(LOG_OUT)();

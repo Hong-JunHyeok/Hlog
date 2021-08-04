@@ -12,6 +12,8 @@ export const userInitialState: IUserState = {
   loginDone: false,
   loginError: null,
   loginLoading: false,
+
+  me: null,
 };
 
 export default createReducer<IUserState, UserAction>(userInitialState, {
@@ -20,22 +22,30 @@ export default createReducer<IUserState, UserAction>(userInitialState, {
       draft.loginLoading = true;
       draft.loginError = null;
       draft.loginDone = false;
+
+      draft.me = null;
     }),
-  [LOG_IN_SUCCESS]: (state) =>
+  [LOG_IN_SUCCESS]: (state, action) =>
     produce(state, (draft) => {
       draft.loginLoading = false;
       draft.loginDone = true;
+
+      draft.me = action.payload.data.data.user;
     }),
   [LOG_IN_FAILURE]: (state, action) =>
     produce(state, (draft) => {
       draft.loginLoading = false;
       draft.loginError = action.payload;
       draft.loginDone = false;
+
+      draft.me = null;
     }),
   [LOG_OUT]: (state) =>
     produce(state, (draft) => {
       draft.loginDone = false;
       draft.loginError = null;
       draft.loginLoading = false;
+
+      draft.me = null;
     }),
 });

@@ -1,10 +1,14 @@
-import { put, delay } from "redux-saga/effects";
+import { AnyAction } from "redux";
+import { put, call } from "redux-saga/effects";
 import { loginAsyncAction } from "../../modules/user/actions";
+import { loginAPI } from "../../utils/api/auth/loginAPI";
 
-export function* handleLogin() {
+export function* handleLogin(action: AnyAction) {
   try {
-    yield put(loginAsyncAction.success());
+    const response = yield call(loginAPI, action.payload);
+    console.log(response);
+    yield put(loginAsyncAction.success(response));
   } catch (error) {
-    // yield put(loginAsyncAction.failure());
+    yield put(loginAsyncAction.failure(error.response.data));
   }
 }

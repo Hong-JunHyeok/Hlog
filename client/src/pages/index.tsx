@@ -1,13 +1,21 @@
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 import { ButtonComponent } from "../components/Common/Button";
 import { StyledHomeLayout } from "../components/Home/HomeLayout/styles";
 import { StyledWelcome } from "../components/Home/Welcome/styles";
 import Layout from "../components/Layout/MainLayout";
+import { useUserState } from "../hooks/states/useUserState";
 import { useLink } from "../hooks/useLink";
 
 const MainPage = () => {
+  const { loginDone } = useUserState();
   const { handlePushLink } = useLink("/post");
+
+  useEffect(() => {
+    if (loginDone) {
+      handlePushLink();
+    }
+  }, [loginDone]);
 
   return (
     <Layout>

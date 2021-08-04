@@ -1,8 +1,8 @@
 import * as express from "express";
 import * as cors from "cors";
-import * as logger from "./lib/logger";
 import * as database from "./database";
 import { router as api } from "./api";
+import chalk = require("chalk");
 
 const PORT = process.env.PORT || 8080;
 
@@ -27,7 +27,9 @@ app.get("/", (req, res) => {
 app.use("/api", api);
 
 app.listen(PORT, () => {
-  logger.blue(
-    `${PORT}번 포트에서 서버 실행중입니다. (http://localhost:${PORT}/)`
+  console.log(
+    chalk.bgBlue.black(
+      `${PORT}번 포트에서 서버 실행중입니다. (http://localhost:${PORT}/)`
+    )
   );
 });
