@@ -1,12 +1,16 @@
 import { HYDRATE } from "next-redux-wrapper";
 import { AnyAction, CombinedState, combineReducers } from "redux";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
+
 import { IUserState } from "./user/types";
+import { IPostState } from "./post/types";
 
 import user from "./user/reducer";
+import post from "./post/reducer";
 
 interface State {
   user: IUserState;
+  post: IPostState;
 }
 
 const rootReducer = (
@@ -19,6 +23,7 @@ const rootReducer = (
     default: {
       const combinedReducer = combineReducers({
         user,
+        post,
       });
       return combinedReducer(state, action);
     }

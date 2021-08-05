@@ -1,5 +1,5 @@
 module.exports = {
   images: {
-    domains: ["placeimg.com"],
+    domains: ["media.vlpt.us"],
   },
 };

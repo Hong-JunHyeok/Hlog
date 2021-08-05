@@ -19,4 +19,4 @@ export const getPostsAction = createAsyncAction(
   GET_POSTS_REQUEST,
   GET_POSTS_SUCCESS,
   GET_POSTS_FAILURE,
-)<any, AxiosResponse, AxiosError<any>>();
+)<void, AxiosResponse, AxiosError<any>>();

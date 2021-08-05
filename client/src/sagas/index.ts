@@ -1,10 +1,12 @@
 import { all, fork } from "redux-saga/effects";
 import axios from "axios";
-import userSaga from "./user";
 import { isDevMode } from "../utils/isDevMode";
+
+import userSaga from "./user";
+import postSaga from "./post";
 
 axios.defaults.baseURL = isDevMode() ? "http://localhost:8080/api/v1" : "";
 
 export default function* rootSaga() {
-  yield all([fork(userSaga)]);
+  yield all([fork(userSaga), fork(postSaga)]);
 }

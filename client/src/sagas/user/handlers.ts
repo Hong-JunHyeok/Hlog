@@ -7,7 +7,7 @@ export function* handleLogin(action: AnyAction) {
   try {
     const response = yield call(loginAPI, action.payload);
     console.log(response);
-    yield put(loginAsyncAction.success(response));
+    yield put(loginAsyncAction.success(response.data));
   } catch (error) {
     yield put(loginAsyncAction.failure(error.response.data));
   }

@@ -30,7 +30,7 @@ export default createReducer<IUserState, UserAction>(userInitialState, {
       draft.loginLoading = false;
       draft.loginDone = true;
 
-      draft.me = action.payload.data.data.user;
+      draft.me = action.payload.data.user;
     }),
   [LOG_IN_FAILURE]: (state, action) =>
     produce(state, (draft) => {

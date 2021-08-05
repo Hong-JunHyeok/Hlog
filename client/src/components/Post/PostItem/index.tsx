@@ -27,8 +27,8 @@ const PostItem: VFC<Post> = (post) => {
           <span className="createdAt">{post.createdAt}</span>
         </div>
         <div>
-          <span className="likers">{getArrayLength(post.likes)}</span>
-          <span className="comments">{getArrayLength(post.comments)}</span>
+          <span className="likers">{getArrayLength([1, 2, 3])}</span>
+          <span className="comments">{getArrayLength([1, 2, 3])}</span>
         </div>
       </div>
     </StyledPost>
