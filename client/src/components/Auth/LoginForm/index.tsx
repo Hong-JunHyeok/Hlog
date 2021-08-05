@@ -16,7 +16,7 @@ const LoginForm = () => {
   const [pw, onChangePw] = useInput("");
 
   const handleLogin = useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
+    (e: React.FormEvent<HTMLElement>) => {
       e.preventDefault();
       dispatchLogIn({
         id,

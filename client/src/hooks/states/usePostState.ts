@@ -1,15 +1,25 @@
-import { useCallback } from "react";
-import { useDispatch } from "react-redux";
-import { getPostsAction } from "../../modules/post/actions";
+import { useTypedSelector } from "../../modules";
 
-export const usePostDispatch = () => {
-  const dispatch = useDispatch();
-
-  const dispatchGetPosts = useCallback(() => {
-    dispatch(getPostsAction.request());
-  }, []);
+export const usePostState = () => {
+  const {
+    getPostsDone,
+    getPostLoading,
+    getPostDone,
+    getPostError,
+    getPostsError,
+    getPostsLoading,
+    post,
+    posts,
+  } = useTypedSelector((state) => state.post);
 
   return {
-    dispatchGetPosts,
+    getPostsDone,
+    getPostLoading,
+    getPostDone,
+    getPostError,
+    getPostsError,
+    getPostsLoading,
+    post,
+    posts,
   };
 };

@@ -6,6 +6,11 @@ export const StyledPostPageLayout = styled.div`
   display: flex;
   flex-direction: column;
 
+  .no-posts {
+    padding: 20vh;
+    text-align: center;
+  }
+
   nav {
     display: flex;
     margin-top: 40px;

@@ -46,6 +46,6 @@ export default class User extends BaseEntity {
   @UpdateDateColumn()
   updated_at: Date;
 
-  @OneToMany((type) => Post, (post) => post.post_id)
+  @OneToMany((type) => Post, (post) => post.post_id, { onDelete: "CASCADE" })
   post!: Post[];
 }

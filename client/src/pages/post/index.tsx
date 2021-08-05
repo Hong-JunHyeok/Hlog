@@ -8,9 +8,8 @@ import { generateFakePosts } from "../../data/fakePosts";
 import { Post } from "../../types/Post";
 import wrapper from "../../config/configureStore";
 import { GET_POSTS_REQUEST } from "../../modules/post/actions";
-import { usePostState } from "../../hooks/dispatches/usePostDispatch";
-import { AnyAction, Store } from "redux";
 import { NextPage } from "next";
+import { usePostState } from "../../hooks/states/usePostState";
 
 const ViewPostsPage: NextPage = () => {
   const { posts } = usePostState();
@@ -21,11 +20,15 @@ const ViewPostsPage: NextPage = () => {
         <title>HLOG | 포스트</title>
       </Head>
       <PostPageLayout>
-        <List
-          items={posts}
-          renderItems={(post: Post) => <PostItem {...post} key={post.id} />}
-          className="post-conainer"
-        />
+        {posts ? (
+          <h1 className="no-posts">조회할 포스트가 없네요...</h1>
+        ) : (
+          <List
+            items={posts}
+            renderItems={(post: Post) => <PostItem {...post} key={post.id} />}
+            className="post-conainer"
+          />
+        )}
       </PostPageLayout>
     </Layout>
   );

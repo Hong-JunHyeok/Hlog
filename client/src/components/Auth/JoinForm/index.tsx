@@ -1,10 +1,29 @@
 import Link from "next/link";
+import { useCallback } from "react";
+import { useUserDispatch } from "../../../hooks/dispatches/useUserDispatch";
+import useInput from "../../../hooks/useInput";
 import FormLayout from "../../Layout/FormLayout";
 import { JoinFormContainer } from "./styles";
 
 const JoinForm = () => {
+  const [id, onChangeId] = useInput("");
+  const [pw, onChangePw] = useInput("");
+  const [checkPw, onChangeCheckPw] = useInput("");
+  const [name, onChangeName] = useInput("");
+  const [desc, onChangeDesc] = useInput("");
+
+  const { dispatchJoin } = useUserDispatch();
+
+  const handleJoin = useCallback(
+    (e: React.FormEvent<HTMLElement>) => {
+      e.preventDefault();
+      dispatchJoin({ id, pw, name, desc });
+    },
+    [id, pw, checkPw, name, desc],
+  );
+
   return (
-    <FormLayout formTitle="회원가입">
+    <FormLayout formTitle="회원가입" handleSubmit={handleJoin}>
       <JoinFormContainer autoComplete="off">
         <section className="join-section">
           <h1>아이디</h1>
@@ -12,6 +31,8 @@ const JoinForm = () => {
             type="text"
             className="join-input"
             placeholder="아이디를 입력해주세요."
+            value={id}
+            onChange={onChangeId}
           />
         </section>
         <section className="join-section">
@@ -20,19 +41,34 @@ const JoinForm = () => {
             type="password"
             className="join-input"
             placeholder="비밀번호를 입력해주세요."
+            value={pw}
+            onChange={onChangePw}
           />
           <input
             type="password"
             className="join-input"
             placeholder="비밀번호를 다시 입력해주요."
+            value={checkPw}
+            onChange={onChangeCheckPw}
           />
         </section>
         <section className="join-section">
-          <h1>이메일</h1>
+          <h1>이름</h1>
           <input
-            type="email"
+            type="text"
             className="join-input"
-            placeholder="유저 인증 정보가 전달되기 위해서 필요합니다."
+            placeholder="이름을 입력해주세요."
+            value={name}
+            onChange={onChangeName}
+          />
+        </section>
+        <section className="join-section">
+          <h1>자기소개</h1>
+          <textarea
+            className="join-desc"
+            placeholder="자기소개를 입력해주세요."
+            value={desc}
+            onChange={onChangeDesc}
           />
         </section>
         <section className="join-section conditions">
@@ -46,7 +82,7 @@ const JoinForm = () => {
           </label>
         </section>
         <button type="submit" className="join-button">
-          로그인
+          회원가입
         </button>
         <span className="join-goto_join">
           <Link href="/auth/login">로그인</Link> 하러 가기

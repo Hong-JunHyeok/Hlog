@@ -18,7 +18,9 @@ export const JoinFormContainer = styled.form`
         }
       }
     }
-    &-input {
+    &-input,
+    &-desc {
+      resize: none;
       border: 1px solid black;
       outline: none;
       background-color: #fff;
