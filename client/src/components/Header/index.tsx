@@ -29,7 +29,7 @@ const HeaderComponent: VFC = () => {
         </div>
         <ul className="menus">
           <li onClick={pushPostPage}>포스트</li>
-          {me && <li onClick={pushProfilePage}>{me.name}님의 프로필</li>}
+          {me && <li onClick={pushProfilePage}>프로필</li>}
           {loginDone ? (
             <ButtonComponent
               handleFunc={dispatchLogOut}
