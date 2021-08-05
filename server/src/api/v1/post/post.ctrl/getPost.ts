@@ -4,7 +4,7 @@ import * as logger from "../../../../lib/logger";
 import { getRepository } from "typeorm";
 
 export default async (req: Request, res: Response) => {
-  const idx: number = Number(req.params.idx);
+  const idx: string = req.params.idx;
 
   try {
     const postRepo = getRepository(Post);
@@ -22,7 +22,6 @@ export default async (req: Request, res: Response) => {
       message: "포스트 조회 성공",
       post,
     });
-    
   } catch (error) {
     logger.red(error);
     res.status(500).json({
