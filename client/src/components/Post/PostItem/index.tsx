@@ -7,21 +7,22 @@ import { sizesModule } from "../../../styles/sizes";
 import { useLink } from "../../../hooks/useLink";
 
 const PostItem: VFC<Post> = (post) => {
-  const { handlePushLink } = useLink(`/post/${post.id}`);
+  const { handlePushLink } = useLink(`/post/${post.post_id}`);
 
   return (
     <StyledPost onClick={handlePushLink}>
-      {post.thumnail && (
-        <Image
-          src={post.thumnail}
-          alt=""
-          width={sizesModule.pageMaxWidth}
-          height={500}
-          blurDataURL={post.thumnail}
-          placeholder="blur"
-          className="thumnail"
-        />
-      )}
+      <div className="thumnail">
+        {post.thumnail && (
+          <Image
+            src={post.thumnail}
+            alt=""
+            width={sizesModule.pageMaxWidth}
+            height={500}
+            blurDataURL={post.thumnail}
+            placeholder="blur"
+          />
+        )}
+      </div>
       <h1>{post.title}</h1>
       <div className="meta">
         <div>

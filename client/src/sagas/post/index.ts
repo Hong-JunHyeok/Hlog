@@ -1,6 +1,6 @@
 import { all, fork } from "redux-saga/effects";
-import { watchGetPosts } from "./watchers";
+import { watchGetPost, watchGetPosts } from "./watchers";
 
 export default function* postSaga() {
-  yield all([fork(watchGetPosts)]);
+  yield all([fork(watchGetPosts), fork(watchGetPost)]);
 }

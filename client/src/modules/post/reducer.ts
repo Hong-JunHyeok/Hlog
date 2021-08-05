@@ -19,24 +19,39 @@ export const postInitialState: IPostState = {
 export default createReducer<IPostState, PostAction>(postInitialState, {
   [postActions.GET_POSTS_REQUEST]: (state) =>
     produce(state, (draft) => {
-      draft.getPostDone = false;
-      draft.getPostError = null;
-      draft.getPostLoading = true;
+      draft.getPostsDone = false;
+      draft.getPostsError = null;
+      draft.getPostsLoading = true;
     }),
   [postActions.GET_POSTS_SUCCESS]: (state, action) =>
     produce(state, (draft) => {
-      draft.getPostDone = true;
-      draft.getPostLoading = false;
+      draft.getPostsDone = true;
+      draft.getPostsLoading = false;
 
       draft.posts = action.payload.data.posts;
     }),
   [postActions.GET_POSTS_FAILURE]: (state, action) =>
     produce(state, (draft) => {
+      draft.getPostsError = action.payload;
+      draft.getPostsLoading = false;
+    }),
+
+  [postActions.GET_POST_REQUEST]: (state) =>
+    produce(state, (draft) => {
+      draft.getPostDone = false;
+      draft.getPostError = null;
+      draft.getPostLoading = true;
+    }),
+  [postActions.GET_POST_SUCCESS]: (state, action) =>
+    produce(state, (draft) => {
+      draft.getPostDone = true;
+      draft.getPostLoading = false;
+
+      draft.posts = action.payload.data.post;
+    }),
+  [postActions.GET_POST_FAILURE]: (state, action) =>
+    produce(state, (draft) => {
       draft.getPostError = action.payload;
       draft.getPostLoading = false;
     }),
-
-  [postActions.GET_POST_REQUEST]: (state) => produce(state, (draft) => {}),
-  [postActions.GET_POST_SUCCESS]: (state) => produce(state, (draft) => {}),
-  [postActions.GET_POST_FAILURE]: (state) => produce(state, (draft) => {}),
 });

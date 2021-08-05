@@ -1,5 +1,8 @@
 import Head from "next/head";
+import { END } from "redux-saga";
 import Layout from "../../components/Layout/MainLayout";
+import wrapper from "../../config/configureStore";
+import { GET_POST_REQUEST } from "../../modules/post/actions";
 
 const ViewPostPage = () => {
   return (
@@ -11,5 +14,18 @@ const ViewPostPage = () => {
     </>
   );
 };
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store): any =>
+    async ({ params }) => {
+      store.dispatch({
+        type: GET_POST_REQUEST,
+        payload: params.post_id,
+      });
+
+      store.dispatch(END);
+      await store.sagaTask.toPromise();
+    },
+);
 
 export default ViewPostPage;

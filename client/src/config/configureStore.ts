@@ -20,7 +20,8 @@ const configureStore = () => {
 };
 
 const wrapper = createWrapper(configureStore, {
-  debug: isDevMode() ? true : false,
+  // debug: isDevMode() ? true : false,
+  debug: false,
 });
 
 export default wrapper;

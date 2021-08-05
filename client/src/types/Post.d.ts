@@ -1,7 +1,7 @@
 import { Comment } from "./Comment";
 
 export interface Post {
-  id: string;
+  post_id: string;
   title: string;
   content: string;
   comments: string[];

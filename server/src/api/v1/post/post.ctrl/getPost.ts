@@ -8,7 +8,7 @@ export default async (req: Request, res: Response) => {
 
   try {
     const postRepo = getRepository(Post);
-    const post = await postRepo.findOne({ where: { postIdx: idx } });
+    const post = await postRepo.findOne({ where: { post_id: idx } });
 
     if (!post) {
       logger.yellow("조회할 포스트가 없습니다");

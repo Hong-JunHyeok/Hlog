@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { StyledPostPageLayout } from "./styles";
 
-const PostPageLayout: FC = ({ children }) => {
+const PostsPageLayout: FC = ({ children }) => {
   return (
     <StyledPostPageLayout>
       <nav>
@@ -13,4 +13,4 @@ const PostPageLayout: FC = ({ children }) => {
   );
 };
 
-export default PostPageLayout;
+export default PostsPageLayout;

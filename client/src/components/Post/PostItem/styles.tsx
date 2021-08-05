@@ -5,6 +5,7 @@ import { sizesModule } from "../../../styles/sizes";
 
 export const StyledPost = styled.div`
   width: 45%;
+
   /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
   border: 1px solid ${colorsModule.hlog_gray_2};
   padding: 2rem 1rem;
