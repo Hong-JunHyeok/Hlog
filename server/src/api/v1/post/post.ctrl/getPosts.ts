@@ -13,6 +13,9 @@ export default async (req: Request, res: Response) => {
       logger.yellow("조회할 포스트가 없습니다.");
       return res.status(200).json({
         message: "조회할 포스트가 없습니다.",
+        data: {
+          posts: [],
+        },
       });
     }
 

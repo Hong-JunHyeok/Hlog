@@ -1,9 +1,18 @@
-import { Entity, Column, BaseEntity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  BaseEntity,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  OneToMany,
+} from "typeorm";
+import Post from "./Post";
 
 @Entity("user")
 export default class User extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
-  userIdx: string;
+  user_id: string;
 
   @Column({
     length: 30,
@@ -30,4 +39,13 @@ export default class User extends BaseEntity {
     nullable: false,
   })
   isAdmin: boolean;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
+
+  @OneToMany((type) => Post, (post) => post.post_id)
+  post!: Post[];
 }

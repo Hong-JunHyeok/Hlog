@@ -3,14 +3,18 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
+  RelationId,
   UpdateDateColumn,
 } from "typeorm";
+import User from "./User";
 
 @Entity("post")
 export default class Post extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  postIdx: number;
+  @PrimaryGeneratedColumn("uuid")
+  post_id: string;
 
   @Column({
     length: 255,
@@ -37,4 +41,13 @@ export default class Post extends BaseEntity {
     nullable: true,
   })
   updatedAt: Date;
+
+  @RelationId((post: Post) => post.user)
+  userId!: string | null;
+
+  @JoinColumn({ name: "fk_user_id" })
+  @ManyToOne((type) => User, (user) => user.user_id, {
+    onDelete: "CASCADE",
+  })
+  user!: User;
 }

@@ -9,8 +9,10 @@ import { Post } from "../../types/Post";
 import wrapper from "../../config/configureStore";
 import { GET_POSTS_REQUEST } from "../../modules/post/actions";
 import { usePostState } from "../../hooks/dispatches/usePostDispatch";
+import { AnyAction, Store } from "redux";
+import { NextPage } from "next";
 
-const ViewPostsPage = () => {
+const ViewPostsPage: NextPage = () => {
   const { posts } = usePostState();
 
   return (
@@ -30,14 +32,15 @@ const ViewPostsPage = () => {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async () => {
-    store.dispatch({
-      type: GET_POSTS_REQUEST,
-    });
+  (store): any =>
+    async () => {
+      store.dispatch({
+        type: GET_POSTS_REQUEST,
+      });
 
-    store.dispatch(END);
-    await store.sagaTask.toPromise();
-  },
+      store.dispatch(END);
+      await store.sagaTask.toPromise();
+    },
 );
 
 export default ViewPostsPage;
