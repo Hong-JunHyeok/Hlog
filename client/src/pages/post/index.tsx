@@ -10,6 +10,7 @@ import wrapper from "../../config/configureStore";
 import { GET_POSTS_REQUEST } from "../../modules/post/actions";
 import { NextPage } from "next";
 import { usePostState } from "../../hooks/states/usePostState";
+import { getArrayLength } from "../../utils/getArrayLength";
 
 const ViewPostsPage: NextPage = () => {
   const { posts } = usePostState();
@@ -20,7 +21,7 @@ const ViewPostsPage: NextPage = () => {
         <title>HLOG | 포스트</title>
       </Head>
       <PostPageLayout>
-        {posts ? (
+        {getArrayLength(posts) === 0 ? (
           <h1 className="no-posts">조회할 포스트가 없네요...</h1>
         ) : (
           <List

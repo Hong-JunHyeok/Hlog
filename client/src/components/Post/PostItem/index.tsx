@@ -11,15 +11,17 @@ const PostItem: VFC<Post> = (post) => {
 
   return (
     <StyledPost onClick={handlePushLink}>
-      <Image
-        src={post.thumnail}
-        alt=""
-        width={sizesModule.pageMaxWidth}
-        height={500}
-        blurDataURL={post.thumnail}
-        placeholder="blur"
-        className="thumnail"
-      />
+      {post.thumnail && (
+        <Image
+          src={post.thumnail}
+          alt=""
+          width={sizesModule.pageMaxWidth}
+          height={500}
+          blurDataURL={post.thumnail}
+          placeholder="blur"
+          className="thumnail"
+        />
+      )}
       <h1>{post.title}</h1>
       <div className="meta">
         <div>

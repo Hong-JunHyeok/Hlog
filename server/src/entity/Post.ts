@@ -32,6 +32,11 @@ export default class Post extends BaseEntity {
   })
   content: string;
 
+  @Column({
+    nullable: false,
+  })
+  author: string;
+
   @Column("timestampz")
   @CreateDateColumn()
   createdAt: Date;
