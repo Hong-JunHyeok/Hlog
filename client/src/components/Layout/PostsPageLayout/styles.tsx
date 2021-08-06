@@ -15,16 +15,19 @@ export const StyledPostPageLayout = styled.div`
     display: flex;
     margin-top: 40px;
     font-size: ${sizesModule.middleFontSize};
-
-    .nav-item {
-      padding: 5px 10px;
-      cursor: pointer;
+    justify-content: space-between;
+    .post-sorter {
+      display: flex;
+      .nav-item {
+        padding: 5px 10px;
+        cursor: pointer;
+      }
     }
   }
   .post-conainer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     @media (max-width: ${sizesModule.pageMaxWidth}) {
       flex-direction: column;
       align-items: center;
