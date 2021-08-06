@@ -8,7 +8,6 @@ interface ICodeViwerProps {
 }
 
 const CodeViewer: VFC<ICodeViwerProps> = ({ title, content }) => {
-  console.log(lexer(content));
   const createMarkup = (content: string) => {
     return { __html: lexer(content) };
   };

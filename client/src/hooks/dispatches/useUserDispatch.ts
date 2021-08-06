@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import {
   joinAsyncAction,
+  loadMyInfoAction,
   loginAsyncAction,
   logOutAction,
 } from "../../modules/user/actions";
@@ -25,6 +26,10 @@ export const useUserDispatch = () => {
     [dispatch],
   );
 
+  const dispatchLoadMyInfo = useCallback(() => {
+    dispatch(loadMyInfoAction.request());
+  }, [dispatch]);
+
   const dispatchLogOut = useCallback(() => {
     dispatch(logOutAction());
   }, [dispatch]);
@@ -32,6 +37,7 @@ export const useUserDispatch = () => {
   return {
     dispatchLogIn,
     dispatchJoin,
+    dispatchLoadMyInfo,
     dispatchLogOut,
   };
 };

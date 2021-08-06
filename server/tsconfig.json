@@ -2,12 +2,15 @@
   "compilerOptions": {
     "lib": ["es5", "es6"],
     "target": "es5",
+    "allowJs": true,
     "module": "commonjs",
+    "esModuleInterop": true,
     "moduleResolution": "node",
     "outDir": "./build",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
-    "typeRoots": ["./src/types", "./node_modules/@types"]
+    "typeRoots": ["./src/types", "./node_modules/@types"],
+    "strict": false
   }
 }

@@ -10,9 +10,17 @@ import { GET_POSTS_REQUEST } from "../../modules/post/actions";
 import { NextPage } from "next";
 import { usePostState } from "../../hooks/states/usePostState";
 import { getArrayLength } from "../../utils/getArrayLength";
+import { LOAD_MY_INFO_REQUEST } from "../../modules/user/actions";
+import { useUserDispatch } from "../../hooks/dispatches/useUserDispatch";
+import { useEffect } from "react";
 
 const ViewPostsPage: NextPage = () => {
   const { posts } = usePostState();
+  const { dispatchLoadMyInfo } = useUserDispatch();
+
+  useEffect(() => {
+    dispatchLoadMyInfo();
+  }, []);
 
   return (
     <Layout>
@@ -42,6 +50,10 @@ export const getServerSideProps = wrapper.getServerSideProps(
       store.dispatch({
         type: GET_POSTS_REQUEST,
       });
+
+      // store.dispatch({
+      //   type: LOAD_MY_INFO_REQUEST,
+      // });
 
       store.dispatch(END);
       await store.sagaTask.toPromise();

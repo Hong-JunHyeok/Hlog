@@ -8,7 +8,7 @@ import modifyPost from "./post.ctrl/modifyPost";
 
 const router = Router();
 
-router.post("/", loginCheck, createPost);
+router.post("/", createPost);
 router.delete("/:idx", deletePost);
 router.get("/", getPosts);
 router.get("/:idx", getPost);

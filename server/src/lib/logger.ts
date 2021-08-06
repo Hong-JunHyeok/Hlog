@@ -1,4 +1,4 @@
-import * as colors from "chalk";
+import colors from "chalk";
 
 //오류가 있을 시에 로그
 export const red = (...logs: string[]) => {

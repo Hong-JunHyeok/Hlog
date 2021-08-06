@@ -19,7 +19,7 @@ const rootReducer = (
 ): CombinedState<State> => {
   switch (action.type) {
     case HYDRATE:
-      return { ...state, ...action.payload };
+      return action.payload;
     default: {
       const combinedReducer = combineReducers({
         user,

@@ -44,7 +44,7 @@ export default createReducer<IUserState, UserAction>(userInitialState, {
       draft.loginLoading = false;
       draft.loginDone = true;
 
-      draft.me = action.payload.data.user;
+      draft.me = action.payload.data;
     }),
   [LOG_IN_FAILURE]: (state, action) =>
     produce(state, (draft) => {
@@ -82,7 +82,11 @@ export default createReducer<IUserState, UserAction>(userInitialState, {
       draft.loadMyInfoLoading = false;
       draft.loadMyInfoDone = true;
 
+      console.log(action.payload.data);
       draft.me = action.payload.data.user;
+      if (draft.me) {
+        draft.loginDone = true;
+      }
     }),
   [LOAD_MY_INFO_FAILURE]: (state, action) =>
     produce(state, (draft) => {

@@ -5,6 +5,7 @@ import { getArrayLength } from "../../../utils/getArrayLength";
 import { StyledPost } from "./styles";
 import { sizesModule } from "../../../styles/sizes";
 import { useLink } from "../../../hooks/useLink";
+import getDistanceToNow from "../../../utils/getDistanceToNow";
 
 const PostItem: VFC<Post> = (post) => {
   const { handlePushLink } = useLink(`/post/${post.post_id}`);
@@ -27,7 +28,7 @@ const PostItem: VFC<Post> = (post) => {
       <div className="meta">
         <div>
           <span className="author">{post.author}</span>
-          <span className="createdAt">{post.createdAt}</span>
+          <span className="createdAt">{getDistanceToNow(post.createdAt)}</span>
         </div>
         <div>
           <span className="likers">{getArrayLength([1, 2, 3])}</span>

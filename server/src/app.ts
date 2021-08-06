@@ -1,18 +1,23 @@
-import * as express from "express";
-import * as cors from "cors";
-import * as database from "./database";
+import express from "express";
+import cors from "cors";
+import { getConnection } from "./database";
 import { router as api } from "./api";
-import chalk = require("chalk");
+import session from "express-session";
+import cookieParser from "cookie-parser";
+import chalk from "chalk";
+import passportConfig from "./passport";
+import passport = require("passport");
 
 const PORT = process.env.PORT || 8080;
 
 const app = express();
 
-database.getConnection();
+getConnection();
 
+passportConfig();
 app.use(
   cors({
-    origin: true,
+    origin: "http://localhost:3060",
     credentials: true,
   })
 );
@@ -24,6 +29,16 @@ app.get("/", (req, res) => {
     message: "HLOG Rest API server",
   });
 });
+app.use(cookieParser());
+app.use(
+  session({
+    saveUninitialized: false,
+    resave: false,
+    secret: process.env.SESSION_SECRET,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 app.use("/api", api);
 
 app.listen(PORT, () => {

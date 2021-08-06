@@ -2,7 +2,6 @@ import React from "react";
 import { AppProps } from "next/app";
 import GlobalStyle from "../styles/GlobalStyle";
 import wrapper from "../config/configureStore";
-import { ToastrComponent } from "../components/Common/Toastr";
 
 const AppComponent = ({ Component, pageProps }: AppProps) => {
   return (

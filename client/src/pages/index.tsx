@@ -1,13 +1,18 @@
+import { END } from "@redux-saga/core";
 import Head from "next/head";
 import React, { useEffect } from "react";
 import { ButtonComponent } from "../components/Common/Button";
 import { StyledHomeLayout } from "../components/Home/HomeLayout/styles";
 import { StyledWelcome } from "../components/Home/Welcome/styles";
 import Layout from "../components/Layout/MainLayout";
+import wrapper from "../config/configureStore";
+import { useUserDispatch } from "../hooks/dispatches/useUserDispatch";
 import { useUserState } from "../hooks/states/useUserState";
 import { useLink } from "../hooks/useLink";
+import { LOAD_MY_INFO_REQUEST } from "../modules/user/actions";
 
 const MainPage = () => {
+  const { dispatchLoadMyInfo } = useUserDispatch();
   const { loginDone } = useUserState();
   const { handlePushLink } = useLink("/post");
 
@@ -35,5 +40,17 @@ const MainPage = () => {
     </Layout>
   );
 };
+
+// export const getServerSideProps = wrapper.getServerSideProps(
+//   (store): any =>
+//     async () => {
+//       store.dispatch({
+//         type: LOAD_MY_INFO_REQUEST,
+//       });
+
+//       store.dispatch(END);
+//       await store.sagaTask.toPromise();
+//     },
+// );
 
 export default MainPage;

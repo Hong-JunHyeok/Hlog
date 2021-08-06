@@ -1,22 +1,39 @@
-import { NextFunction, Response } from "express";
-import { getRepository } from "typeorm";
+import { NextFunction, Request, Response } from "express";
 import User from "../../../../entity/User";
+import * as logger from "../../../../lib/logger";
 
 export default async (req: any, res: Response, next: NextFunction) => {
   try {
-    const { user_id } = req.user;
-    const userRepo = getRepository(User);
-    const user: User = await userRepo.findOne({
-      where: {
-        user_id,
-      },
-    });
+    if (req.user) {
+      const user = await User.findOne({
+        where: { id: req.user.id },
+      });
 
-    return res.status(200).json({
-      message: "유저조회 성공",
-      user,
-    });
+      logger.green("내 정보 조회성공");
+      res.status(200).json({
+        message: "내 정보 조회성공",
+        user,
+      });
+    } else {
+      logger.yellow("내 정보 조회실패");
+      res.status(404).json({
+        message: "내 정보 조회실패",
+        user: null,
+      });
+    }
+    // if (req.user) {
+    //   logger.green("내 정보 조회성공");
+    //   return res.status(200).json({
+    //     user: req.user,
+    //   });
+    // } else {
+    //   logger.yellow("내 정보 조회실패");
+    //   return res.status(404).json({
+    //     user: null,
+    //   });
+    // }
   } catch (error) {
+    console.error(error);
     next(error);
   }
 };

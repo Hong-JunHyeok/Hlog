@@ -31,6 +31,6 @@ export const loadMyInfoAction = createAsyncAction(
   LOAD_MY_INFO_REQUEST,
   LOAD_MY_INFO_SUCCESS,
   LOAD_MY_INFO_FAILURE,
-)<any, AxiosResponse, AxiosError<any>>();
+)<void, AxiosResponse, AxiosError<any>>();
 
 export const logOutAction = createAction(LOG_OUT)();

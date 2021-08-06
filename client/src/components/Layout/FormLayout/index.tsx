@@ -4,7 +4,7 @@ import { FormContainer } from "./styles";
 
 interface Props {
   formTitle: string;
-  handleSubmit: (e: React.FormEvent<HTMLElement>) => void;
+  handleSubmit?: (e: React.FormEvent<HTMLElement>) => void;
 }
 
 const FormLayout: FC<Props> = ({ formTitle, children, handleSubmit }) => {
