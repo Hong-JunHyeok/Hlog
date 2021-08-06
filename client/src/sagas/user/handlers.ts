@@ -1,8 +1,13 @@
 import { AnyAction } from "redux";
 import { put, call } from "redux-saga/effects";
-import { joinAsyncAction, loginAsyncAction } from "../../modules/user/actions";
+import {
+  joinAsyncAction,
+  loadMyInfoAction,
+  loginAsyncAction,
+} from "../../modules/user/actions";
 import { joinAPI } from "../../utils/api/auth/joinAPI";
 import { loginAPI } from "../../utils/api/auth/loginAPI";
+import { loadMyInfoAPI } from "../../utils/api/auth/loadMyInfoAPI";
 
 export function* handleLogin(action: AnyAction) {
   try {
@@ -21,5 +26,15 @@ export function* handleJoin(action: AnyAction) {
     yield put(joinAsyncAction.success(response.data));
   } catch (error) {
     yield put(joinAsyncAction.failure(error.response.data));
+  }
+}
+
+export function* handleLoadMyInfo(action: AnyAction) {
+  try {
+    const response = yield call(loadMyInfoAPI, action.payload);
+
+    yield put(loadMyInfoAction.success(response));
+  } catch (error) {
+    yield put(loadMyInfoAction.failure(error.response.data));
   }
 }
