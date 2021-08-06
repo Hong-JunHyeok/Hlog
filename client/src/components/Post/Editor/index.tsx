@@ -1,6 +1,7 @@
 import { ChangeEvent, KeyboardEvent, VFC } from "react";
 import { EditorContainer } from "./styles";
 import { BsArrowLeftShort } from "react-icons/bs";
+import { useLink } from "../../../hooks/useLink";
 
 interface IEditorProps {
   title: string;
@@ -17,6 +18,8 @@ const Editor: VFC<IEditorProps> = ({
   title,
   contentEventHandler,
 }) => {
+  const { handlePushLink } = useLink("/post");
+
   return (
     <EditorContainer>
       <input
@@ -38,7 +41,7 @@ const Editor: VFC<IEditorProps> = ({
 
       <footer className="editor-footer">
         <div className="left">
-          <div className="btn out">
+          <div className="btn out" onClick={handlePushLink}>
             <BsArrowLeftShort size={25} />
             나가기
           </div>

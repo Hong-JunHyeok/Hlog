@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import User from "../../../../entity/User";
 import * as logger from "../../../../lib/logger";
 import { createToken } from "../../../../lib/token";
 
-export default async (req: Request, res: Response) => {
+export default async (req: Request, res: Response, next: NextFunction) => {
   const { id, pw } = req.body;
 
   try {
@@ -22,10 +22,9 @@ export default async (req: Request, res: Response) => {
 
     if (!isExistUser) {
       logger.yellow("등록되지 않은 회원입니다.");
-      res.status(401).json({
+      return res.status(401).json({
         message: "등록되지 않은 회원입니다.",
       });
-      return;
     }
 
     const token = await createToken(isExistUser.id);
@@ -41,5 +40,6 @@ export default async (req: Request, res: Response) => {
     });
   } catch (error) {
     logger.red(error);
+    next(error);
   }
 };
