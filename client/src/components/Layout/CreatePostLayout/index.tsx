@@ -1,13 +1,19 @@
 import Head from "next/head";
-import { FC, VFC } from "react";
+import { ChangeEvent, FC, KeyboardEvent, useCallback, VFC } from "react";
 import useInput from "../../../hooks/useInput";
 import CodeViewer from "../../Post/CodeViewer";
 import Editor from "../../Post/Editor";
 import { StyledCreatePageContainer } from "./styles";
+import { parseInline } from "marked";
 
 const CreatePageLayout: VFC = () => {
   const [title, onChangeTitle] = useInput("");
-  const [content, onChangeContent] = useInput("");
+  const [content, onChangeContent, setContent] = useInput("");
+
+  const contentEventHandler = useCallback(
+    (e: KeyboardEvent<HTMLTextAreaElement>) => {},
+    [content],
+  );
 
   return (
     <>
@@ -20,6 +26,7 @@ const CreatePageLayout: VFC = () => {
           onChangeTitle={onChangeTitle}
           content={content}
           onChangeContent={onChangeContent}
+          contentEventHandler={contentEventHandler}
         />
         <CodeViewer title={title} content={content} />
       </StyledCreatePageContainer>

@@ -5,6 +5,8 @@ export const CodeViewContainer = styled.div`
   background-color: white;
 
   padding: 5rem 2rem;
+  height: 100%;
+  overflow-y: auto;
   .view-title {
     font-weight: bold;
     font-size: ${sizesModule.bigFontSize};

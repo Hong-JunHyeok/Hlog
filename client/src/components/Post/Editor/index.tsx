@@ -1,4 +1,5 @@
-import { ChangeEvent, VFC } from "react";
+import { ChangeEvent, KeyboardEvent, VFC } from "react";
+import { parse } from "marked";
 import { EditorContainer } from "./styles";
 
 interface IEditorProps {
@@ -6,6 +7,7 @@ interface IEditorProps {
   onChangeTitle: (e: ChangeEvent<HTMLElement>) => void;
   content: string;
   onChangeContent: (e: ChangeEvent<HTMLElement>) => void;
+  contentEventHandler: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
 }
 
 const Editor: VFC<IEditorProps> = ({
@@ -13,6 +15,7 @@ const Editor: VFC<IEditorProps> = ({
   onChangeContent,
   onChangeTitle,
   title,
+  contentEventHandler,
 }) => {
   return (
     <EditorContainer>
@@ -28,6 +31,7 @@ const Editor: VFC<IEditorProps> = ({
       <textarea
         value={content}
         onChange={onChangeContent}
+        onKeyPress={contentEventHandler}
         className="content"
         placeholder="내용을 입력하세요."
       />

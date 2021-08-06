@@ -10,7 +10,7 @@ export const StyledWelcome = styled.h1`
   margin-top: 15%;
   font-weight: bold;
   p {
-    font-size: ${sizesModule.middleFontSize};
+    font-size: 16px;
     font-weight: lighter;
     color: ${colorsModule.hlog_gray_1};
   }
