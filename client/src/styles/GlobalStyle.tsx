@@ -65,6 +65,11 @@ const GlobalStyle = () => {
           & > code {
           }
         }
+
+        a {
+          color: rgb(12, 166, 120);
+          text-decoration: none;
+        }
       `}
     />
   );

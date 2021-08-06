@@ -1,6 +1,6 @@
 import { ChangeEvent, KeyboardEvent, VFC } from "react";
-import { parse } from "marked";
 import { EditorContainer } from "./styles";
+import { BsArrowLeftShort } from "react-icons/bs";
 
 interface IEditorProps {
   title: string;
@@ -35,6 +35,19 @@ const Editor: VFC<IEditorProps> = ({
         className="content"
         placeholder="내용을 입력하세요."
       />
+
+      <footer className="editor-footer">
+        <div className="left">
+          <div className="btn out">
+            <BsArrowLeftShort size={25} />
+            나가기
+          </div>
+        </div>
+        <div className="right">
+          <div className="btn save">임시저장</div>
+          <div className="btn publish">출간하기</div>
+        </div>
+      </footer>
     </EditorContainer>
   );
 };
