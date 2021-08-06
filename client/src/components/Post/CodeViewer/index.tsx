@@ -9,8 +9,8 @@ interface ICodeViwerProps {
 const CodeViewer: VFC<ICodeViwerProps> = ({ title, content }) => {
   return (
     <CodeViewContainer>
-      <h1>{title}</h1>
-      <div>{content}</div>
+      <h1 className="view-title">{title}</h1>
+      <div className="view-content">{content}</div>
     </CodeViewContainer>
   );
 };
