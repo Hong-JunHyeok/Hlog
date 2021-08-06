@@ -14,5 +14,9 @@ export interface IUserState {
   joinError: null | AxiosError;
   joinLoading: boolean;
 
+  loadMyInfoDone: boolean;
+  loadMyInfoError: null | AxiosError;
+  loadMyInfoLoading: boolean;
+
   me: null | User;
 }

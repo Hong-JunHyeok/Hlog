@@ -7,6 +7,9 @@ import {
   JOIN_REQUEST,
   JOIN_SUCCESS,
   JOIN_FAILURE,
+  LOAD_MY_INFO_REQUEST,
+  LOAD_MY_INFO_SUCCESS,
+  LOAD_MY_INFO_FAILURE,
   LOG_OUT,
 } from "./actions";
 import { IUserState, UserAction } from "./types";
@@ -19,6 +22,10 @@ export const userInitialState: IUserState = {
   joinDone: false,
   joinError: null,
   joinLoading: false,
+
+  loadMyInfoDone: false,
+  loadMyInfoError: null,
+  loadMyInfoLoading: false,
 
   me: null,
 };
@@ -63,6 +70,27 @@ export default createReducer<IUserState, UserAction>(userInitialState, {
       draft.joinLoading = false;
       draft.joinError = action.payload;
       draft.joinDone = false;
+    }),
+  [LOAD_MY_INFO_REQUEST]: (state) =>
+    produce(state, (draft) => {
+      draft.loadMyInfoLoading = true;
+      draft.loadMyInfoError = null;
+      draft.loadMyInfoDone = false;
+    }),
+  [LOAD_MY_INFO_SUCCESS]: (state, action) =>
+    produce(state, (draft) => {
+      draft.loadMyInfoLoading = false;
+      draft.loadMyInfoDone = true;
+
+      draft.me = action.payload.data.user;
+    }),
+  [LOAD_MY_INFO_FAILURE]: (state, action) =>
+    produce(state, (draft) => {
+      draft.loadMyInfoLoading = false;
+      draft.loadMyInfoError = action.payload;
+      draft.loadMyInfoDone = false;
+
+      draft.me = null;
     }),
   [LOG_OUT]: (state) =>
     produce(state, (draft) => {
