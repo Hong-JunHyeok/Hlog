@@ -1,16 +1,34 @@
 import Head from "next/head";
 import { END } from "redux-saga";
 import Layout from "../../components/Layout/MainLayout";
+import ViewPostLayout from "../../components/Layout/ViewPostLayout";
 import wrapper from "../../config/configureStore";
+import { usePostState } from "../../hooks/states/usePostState";
 import { GET_POST_REQUEST } from "../../modules/post/actions";
+import getDistanceToNow from "../../utils/getDistanceToNow";
 
 const ViewPostPage = () => {
+  const { post } = usePostState();
+
   return (
     <>
       <Head>
         <title>HLOG | 포스트 제목</title>
       </Head>
-      <Layout>여긴 포스트 자세히보기 페이지</Layout>
+      <Layout>
+        <ViewPostLayout>
+          <header className="post-header">
+            <h1>{post.title}</h1>
+            <div className="meta">
+              <span className="author">{post.author}</span>
+              <span className="createdAt">
+                {getDistanceToNow(post.createdAt)}
+              </span>
+            </div>
+          </header>
+          <div className="post-main">{post.content}</div>
+        </ViewPostLayout>
+      </Layout>
     </>
   );
 };

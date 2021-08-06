@@ -47,7 +47,7 @@ export default createReducer<IPostState, PostAction>(postInitialState, {
       draft.getPostDone = true;
       draft.getPostLoading = false;
 
-      draft.posts = action.payload.data.post;
+      draft.post = action.payload.data.post;
     }),
   [postActions.GET_POST_FAILURE]: (state, action) =>
     produce(state, (draft) => {

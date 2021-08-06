@@ -16,7 +16,7 @@ export function* handleGetPosts(action: AnyAction) {
 export function* handleGetPost(action: AnyAction) {
   try {
     const response = yield call(getPostAPI, action.payload);
-    console.log(response);
+
     yield put(getPostAction.success(response));
   } catch (error) {
     yield put(getPostsAction.failure(error.response.data));
