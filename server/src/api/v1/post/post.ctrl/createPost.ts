@@ -2,9 +2,13 @@ import Post from "../../../../entity/Post";
 import { Request, Response } from "express";
 import * as logger from "../../../../lib/logger";
 import { getRepository } from "typeorm";
+import User from "../../../../entity/User";
 
-export default async (req: Request, res: Response) => {
+export default async (req: any, res: Response) => {
   const { title, thumnail, content } = req.body;
+  const user: User = req.user;
+
+  const { user_id, name } = user;
 
   try {
     if (!title || !content!!) {
@@ -17,6 +21,8 @@ export default async (req: Request, res: Response) => {
     const postRepo = getRepository(Post);
     const post = new Post();
 
+    post.userId = user_id;
+    post.author = name;
     post.title = title;
     post.content = content;
     post.thumnail = thumnail;

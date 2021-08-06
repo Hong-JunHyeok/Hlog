@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { loginCheck } from "../../../middleware/authMiddleware";
 import createPost from "./post.ctrl/createPost";
 import deletePost from "./post.ctrl/deletePost";
 import getPost from "./post.ctrl/getPost";
@@ -7,7 +8,7 @@ import modifyPost from "./post.ctrl/modifyPost";
 
 const router = Router();
 
-router.post("/", createPost);
+router.post("/", loginCheck, createPost);
 router.delete("/:idx", deletePost);
 router.get("/", getPosts);
 router.get("/:idx", getPost);
