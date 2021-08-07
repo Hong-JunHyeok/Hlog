@@ -5,12 +5,13 @@ import { useUserDispatch } from "../../../hooks/dispatches/useUserDispatch";
 import { useUserState } from "../../../hooks/states/useUserState";
 import useInput from "../../../hooks/useInput";
 import { useLink } from "../../../hooks/useLink";
+import loginValidation from "../../../utils/validation/loginValidation";
 import FormLayout from "../../Layout/FormLayout";
 import { LoginFormContainer } from "./styles";
 
 const LoginForm = () => {
   const { handlePushLink: pushHome } = useLink("/");
-  const { loginDone, loginLoading } = useUserState();
+  const { loginDone, loginLoading, loginError } = useUserState();
   const { dispatchLogIn } = useUserDispatch();
 
   const [id, onChangeId] = useInput("");
@@ -19,10 +20,15 @@ const LoginForm = () => {
   const handleLogin = useCallback(
     (e: React.FormEvent<HTMLElement>) => {
       e.preventDefault();
-      dispatchLogIn({
-        id,
-        pw,
-      });
+      if (loginValidation({ id, pw })) {
+        dispatchLogIn({
+          id,
+          pw,
+        });
+      } else {
+        // TODO 로그인 Validation 실패 시, Toastr
+        alert("ID, PW는 필수입니다.");
+      }
     },
     [id, pw],
   );
@@ -32,6 +38,12 @@ const LoginForm = () => {
       pushHome();
     }
   }, [loginDone]);
+
+  useEffect(() => {
+    if (loginError) {
+      alert(loginError.message);
+    }
+  }, [loginError]);
 
   return (
     <FormLayout formTitle="로그인">

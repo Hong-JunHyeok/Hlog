@@ -16,7 +16,7 @@ const JoinForm = () => {
   const [name, onChangeName] = useInput("");
   const [desc, onChangeDesc] = useInput("");
 
-  const { joinDone } = useUserState();
+  const { joinDone, joinLoading, joinError } = useUserState();
   const { dispatchJoin } = useUserDispatch();
 
   const handleJoin = useCallback(
@@ -28,11 +28,17 @@ const JoinForm = () => {
   );
 
   useEffect(() => {
-    // TODO: 유저 등록 성공했을때 로그인 페이지로 redirect
     if (joinDone) {
       handlePushLogin();
     }
   }, [joinDone]);
+
+  useEffect(() => {
+    // TODO: 에러 메시지 toastr에 연동하기
+    if (joinError) {
+      alert(joinError.message);
+    }
+  }, [joinError]);
 
   return (
     <FormLayout formTitle="회원가입" handleSubmit={handleJoin}>
@@ -94,7 +100,7 @@ const JoinForm = () => {
           </label>
         </section>
         <button type="submit" className="join-button">
-          회원가입
+          {joinLoading ? "로딩 중..." : "회원가입"}
         </button>
         <span className="join-goto_join">
           <Link href="/auth/login">로그인</Link> 하러 가기

@@ -9,7 +9,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
       return next(error);
     }
     if (info) {
-      return res.status(401).send(info.message);
+      return res.status(401).json({ message: info.message });
     }
 
     return req.login(user, async (loginError) => {
