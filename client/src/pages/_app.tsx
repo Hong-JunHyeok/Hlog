@@ -7,9 +7,9 @@ import { useUserDispatch } from "../hooks/dispatches/useUserDispatch";
 const AppComponent = ({ Component, pageProps }: AppProps) => {
   const { dispatchLoadMyInfo } = useUserDispatch();
 
-  useEffect(() => {
-    dispatchLoadMyInfo();
-  }, []);
+  // useEffect(() => {
+  //   dispatchLoadMyInfo();
+  // }, []);
 
   return (
     <>

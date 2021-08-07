@@ -1,4 +1,5 @@
 import { END } from "@redux-saga/core";
+import axios from "axios";
 import Head from "next/head";
 import React, { useEffect } from "react";
 import { ButtonComponent } from "../components/Common/Button";
@@ -10,15 +11,11 @@ import { useUserDispatch } from "../hooks/dispatches/useUserDispatch";
 import { useUserState } from "../hooks/states/useUserState";
 import { useLink } from "../hooks/useLink";
 import { LOAD_MY_INFO_REQUEST } from "../modules/user/actions";
+import ssrCookiePender from "../utils/ssrCookiePender";
 
 const MainPage = () => {
-  const { dispatchLoadMyInfo } = useUserDispatch();
   const { loginDone } = useUserState();
   const { handlePushLink } = useLink("/post");
-
-  useEffect(() => {
-    dispatchLoadMyInfo();
-  }, []);
 
   useEffect(() => {
     if (loginDone) {
@@ -45,16 +42,22 @@ const MainPage = () => {
   );
 };
 
-// export const getServerSideProps = wrapper.getServerSideProps(
-//   (store): any =>
-//     async () => {
-//       store.dispatch({
-//         type: LOAD_MY_INFO_REQUEST,
-//       });
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ req }) => {
+      ssrCookiePender(req);
 
-//       store.dispatch(END);
-//       await store.sagaTask.toPromise();
-//     },
-// );
+      store.dispatch({
+        type: LOAD_MY_INFO_REQUEST,
+      });
+
+      store.dispatch({
+        type: LOAD_MY_INFO_REQUEST,
+      });
+
+      store.dispatch(END);
+      await store.sagaTask.toPromise();
+    },
+);
 
 export default MainPage;

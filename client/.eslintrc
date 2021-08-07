@@ -52,6 +52,16 @@
     "jsx-a11y/no-static-element-interactions": 0,
     "import/no-extraneous-dependencies": 0,
     "no-param-reassign": 0,
-    "jsx-a11y/no-noninteractive-element-interactions": 0
-  }
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "@typescript-eslint/explicit-function-return-type": 0
+  },
+  "overrides": [
+    {
+      // TypeScript 파일에 대해 특별히 규칙 활성화
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": ["warning"]
+      }
+    }
+  ]
 }
