@@ -13,7 +13,7 @@ const buttonCustomStyle: CSSProperties = {
 
 const HeaderComponent: VFC = () => {
   const { loginDone, me, loginLoading } = useUserState();
-  const { dispatchLogOut } = useUserDispatch();
+  const { dispatchLogout } = useUserDispatch();
 
   const { handlePushLink: pushMainPage } = useLink("/");
   const { handlePushLink: pushLoginPage } = useLink("/auth/login");
@@ -37,7 +37,7 @@ const HeaderComponent: VFC = () => {
 
           {loginDone ? (
             <ButtonComponent
-              handleFunc={dispatchLogOut}
+              handleFunc={dispatchLogout}
               customStyle={buttonCustomStyle}
             >
               로그아웃

@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AppProps } from "next/app";
 import GlobalStyle from "../styles/GlobalStyle";
 import wrapper from "../config/configureStore";
+import { useUserDispatch } from "../hooks/dispatches/useUserDispatch";
 
 const AppComponent = ({ Component, pageProps }: AppProps) => {
+  const { dispatchLoadMyInfo } = useUserDispatch();
+
+  useEffect(() => {
+    dispatchLoadMyInfo();
+  }, []);
+
   return (
     <>
       <link

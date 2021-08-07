@@ -5,11 +5,13 @@ import {
   joinAsyncAction,
   loadMyInfoAction,
   loginAsyncAction,
+  logoutAsyncAction,
 } from "../../modules/user/actions";
 
 import { joinAPI } from "../../utils/api/auth/joinAPI";
 import { loginAPI } from "../../utils/api/auth/loginAPI";
 import { loadMyInfoAPI } from "../../utils/api/auth/loadMyInfoAPI";
+import { logoutAPI } from "../../utils/api/auth/logoutAPI";
 
 export function* handleLogin(action: AnyAction) {
   try {
@@ -28,6 +30,16 @@ export function* handleJoin(action: AnyAction) {
     yield put(joinAsyncAction.success(response.data));
   } catch (error) {
     yield put(joinAsyncAction.failure(error.response.data));
+  }
+}
+
+export function* handleLogout() {
+  try {
+    const response = yield call(logoutAPI);
+
+    yield put(logoutAsyncAction.success(response.data));
+  } catch (error) {
+    yield put(logoutAsyncAction.failure(error.response.data));
   }
 }
 

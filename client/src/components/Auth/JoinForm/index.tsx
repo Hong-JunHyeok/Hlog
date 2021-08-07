@@ -1,17 +1,22 @@
 import Link from "next/link";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useUserDispatch } from "../../../hooks/dispatches/useUserDispatch";
+import { useUserState } from "../../../hooks/states/useUserState";
 import useInput from "../../../hooks/useInput";
+import { useLink } from "../../../hooks/useLink";
 import FormLayout from "../../Layout/FormLayout";
 import { JoinFormContainer } from "./styles";
 
 const JoinForm = () => {
+  const { handlePushLink: handlePushLogin } = useLink("/auth/login");
+
   const [id, onChangeId] = useInput("");
   const [pw, onChangePw] = useInput("");
   const [checkPw, onChangeCheckPw] = useInput("");
   const [name, onChangeName] = useInput("");
   const [desc, onChangeDesc] = useInput("");
 
+  const { joinDone } = useUserState();
   const { dispatchJoin } = useUserDispatch();
 
   const handleJoin = useCallback(
@@ -21,6 +26,13 @@ const JoinForm = () => {
     },
     [id, pw, checkPw, name, desc],
   );
+
+  useEffect(() => {
+    // TODO: 유저 등록 성공했을때 로그인 페이지로 redirect
+    if (joinDone) {
+      handlePushLogin();
+    }
+  }, [joinDone]);
 
   return (
     <FormLayout formTitle="회원가입" handleSubmit={handleJoin}>

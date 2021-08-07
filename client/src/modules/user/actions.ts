@@ -13,7 +13,9 @@ export const JOIN_REQUEST = "user/JOIN_REQUEST" as const;
 export const JOIN_SUCCESS = "user/JOIN_SUCCESS" as const;
 export const JOIN_FAILURE = "user/JOIN_FAILURE" as const;
 
-export const LOG_OUT = "user/LOG_OUT" as const;
+export const LOGOUT_REQUEST = "user/LOGOUT_REQUEST" as const;
+export const LOGOUT_SUCCESS = "user/LOGOUT_SUCCESS" as const;
+export const LOGOUT_FAILURE = "user/LOGOUT_FAILURE" as const;
 
 export const loginAsyncAction = createAsyncAction(
   LOG_IN_REQUEST,
@@ -27,10 +29,14 @@ export const joinAsyncAction = createAsyncAction(
   JOIN_FAILURE,
 )<any, AxiosResponse, AxiosError<any>>();
 
+export const logoutAsyncAction = createAsyncAction(
+  LOGOUT_REQUEST,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILURE,
+)<void, AxiosResponse, AxiosError<any>>();
+
 export const loadMyInfoAction = createAsyncAction(
   LOAD_MY_INFO_REQUEST,
   LOAD_MY_INFO_SUCCESS,
   LOAD_MY_INFO_FAILURE,
 )<void, AxiosResponse, AxiosError<any>>();
-
-export const logOutAction = createAction(LOG_OUT)();

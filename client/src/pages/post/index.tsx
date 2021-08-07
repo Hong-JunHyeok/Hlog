@@ -13,12 +13,15 @@ import { getArrayLength } from "../../utils/getArrayLength";
 import { LOAD_MY_INFO_REQUEST } from "../../modules/user/actions";
 import { useUserDispatch } from "../../hooks/dispatches/useUserDispatch";
 import { useEffect } from "react";
+import { usePostDispatch } from "../../hooks/dispatches/usePostDispatch";
 
 const ViewPostsPage: NextPage = () => {
   const { posts } = usePostState();
   const { dispatchLoadMyInfo } = useUserDispatch();
+  const { dispatchGetPosts } = usePostDispatch();
 
   useEffect(() => {
+    dispatchGetPosts();
     dispatchLoadMyInfo();
   }, []);
 
@@ -44,20 +47,20 @@ const ViewPostsPage: NextPage = () => {
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store): any =>
-    async () => {
-      store.dispatch({
-        type: GET_POSTS_REQUEST,
-      });
+// export const getServerSideProps = wrapper.getServerSideProps(
+//   (store): any =>
+//     async () => {
+//       store.dispatch({
+//         type: GET_POSTS_REQUEST,
+//       });
 
-      // store.dispatch({
-      //   type: LOAD_MY_INFO_REQUEST,
-      // });
+//       // store.dispatch({
+//       //   type: LOAD_MY_INFO_REQUEST,
+//       // });
 
-      store.dispatch(END);
-      await store.sagaTask.toPromise();
-    },
-);
+//       store.dispatch(END);
+//       await store.sagaTask.toPromise();
+//     },
+// );
 
 export default ViewPostsPage;

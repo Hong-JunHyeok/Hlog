@@ -4,7 +4,7 @@ import {
   joinAsyncAction,
   loadMyInfoAction,
   loginAsyncAction,
-  logOutAction,
+  logoutAsyncAction,
 } from "../../modules/user/actions";
 import { IJoinData } from "../../utils/api/auth/joinAPI";
 import { ILoginData } from "../../utils/api/auth/loginAPI";
@@ -30,14 +30,14 @@ export const useUserDispatch = () => {
     dispatch(loadMyInfoAction.request());
   }, [dispatch]);
 
-  const dispatchLogOut = useCallback(() => {
-    dispatch(logOutAction());
+  const dispatchLogout = useCallback(() => {
+    dispatch(logoutAsyncAction.request());
   }, [dispatch]);
 
   return {
     dispatchLogIn,
     dispatchJoin,
     dispatchLoadMyInfo,
-    dispatchLogOut,
+    dispatchLogout,
   };
 };

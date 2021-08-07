@@ -9,6 +9,12 @@ export const useUserState = () => {
     joinDone,
     joinError,
     joinLoading,
+    loadMyInfoDone,
+    loadMyInfoError,
+    loadMyInfoLoading,
+    logoutDone,
+    logoutError,
+    logoutLoading,
   } = useTypedSelector((state) => state.user);
 
   return {
@@ -19,5 +25,11 @@ export const useUserState = () => {
     joinDone,
     joinError,
     joinLoading,
+    loadMyInfoDone,
+    loadMyInfoError,
+    loadMyInfoLoading,
+    logoutDone,
+    logoutError,
+    logoutLoading,
   };
 };

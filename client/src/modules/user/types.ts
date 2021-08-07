@@ -14,6 +14,10 @@ export interface IUserState {
   joinError: null | AxiosError;
   joinLoading: boolean;
 
+  logoutDone: boolean;
+  logoutError: null | AxiosError;
+  logoutLoading: boolean;
+
   loadMyInfoDone: boolean;
   loadMyInfoError: null | AxiosError;
   loadMyInfoLoading: boolean;

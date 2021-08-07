@@ -17,6 +17,10 @@ const MainPage = () => {
   const { handlePushLink } = useLink("/post");
 
   useEffect(() => {
+    dispatchLoadMyInfo();
+  }, []);
+
+  useEffect(() => {
     if (loginDone) {
       handlePushLink();
     }
