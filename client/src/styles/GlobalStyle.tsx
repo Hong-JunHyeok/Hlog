@@ -70,6 +70,10 @@ const GlobalStyle = () => {
           color: rgb(12, 166, 120);
           text-decoration: none;
         }
+
+        strong {
+          font-weight: bold;
+        }
       `}
     />
   );

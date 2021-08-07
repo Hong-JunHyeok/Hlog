@@ -2,6 +2,7 @@ import { ChangeEvent, KeyboardEvent, VFC } from "react";
 import { EditorContainer } from "./styles";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { useLink } from "../../../hooks/useLink";
+import ToolBox from "./ToolBox";
 
 interface IEditorProps {
   title: string;
@@ -30,7 +31,7 @@ const Editor: VFC<IEditorProps> = ({
         placeholder="제목을 입력하세요."
       />
       <div className="underline" />
-      <ul className="tools"></ul>
+      <ToolBox />
       <textarea
         value={content}
         onChange={onChangeContent}
