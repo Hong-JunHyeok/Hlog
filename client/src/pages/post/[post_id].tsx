@@ -1,11 +1,14 @@
 import Head from "next/head";
+import { useEffect } from "react";
 import { END } from "redux-saga";
 import Layout from "../../components/Layout/MainLayout";
 import ViewPostLayout from "../../components/Layout/ViewPostLayout";
 import wrapper from "../../config/configureStore";
 import { usePostState } from "../../hooks/states/usePostState";
 import { GET_POST_REQUEST } from "../../modules/post/actions";
+import { LOAD_MY_INFO_REQUEST } from "../../modules/user/actions";
 import getDistanceToNow from "../../utils/getDistanceToNow";
+import ssrCookiePender from "../../utils/ssrCookiePender";
 
 const ViewPostPage = () => {
   const { post } = usePostState();
@@ -34,8 +37,14 @@ const ViewPostPage = () => {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  (store): any =>
-    async ({ params }) => {
+  (store) =>
+    async ({ params, req }) => {
+      ssrCookiePender(req);
+
+      store.dispatch({
+        type: LOAD_MY_INFO_REQUEST,
+      });
+
       store.dispatch({
         type: GET_POST_REQUEST,
         payload: params.post_id,

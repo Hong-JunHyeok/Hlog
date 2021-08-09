@@ -7,7 +7,7 @@ export type PostAction = ActionType<typeof postActions>;
 
 export interface IPostState {
   getPostDone: boolean;
-  getPostError: null | AxiosError;
+  getPostError: string;
   getPostLoading: boolean;
 
   getPostsDone: boolean;

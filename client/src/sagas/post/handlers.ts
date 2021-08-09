@@ -19,6 +19,6 @@ export function* handleGetPost(action: AnyAction) {
 
     yield put(getPostAction.success(response));
   } catch (error) {
-    yield put(getPostsAction.failure(error.response.data));
+    yield put(getPostAction.failure(error.response.status));
   }
 }

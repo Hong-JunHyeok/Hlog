@@ -1,4 +1,10 @@
-import { ChangeEvent, KeyboardEvent, VFC } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  KeyboardEvent,
+  SetStateAction,
+  VFC,
+} from "react";
 import { EditorContainer } from "./styles";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { useLink } from "../../../hooks/useLink";
@@ -7,6 +13,7 @@ import ToolBox from "./ToolBox";
 interface IEditorProps {
   title: string;
   onChangeTitle: (e: ChangeEvent<HTMLElement>) => void;
+  setContent: Dispatch<SetStateAction<string>>;
   content: string;
   onChangeContent: (e: ChangeEvent<HTMLElement>) => void;
   contentEventHandler: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
@@ -18,6 +25,7 @@ const Editor: VFC<IEditorProps> = ({
   onChangeTitle,
   title,
   contentEventHandler,
+  setContent,
 }) => {
   const { handlePushLink } = useLink("/post");
 
@@ -31,7 +39,7 @@ const Editor: VFC<IEditorProps> = ({
         placeholder="제목을 입력하세요."
       />
       <div className="underline" />
-      <ToolBox />
+      <ToolBox setContent={setContent} />
       <textarea
         value={content}
         onChange={onChangeContent}

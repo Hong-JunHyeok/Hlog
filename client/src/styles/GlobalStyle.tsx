@@ -74,6 +74,10 @@ const GlobalStyle = () => {
         strong {
           font-weight: bold;
         }
+
+        em {
+          font-style: italic;
+        }
       `}
     />
   );

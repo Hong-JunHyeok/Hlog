@@ -24,7 +24,10 @@ const HeaderComponent: VFC = () => {
   return (
     <StyledHeader>
       <div className="container">
-        <div className="logo special" onClick={pushMainPage}>
+        <div
+          className="logo special"
+          onClick={loginDone ? pushPostPage : pushMainPage}
+        >
           HLOG
         </div>
         <ul className="menus">

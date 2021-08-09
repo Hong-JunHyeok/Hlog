@@ -5,7 +5,7 @@ import { IPostState, PostAction } from "./types";
 
 export const postInitialState: IPostState = {
   getPostDone: false,
-  getPostError: null,
+  getPostError: "",
   getPostLoading: false,
 
   getPostsDone: false,
@@ -51,7 +51,7 @@ export default createReducer<IPostState, PostAction>(postInitialState, {
     }),
   [postActions.GET_POST_FAILURE]: (state, action) =>
     produce(state, (draft) => {
-      draft.getPostError = action.payload;
+      draft.getPostError = "조회할 포스트가 없습니다.";
       draft.getPostLoading = false;
     }),
 });

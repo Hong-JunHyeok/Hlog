@@ -27,6 +27,7 @@ const CreatePageLayout: VFC = () => {
           content={content}
           onChangeContent={onChangeContent}
           contentEventHandler={contentEventHandler}
+          setContent={setContent}
         />
         <CodeViewer title={title} content={content} />
       </StyledCreatePageContainer>

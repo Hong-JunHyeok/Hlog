@@ -13,7 +13,7 @@ export const getPostAction = createAsyncAction(
   GET_POST_REQUEST,
   GET_POST_SUCCESS,
   GET_POST_FAILURE,
-)<any, AxiosResponse<any>, AxiosError<any>>();
+)<any, AxiosResponse<any>, string>();
 
 export const getPostsAction = createAsyncAction(
   GET_POSTS_REQUEST,

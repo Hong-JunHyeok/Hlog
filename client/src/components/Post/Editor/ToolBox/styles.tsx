@@ -5,6 +5,8 @@ import { sizesModule } from "../../../../styles/sizes";
 export const StyledTooloxContainer = styled.div`
   .tools {
     display: flex;
+    width: 100%;
+    flex-wrap: wrap;
     .tool {
       cursor: pointer;
       user-select: none;
