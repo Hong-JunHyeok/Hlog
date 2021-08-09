@@ -8,6 +8,10 @@ export const postInitialState: IPostState = {
   getPostError: "",
   getPostLoading: false,
 
+  createPostDone: false,
+  createPostError: "",
+  createPostLoading: false,
+
   getPostsDone: false,
   getPostsError: null,
   getPostsLoading: false,
@@ -53,5 +57,23 @@ export default createReducer<IPostState, PostAction>(postInitialState, {
     produce(state, (draft) => {
       draft.getPostError = "조회할 포스트가 없습니다.";
       draft.getPostLoading = false;
+    }),
+  [postActions.CREATE_POST_REQUEST]: (state) =>
+    produce(state, (draft) => {
+      draft.createPostDone = false;
+      draft.createPostError = null;
+      draft.createPostLoading = true;
+    }),
+  [postActions.CREATE_POST_SUCCESS]: (state, action) =>
+    produce(state, (draft) => {
+      draft.createPostDone = true;
+      draft.createPostLoading = false;
+
+      draft.post = action.payload.data.post;
+    }),
+  [postActions.CREATE_POST_FAILURE]: (state, action) =>
+    produce(state, (draft) => {
+      draft.createPostError = "에러가 발생했습니다.";
+      draft.createPostLoading = false;
     }),
 });

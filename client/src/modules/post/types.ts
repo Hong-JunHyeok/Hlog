@@ -10,6 +10,10 @@ export interface IPostState {
   getPostError: string;
   getPostLoading: boolean;
 
+  createPostDone: boolean;
+  createPostError: string;
+  createPostLoading: boolean;
+
   getPostsDone: boolean;
   getPostsError: null | AxiosError;
   getPostsLoading: boolean;
