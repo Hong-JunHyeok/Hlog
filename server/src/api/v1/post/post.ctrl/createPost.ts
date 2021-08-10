@@ -1,14 +1,12 @@
 import Post from "../../../../entity/Post";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import * as logger from "../../../../lib/logger";
 import { getRepository } from "typeorm";
 import User from "../../../../entity/User";
 
-export default async (req: any, res: Response) => {
+export default async (req: any, res: Response, next: NextFunction) => {
   const { title, thumnail, content } = req.body;
-  const user: User = req.user;
-
-  const { user_id, name } = user;
+  const { user_id, name } = req.user;
 
   try {
     if (!title || !content!!) {
@@ -27,7 +25,9 @@ export default async (req: any, res: Response) => {
     post.content = content;
     post.thumnail = thumnail;
 
-    await postRepo.save(post);
+    await postRepo.save(post).catch((error) => {
+      return next(error);
+    });
 
     logger.green("포스트 등록 성공");
     res.status(200).json({

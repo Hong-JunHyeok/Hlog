@@ -1,6 +1,6 @@
 import { VFC } from "react";
 import { CodeViewContainer } from "./styles";
-import lexer, { parse, parseInline, getDefaults } from "marked";
+import lexer from "marked";
 
 interface ICodeViwerProps {
   title: string;

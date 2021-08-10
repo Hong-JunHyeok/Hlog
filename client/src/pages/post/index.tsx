@@ -11,15 +11,12 @@ import { NextPage } from "next";
 import { usePostState } from "../../hooks/states/usePostState";
 import { getArrayLength } from "../../utils/getArrayLength";
 import { LOAD_MY_INFO_REQUEST } from "../../modules/user/actions";
-import { useUserDispatch } from "../../hooks/dispatches/useUserDispatch";
 import { useEffect } from "react";
 import { usePostDispatch } from "../../hooks/dispatches/usePostDispatch";
-import axios from "axios";
 import ssrCookiePender from "../../utils/ssrCookiePender";
 
 const ViewPostsPage: NextPage = () => {
   const { posts } = usePostState();
-  const { dispatchLoadMyInfo } = useUserDispatch();
   const { dispatchGetPosts } = usePostDispatch();
 
   useEffect(() => {

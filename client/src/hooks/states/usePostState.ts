@@ -8,6 +8,9 @@ export const usePostState = () => {
     getPostError,
     getPostsError,
     getPostsLoading,
+    createPostDone,
+    createPostError,
+    createPostLoading,
     post,
     posts,
   } = useTypedSelector((state) => state.post);
@@ -19,6 +22,9 @@ export const usePostState = () => {
     getPostError,
     getPostsError,
     getPostsLoading,
+    createPostDone,
+    createPostError,
+    createPostLoading,
     post,
     posts,
   };

@@ -3,12 +3,16 @@ import {
   Dispatch,
   KeyboardEvent,
   SetStateAction,
+  useCallback,
+  useEffect,
   VFC,
 } from "react";
 import { EditorContainer } from "./styles";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { useLink } from "../../../hooks/useLink";
 import ToolBox from "./ToolBox";
+import { usePostDispatch } from "../../../hooks/dispatches/usePostDispatch";
+import { usePostState } from "../../../hooks/states/usePostState";
 
 interface IEditorProps {
   title: string;
@@ -28,6 +32,22 @@ const Editor: VFC<IEditorProps> = ({
   setContent,
 }) => {
   const { handlePushLink } = useLink("/post");
+  const { dispatchCreatePost } = usePostDispatch();
+  const { createPostLoading, createPostDone } = usePostState();
+
+  const handlePublish = useCallback(() => {
+    dispatchCreatePost({
+      title,
+      content,
+      thumnail: "",
+    });
+  }, [title, content]);
+
+  useEffect(() => {
+    if (createPostDone) {
+      handlePushLink();
+    }
+  }, [createPostDone]);
 
   return (
     <EditorContainer>
@@ -57,7 +77,9 @@ const Editor: VFC<IEditorProps> = ({
         </div>
         <div className="right">
           <div className="btn save">임시저장</div>
-          <div className="btn publish">출간하기</div>
+          <div className="btn publish" onClick={handlePublish}>
+            출간하기
+          </div>
         </div>
       </footer>
     </EditorContainer>

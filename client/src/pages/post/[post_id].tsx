@@ -1,3 +1,5 @@
+import lexer from "marked";
+import { NextPage } from "next";
 import Head from "next/head";
 import { useEffect } from "react";
 import { END } from "redux-saga";
@@ -10,8 +12,12 @@ import { LOAD_MY_INFO_REQUEST } from "../../modules/user/actions";
 import getDistanceToNow from "../../utils/getDistanceToNow";
 import ssrCookiePender from "../../utils/ssrCookiePender";
 
-const ViewPostPage = () => {
+const ViewPostPage: NextPage = () => {
   const { post } = usePostState();
+
+  const createMarkup = (content: string) => {
+    return { __html: lexer(content) };
+  };
 
   return (
     <>
@@ -29,7 +35,10 @@ const ViewPostPage = () => {
               </span>
             </div>
           </header>
-          <div className="post-main">{post.content}</div>
+          <div
+            className="post-main"
+            dangerouslySetInnerHTML={createMarkup(post.content)}
+          />
         </ViewPostLayout>
       </Layout>
     </>
