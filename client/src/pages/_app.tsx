@@ -28,6 +28,7 @@ const AppComponent = ({ Component, pageProps }: AppProps) => {
       <GlobalStyle />
 
       <Component {...pageProps} />
+      <div id="root-modal" />
     </>
   );
 };

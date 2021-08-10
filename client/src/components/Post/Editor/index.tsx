@@ -13,6 +13,8 @@ import { useLink } from "../../../hooks/useLink";
 import ToolBox from "./ToolBox";
 import { usePostDispatch } from "../../../hooks/dispatches/usePostDispatch";
 import { usePostState } from "../../../hooks/states/usePostState";
+import useModal from "../../../hooks/useModal";
+import CheckCreatePostModal from "../CheckCreatePostModal";
 
 interface IEditorProps {
   title: string;
@@ -31,16 +33,19 @@ const Editor: VFC<IEditorProps> = ({
   contentEventHandler,
   setContent,
 }) => {
+  const { ModalPortal, closeModal, openModal } = useModal();
+
   const { handlePushLink } = useLink("/post");
   const { dispatchCreatePost } = usePostDispatch();
   const { createPostLoading, createPostDone } = usePostState();
 
   const handlePublish = useCallback(() => {
-    dispatchCreatePost({
-      title,
-      content,
-      thumnail: "",
-    });
+    // dispatchCreatePost({
+    //   title,
+    //   content,
+    //   thumnail: "",
+    // });
+    openModal();
   }, [title, content]);
 
   useEffect(() => {
@@ -82,6 +87,9 @@ const Editor: VFC<IEditorProps> = ({
           </div>
         </div>
       </footer>
+      <ModalPortal>
+        <CheckCreatePostModal title={title} content={content} />
+      </ModalPortal>
     </EditorContainer>
   );
 };

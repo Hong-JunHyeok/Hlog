@@ -5,10 +5,14 @@ import CodeViewer from "../../Post/CodeViewer";
 import Editor from "../../Post/Editor";
 import { StyledCreatePageContainer } from "./styles";
 import { parseInline } from "marked";
+import useModal from "../../../hooks/useModal";
+import CheckCreatePostModal from "../../Post/CheckCreatePostModal";
 
 const CreatePageLayout: VFC = () => {
   const [title, onChangeTitle] = useInput("");
   const [content, onChangeContent, setContent] = useInput("");
+
+  const { ModalPortal, closeModal, openModal } = useModal();
 
   const contentEventHandler = useCallback(
     (e: KeyboardEvent<HTMLTextAreaElement>) => {},
