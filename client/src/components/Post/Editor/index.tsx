@@ -3,6 +3,7 @@ import {
   Dispatch,
   KeyboardEvent,
   SetStateAction,
+  useCallback,
   useEffect,
   VFC,
 } from "react";
@@ -13,6 +14,7 @@ import ToolBox from "./ToolBox";
 import { usePostState } from "../../../hooks/states/usePostState";
 import useModal from "../../../hooks/useModal";
 import CheckCreatePostModal from "../CheckCreatePostModal";
+import { toast, Flip } from "react-toastify";
 
 interface IEditorProps {
   title: string;
@@ -37,6 +39,33 @@ const Editor: VFC<IEditorProps> = ({
 
   const { handlePushLink } = useLink("/post");
   const { createPostDone } = usePostState();
+
+  const handleOpenCheckCreatePostModal = useCallback(() => {
+    if (!title || !content) {
+      toast.error("제목, 내용에 공백이 있으면 안됩니다.", {
+        transition: Flip,
+      });
+    } else {
+      openModal();
+    }
+  }, [title, content]);
+
+  const handleSave = useCallback(() => {
+    if (!title || !content) {
+      toast.error("제목, 내용에 공백이 있으면 안됩니다.", {
+        transition: Flip,
+      });
+    } else {
+      const savePostData = JSON.stringify({
+        title,
+        content,
+      });
+      localStorage.setItem("savePostData", savePostData);
+      toast.success("임시 저장에 성공했습니다.", {
+        transition: Flip,
+      });
+    }
+  }, [title, content]);
 
   useEffect(() => {
     if (createPostDone) {
@@ -71,8 +100,10 @@ const Editor: VFC<IEditorProps> = ({
           </div>
         </div>
         <div className="right">
-          <div className="btn save">임시저장</div>
-          <div className="btn publish" onClick={openModal}>
+          <div className="btn save" onClick={handleSave}>
+            임시저장
+          </div>
+          <div className="btn publish" onClick={handleOpenCheckCreatePostModal}>
             출간하기
           </div>
         </div>

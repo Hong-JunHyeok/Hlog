@@ -3,6 +3,8 @@ import { AppProps } from "next/app";
 import GlobalStyle from "../styles/GlobalStyle";
 import wrapper from "../config/configureStore";
 import { useUserDispatch } from "../hooks/dispatches/useUserDispatch";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AppComponent = ({ Component, pageProps }: AppProps) => {
   const { dispatchLoadMyInfo } = useUserDispatch();
@@ -26,7 +28,7 @@ const AppComponent = ({ Component, pageProps }: AppProps) => {
       />
 
       <GlobalStyle />
-
+      <ToastContainer />
       <Component {...pageProps} />
       <div id="root-modal" />
     </>
