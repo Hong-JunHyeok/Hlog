@@ -5,6 +5,7 @@ import { mixinModules } from "../../../styles/modules";
 export const ModalContainer = styled.div`
   width: 100%;
   height: 80%;
+  overflow-y: auto;
   padding: 1.5rem;
   background-color: white;
   z-index: 999;

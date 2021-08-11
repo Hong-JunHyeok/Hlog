@@ -1,7 +1,9 @@
+import Image from "next/image";
 import { ChangeEvent, useCallback, useRef, VFC } from "react";
 import { usePostDispatch } from "../../../hooks/dispatches/usePostDispatch";
 import { usePostState } from "../../../hooks/states/usePostState";
 import { colorsModule } from "../../../styles/colors";
+import { sizesModule } from "../../../styles/sizes";
 import { stringCutter } from "../../../utils/stringCutter";
 import { ButtonComponent } from "../../Common/Button";
 import { ModalContainer } from "./styles";
@@ -21,7 +23,8 @@ const CheckCreatePostModal: VFC<ICheckCreatePostProps> = ({
   openModal,
   closeModal,
 }) => {
-  const { thumnailURL } = usePostState();
+  const { thumnailUploadLoading, thumnailUploadDone, thumnailURL } =
+    usePostState();
   const { dispatchThumnailUpload, dispatchCreatePost } = usePostDispatch();
 
   const imageInputRef = useRef<HTMLInputElement | null>(null);
@@ -71,9 +74,24 @@ const CheckCreatePostModal: VFC<ICheckCreatePostProps> = ({
           ref={imageInputRef}
           onChange={onChangeImage}
         />
-        <ButtonComponent handleFunc={handleThumnailUpload}>
-          섬네일 업로드
+        <ButtonComponent
+          handleFunc={handleThumnailUpload}
+          customStyle={{
+            marginBottom: "2rem",
+          }}
+        >
+          {thumnailUploadLoading ? "업로드 중..." : "섬네일 업로드"}
         </ButtonComponent>
+        {thumnailUploadDone && (
+          <Image
+            src={`http://localhost:8080/${thumnailURL}`}
+            alt={thumnailURL}
+            width={400}
+            height={300}
+            blurDataURL={`http://localhost:8080/${thumnailURL}`}
+            placeholder="blur"
+          />
+        )}
       </form>
       <div className="publish">
         <ButtonComponent handleFunc={handlePublish}>출간하기</ButtonComponent>

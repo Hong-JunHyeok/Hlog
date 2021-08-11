@@ -16,7 +16,7 @@ export const StyledViewContainer = styled.div`
       padding-top: 10px;
       .author {
         &::before {
-          content: "글쓴이 : ";
+          content: "작성자 : ";
         }
       }
       .createdAt {

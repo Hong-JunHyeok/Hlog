@@ -29,6 +29,7 @@ export default class Post extends BaseEntity {
 
   @Column({
     nullable: false,
+    type: "text",
   })
   content: string;
 
