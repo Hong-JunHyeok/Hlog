@@ -5,7 +5,7 @@ const FooterComponent = () => {
   return (
     <StyledFooter>
       <div className="footer-container">
-        <div>2017-{getCurrentYear()} Hong-JunHyeok All rights reserved.</div>
+        <div>2017-{getCurrentYear()} HLOG All rights reserved.</div>
       </div>
     </StyledFooter>
   );

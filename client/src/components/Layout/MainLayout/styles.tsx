@@ -8,5 +8,6 @@ export const StyledLayout = styled.div`
     margin: 0 auto;
     padding-top: ${sizesModule.headerHeight};
     padding-bottom: ${sizesModule.headerHeight};
+    min-height: 80vh;
   }
 `;

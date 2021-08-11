@@ -7,7 +7,7 @@ export const StyledWelcome = styled.h1`
   font-size: 150px;
   ${mixinModules.flexLayoutCenterSort}
   flex-direction: column;
-  margin-top: 15%;
+  margin-top: 5%;
   font-weight: bold;
   p {
     font-size: 16px;

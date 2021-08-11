@@ -16,16 +16,16 @@ const PostItem: VFC<Post> = (post) => {
         {post.thumnail && (
           <Image
             src={`http://localhost:8080/${post.thumnail}`}
-            alt=""
+            alt={post.thumnail}
             width={sizesModule.pageMaxWidth}
-            height={500}
+            height={800}
             blurDataURL={post.thumnail}
             placeholder="blur"
           />
         )}
       </div>
-      <h1>{post.title}</h1>
       <div className="meta">
+        <h1>{post.title}</h1>
         <div>
           <span className="author">{post.author}</span>
           <span className="createdAt">{getDistanceToNow(post.createdAt)}</span>

@@ -2,10 +2,6 @@ import styled from "@emotion/styled";
 import { sizesModule } from "../../../styles/sizes";
 
 export const StyledPostPageLayout = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-
   .no-posts {
     padding: 20vh;
     text-align: center;
@@ -25,15 +21,21 @@ export const StyledPostPageLayout = styled.div`
     }
   }
   .post-conainer {
-    display: flex;
+    display: grid;
     flex-wrap: wrap;
-    justify-content: space-between;
-    @media (max-width: ${sizesModule.pageMaxWidth}) {
-      flex-direction: column;
-      align-items: center;
-      & > div {
-        width: 80%;
-      }
+    grid-template-columns: repeat(5, 1fr);
+
+    @media (max-width: 1600px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @media (max-width: 1400px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 1200px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 1000px) {
+      grid-template-columns: repeat(1, 1fr);
     }
   }
 `;

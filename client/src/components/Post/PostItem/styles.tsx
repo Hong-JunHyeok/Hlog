@@ -4,15 +4,19 @@ import { mixinModules } from "../../../styles/modules";
 import { sizesModule } from "../../../styles/sizes";
 
 export const StyledPost = styled.div`
-  width: 47%;
-
-  /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
-  border: 1px solid ${colorsModule.hlog_gray_2};
-  padding: 2rem 1rem;
+  width: 95%;
+  justify-self: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 4px;
+  overflow: hidden;
+  /* padding: 2rem 1rem; */
   /* border-radius: 10px; */
   margin: 2rem 0;
   cursor: pointer;
   transition: ease-in-out 0.2s;
+  &:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
   .thumnail {
     width: 100%;
     overflow: hidden;
@@ -25,13 +29,14 @@ export const StyledPost = styled.div`
     transition: ease-in 0.2s;
     transform: scale(100%);
   }
-  h1 {
-    font-size: ${sizesModule.middleFontSize};
-  }
   .meta {
-    ${mixinModules.flexLayoutCenterSort}
+    padding: 1rem;
+    h1 {
+      padding-bottom: 1rem;
+      font-size: 18px;
+    }
+
     justify-content: space-between;
-    padding-top: 20px;
     .author {
       font-weight: bold;
       color: ${colorsModule.hlog_blue};
