@@ -1,8 +1,6 @@
-import axios from "axios";
 import { ChangeEvent, useCallback, useRef, VFC } from "react";
 import { usePostDispatch } from "../../../hooks/dispatches/usePostDispatch";
 import { usePostState } from "../../../hooks/states/usePostState";
-import useModal from "../../../hooks/useModal";
 import { colorsModule } from "../../../styles/colors";
 import { stringCutter } from "../../../utils/stringCutter";
 import { ButtonComponent } from "../../Common/Button";

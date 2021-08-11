@@ -11,7 +11,7 @@ export const StyledPost = styled.div`
   overflow: hidden;
   /* padding: 2rem 1rem; */
   /* border-radius: 10px; */
-  margin: 2rem 0;
+  margin: 1rem 0;
   cursor: pointer;
   transition: ease-in-out 0.2s;
   &:hover {
@@ -31,6 +31,8 @@ export const StyledPost = styled.div`
   }
   .meta {
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
     h1 {
       padding-bottom: 1rem;
       font-size: 18px;

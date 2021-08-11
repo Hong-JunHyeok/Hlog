@@ -3,7 +3,6 @@ import {
   Dispatch,
   KeyboardEvent,
   SetStateAction,
-  useCallback,
   useEffect,
   VFC,
 } from "react";
@@ -11,7 +10,6 @@ import { EditorContainer } from "./styles";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { useLink } from "../../../hooks/useLink";
 import ToolBox from "./ToolBox";
-import { usePostDispatch } from "../../../hooks/dispatches/usePostDispatch";
 import { usePostState } from "../../../hooks/states/usePostState";
 import useModal from "../../../hooks/useModal";
 import CheckCreatePostModal from "../CheckCreatePostModal";
@@ -33,11 +31,12 @@ const Editor: VFC<IEditorProps> = ({
   contentEventHandler,
   setContent,
 }) => {
-  const { ModalPortal, closeModal, openModal } = useModal();
+  const { ModalPortal, closeModal, openModal } = useModal({
+    position: "bottom",
+  });
 
   const { handlePushLink } = useLink("/post");
-  const { dispatchCreatePost } = usePostDispatch();
-  const { createPostLoading, createPostDone } = usePostState();
+  const { createPostDone } = usePostState();
 
   useEffect(() => {
     if (createPostDone) {
