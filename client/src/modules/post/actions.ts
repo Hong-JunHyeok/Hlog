@@ -13,6 +13,10 @@ export const CREATE_POST_REQUEST = "post/CREATE_POST_REQUEST" as const;
 export const CREATE_POST_SUCCESS = "post/CREATE_POST_SUCCESS" as const;
 export const CREATE_POST_FAILURE = "post/CREATE_POST_FAILURE" as const;
 
+export const THUMNAIL_UPLOAD_REQUEST = "post/THUMNAIL_UPLOAD_REQUEST" as const;
+export const THUMNAIL_UPLOAD_SUCCESS = "post/THUMNAIL_UPLOAD_SUCCESS" as const;
+export const THUMNAIL_UPLOAD_FAILURE = "post/THUMNAIL_UPLOAD_FAILURE" as const;
+
 export const getPostAction = createAsyncAction(
   GET_POST_REQUEST,
   GET_POST_SUCCESS,
@@ -30,3 +34,9 @@ export const createPostAction = createAsyncAction(
   CREATE_POST_SUCCESS,
   CREATE_POST_FAILURE,
 )<any, any, any>();
+
+export const thumnailUploadAction = createAsyncAction(
+  THUMNAIL_UPLOAD_REQUEST,
+  THUMNAIL_UPLOAD_SUCCESS,
+  THUMNAIL_UPLOAD_FAILURE,
+)<any, AxiosResponse, AxiosError<any>>();

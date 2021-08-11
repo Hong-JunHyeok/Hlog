@@ -7,7 +7,7 @@ interface ButtonProps {
   buttonTextColor?: string;
   customStyle?: CSSProperties;
   buttonHover?: boolean;
-  handleFunc?: () => void;
+  handleFunc?: (...args: any) => void;
   loading?: boolean;
   loadingMsg?: string;
 }

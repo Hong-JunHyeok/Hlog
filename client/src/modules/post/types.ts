@@ -18,6 +18,12 @@ export interface IPostState {
   getPostsError: null | AxiosError;
   getPostsLoading: boolean;
 
+  thumnailUploadDone: boolean;
+  thumnailUploadError: null | AxiosError;
+  thumnailUploadLoading: boolean;
+
+  thumnailURL: string;
+
   posts: Post[];
   post: Post;
 }

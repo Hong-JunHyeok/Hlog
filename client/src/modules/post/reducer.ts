@@ -16,6 +16,12 @@ export const postInitialState: IPostState = {
   getPostsError: null,
   getPostsLoading: false,
 
+  thumnailUploadDone: false,
+  thumnailUploadError: null,
+  thumnailUploadLoading: false,
+
+  thumnailURL: "",
+
   posts: [],
   post: null,
 };
@@ -75,5 +81,25 @@ export default createReducer<IPostState, PostAction>(postInitialState, {
     produce(state, (draft) => {
       draft.createPostError = "에러가 발생했습니다.";
       draft.createPostLoading = false;
+    }),
+  [postActions.THUMNAIL_UPLOAD_REQUEST]: (state) =>
+    produce(state, (draft) => {
+      draft.thumnailUploadDone = false;
+      draft.thumnailUploadError = null;
+      draft.thumnailUploadLoading = true;
+
+      draft.thumnailURL = "";
+    }),
+  [postActions.THUMNAIL_UPLOAD_SUCCESS]: (state, action) =>
+    produce(state, (draft) => {
+      draft.thumnailUploadDone = true;
+      draft.thumnailUploadLoading = false;
+
+      draft.thumnailURL = action.payload.data;
+    }),
+  [postActions.THUMNAIL_UPLOAD_FAILURE]: (state, action) =>
+    produce(state, (draft) => {
+      draft.thumnailUploadError = action.payload;
+      draft.thumnailUploadLoading = false;
     }),
 });

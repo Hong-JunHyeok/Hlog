@@ -1,6 +1,10 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { createPostAction, getPostsAction } from "../../modules/post/actions";
+import {
+  createPostAction,
+  getPostsAction,
+  thumnailUploadAction,
+} from "../../modules/post/actions";
 import { ICreatePostData } from "../../utils/api/post/createPostAPI";
 
 export const usePostDispatch = () => {
@@ -17,8 +21,16 @@ export const usePostDispatch = () => {
     [dispatch],
   );
 
+  const dispatchThumnailUpload = useCallback(
+    (thumnailData: FormData) => {
+      dispatch(thumnailUploadAction.request(thumnailData));
+    },
+    [dispatch],
+  );
+
   return {
     dispatchCreatePost,
     dispatchGetPosts,
+    dispatchThumnailUpload,
   };
 };

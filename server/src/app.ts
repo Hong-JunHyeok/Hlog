@@ -7,14 +7,25 @@ import cookieParser from "cookie-parser";
 import chalk from "chalk";
 import passportConfig from "./passport";
 import passport = require("passport");
+import fs from "fs";
+import path from "path";
 
 const PORT = process.env.PORT || 8080;
 
 const app = express();
 
+try {
+  fs.accessSync("uploads");
+} catch (error) {
+  fs.mkdirSync("uploads");
+}
+
 getConnection();
 
 passportConfig();
+
+app.use(express.static("uploads"));
+
 app.use(
   cors({
     origin: "http://localhost:3060",
@@ -22,7 +33,7 @@ app.use(
   })
 );
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.status(200).json({
     requestMethod: req.method,

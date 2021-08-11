@@ -13,11 +13,17 @@ export const StyledPost = styled.div`
   margin: 2rem 0;
   cursor: pointer;
   transition: ease-in-out 0.2s;
-  &:hover,
-  & > .thumnail {
-    /* transform: translateY(-10px);
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 22px 39px 0px; */
-    filter: brightness(70%);
+  .thumnail {
+    width: 100%;
+    overflow: hidden;
+  }
+  &:hover .thumnail img {
+    transition: ease-in 0.2s;
+    transform: scale(110%);
+  }
+  &:not(:hover) .thumnail img {
+    transition: ease-in 0.2s;
+    transform: scale(100%);
   }
   h1 {
     font-size: ${sizesModule.middleFontSize};

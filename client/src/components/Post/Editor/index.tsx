@@ -39,15 +39,6 @@ const Editor: VFC<IEditorProps> = ({
   const { dispatchCreatePost } = usePostDispatch();
   const { createPostLoading, createPostDone } = usePostState();
 
-  const handlePublish = useCallback(() => {
-    // dispatchCreatePost({
-    //   title,
-    //   content,
-    //   thumnail: "",
-    // });
-    openModal();
-  }, [title, content]);
-
   useEffect(() => {
     if (createPostDone) {
       handlePushLink();
@@ -82,13 +73,19 @@ const Editor: VFC<IEditorProps> = ({
         </div>
         <div className="right">
           <div className="btn save">임시저장</div>
-          <div className="btn publish" onClick={handlePublish}>
+          <div className="btn publish" onClick={openModal}>
             출간하기
           </div>
         </div>
       </footer>
       <ModalPortal>
-        <CheckCreatePostModal title={title} content={content} />
+        <CheckCreatePostModal
+          title={title}
+          content={content}
+          openModal={openModal}
+          closeModal={closeModal}
+          // handlePublish={handlePublish}
+        />
       </ModalPortal>
     </EditorContainer>
   );

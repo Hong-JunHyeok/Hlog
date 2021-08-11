@@ -15,7 +15,7 @@ const PostItem: VFC<Post> = (post) => {
       <div className="thumnail">
         {post.thumnail && (
           <Image
-            src={post.thumnail}
+            src={`http://localhost:8080/${post.thumnail}`}
             alt=""
             width={sizesModule.pageMaxWidth}
             height={500}

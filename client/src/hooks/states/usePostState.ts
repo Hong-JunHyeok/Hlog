@@ -11,6 +11,10 @@ export const usePostState = () => {
     createPostDone,
     createPostError,
     createPostLoading,
+    thumnailUploadLoading,
+    thumnailUploadDone,
+    thumnailUploadError,
+    thumnailURL,
     post,
     posts,
   } = useTypedSelector((state) => state.post);
@@ -25,6 +29,10 @@ export const usePostState = () => {
     createPostDone,
     createPostError,
     createPostLoading,
+    thumnailUploadLoading,
+    thumnailUploadDone,
+    thumnailUploadError,
+    thumnailURL,
     post,
     posts,
   };

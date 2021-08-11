@@ -4,10 +4,12 @@ import {
   createPostAction,
   getPostAction,
   getPostsAction,
+  thumnailUploadAction,
 } from "../../modules/post/actions";
 import { getPostAPI } from "../../utils/api/post/getPostAPI";
 import { getPostsAPI } from "../../utils/api/post/getPostsAPI";
 import { createPostAPI } from "../../utils/api/post/createPostAPI";
+import { thumnailUploadAPI } from "../../utils/api/post/thumnailUploadAPI";
 
 export function* handleGetPosts(action: AnyAction) {
   try {
@@ -35,5 +37,15 @@ export function* handleCreatePost(action: AnyAction) {
     yield put(createPostAction.success(response));
   } catch (error) {
     yield put(createPostAction.failure(error.response.status));
+  }
+}
+
+export function* handleThumnailUpload(action: AnyAction) {
+  try {
+    const response = yield call(thumnailUploadAPI, action.payload);
+
+    yield put(thumnailUploadAction.success(response));
+  } catch (error) {
+    yield put(thumnailUploadAction.failure(error));
   }
 }
