@@ -4,7 +4,8 @@ import { sizesModule } from "../../../styles/sizes";
 
 export const StyledViewContainer = styled.div`
   .post-header {
-    width: 100%;
+    margin: 0 auto;
+    max-width: ${sizesModule.viewPostMaxWidth};
     padding: 3rem 0;
     border-bottom: 1px solid ${colorsModule.hlog_gray_1};
     h1 {
@@ -26,5 +27,6 @@ export const StyledViewContainer = styled.div`
 
   .post-main {
     padding-top: 2rem;
+    max-width: ${sizesModule.viewPostMaxWidth};
   }
 `;

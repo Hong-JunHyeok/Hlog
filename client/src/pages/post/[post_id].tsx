@@ -37,10 +37,9 @@ const ViewPostPage: NextPage = () => {
               </span>
             </div>
           </header>
-          <div
-            className="post-main"
-            dangerouslySetInnerHTML={createMarkup(post.content)}
-          />
+          <main className="post-main">
+            <div dangerouslySetInnerHTML={createMarkup(post.content)} />
+          </main>
         </ViewPostLayout>
       </Layout>
     </>
