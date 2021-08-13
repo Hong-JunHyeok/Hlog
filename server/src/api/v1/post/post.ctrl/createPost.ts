@@ -6,7 +6,7 @@ import User from "../../../../entity/User";
 
 export default async (req: any, res: Response, next: NextFunction) => {
   const { title, thumnail, content } = req.body;
-  const { user_id, name } = req.user;
+  const user = req.user;
 
   try {
     if (!title || !content!!) {
@@ -19,11 +19,12 @@ export default async (req: any, res: Response, next: NextFunction) => {
     const postRepo = getRepository(Post);
     const post = new Post();
 
-    post.userId = user_id;
-    post.author = name;
+    post.userId = user.user_id;
+    post.author = user.name;
     post.title = title;
     post.content = content;
     post.thumnail = thumnail;
+    post.user = user;
 
     await postRepo.save(post).catch((error) => {
       return next(error);

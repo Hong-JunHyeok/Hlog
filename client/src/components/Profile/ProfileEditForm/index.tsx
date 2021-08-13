@@ -1,9 +1,10 @@
+import { VFC } from "react";
 import { useUserState } from "../../../hooks/states/useUserState";
 import useInput from "../../../hooks/useInput";
 import { ButtonComponent } from "../../Common/Button";
 import { StyledProfileEditForm } from "./styles";
 
-export const ProfileEditForm = () => {
+export const ProfileEditForm: VFC = ({}) => {
   const { me } = useUserState();
 
   const [editName, onChangeEditName] = useInput(me?.name);
@@ -28,9 +29,8 @@ export const ProfileEditForm = () => {
           onChange={onChangeEditDesc}
         />
       </section>
-      <section className="edit password">
-        <h1>비밀번호</h1>
-        <ButtonComponent>비밀번호 수정</ButtonComponent>
+      <section className=" submit">
+        <ButtonComponent>수정하기</ButtonComponent>
       </section>
     </StyledProfileEditForm>
   );

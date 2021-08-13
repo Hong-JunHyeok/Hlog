@@ -3,6 +3,9 @@ import { colorsModule } from "../../../styles/colors";
 import { sizesModule } from "../../../styles/sizes";
 
 export const StyledProfileEditForm = styled.form`
+  width: 60%;
+  background-color: white;
+  z-index: 999;
   .require {
     & > h1::after {
       margin-left: 10px;
@@ -16,6 +19,10 @@ export const StyledProfileEditForm = styled.form`
   }
   .desc > textarea {
     width: 100%;
+  }
+  .submit {
+    margin: 2rem;
+    text-align: center;
   }
   .edit {
     padding: 1rem;

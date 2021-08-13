@@ -30,7 +30,7 @@ const upload = multer({
 router.post("/", isLoggedIn, createPost);
 router.delete("/:idx", deletePost);
 router.get("/", getPosts);
-router.get("/my", getMyPosts);
+router.get("/my", isLoggedIn, getMyPosts);
 router.get("/:idx", getPost);
 router.put("/:idx", modifyPost);
 router.post("/thumnail", isLoggedIn, upload.single("thumnail"), uploadThumnail);

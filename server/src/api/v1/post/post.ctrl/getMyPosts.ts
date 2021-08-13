@@ -5,22 +5,13 @@ import { getRepository } from "typeorm";
 
 export default async (req: any, res: Response) => {
   try {
-    const user = req.user;
+    const userId = req.user.user_id;
     const postRepo = getRepository(Post);
-    const posts = await postRepo.find({
-      order: { createdAt: "DESC" },
-      where: {
-        userId: user.id,
-      },
-      select: [
-        "author",
-        "createdAt",
-        "post_id",
-        "thumnail",
-        "title",
-        "updatedAt",
-      ],
-    });
+
+    const posts = await postRepo
+      .createQueryBuilder()
+      .where("post.fk_user_id = :userId", { userId })
+      .getMany();
     const totalLenth = posts.length;
 
     if (!totalLenth) {
@@ -33,9 +24,9 @@ export default async (req: any, res: Response) => {
       });
     }
 
-    logger.green("모든 포스트 조회 성공");
+    logger.green("모든 내 포스트 조회 성공");
     return res.status(200).json({
-      message: "모든 포스트 조회 성공",
+      message: "모든 내 포스트 조회 성공",
       data: {
         posts,
         total: totalLenth,
