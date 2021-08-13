@@ -16,6 +16,10 @@ export const postInitialState: IPostState = {
   getPostsError: null,
   getPostsLoading: false,
 
+  getMyPostsDone: false,
+  getMyPostsError: null,
+  getMyPostsLoading: false,
+
   thumnailUploadDone: false,
   thumnailUploadError: null,
   thumnailUploadLoading: false,
@@ -27,6 +31,24 @@ export const postInitialState: IPostState = {
 };
 
 export default createReducer<IPostState, PostAction>(postInitialState, {
+  [postActions.GET_MY_POSTS_REQUEST]: (state) =>
+    produce(state, (draft) => {
+      draft.getMyPostsDone = false;
+      draft.getMyPostsError = null;
+      draft.getMyPostsLoading = true;
+    }),
+  [postActions.GET_MY_POSTS_SUCCESS]: (state, action) =>
+    produce(state, (draft) => {
+      draft.getMyPostsDone = true;
+      draft.getMyPostsLoading = false;
+
+      draft.posts = action.payload.data.posts;
+    }),
+  [postActions.GET_MY_POSTS_FAILURE]: (state, action) =>
+    produce(state, (draft) => {
+      draft.getMyPostsError = action.payload;
+      draft.getMyPostsLoading = false;
+    }),
   [postActions.GET_POSTS_REQUEST]: (state) =>
     produce(state, (draft) => {
       draft.getPostsDone = false;

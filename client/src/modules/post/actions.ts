@@ -9,6 +9,10 @@ export const GET_POSTS_REQUEST = "post/GET_POSTS_REQUEST" as const;
 export const GET_POSTS_SUCCESS = "post/GET_POSTS_SUCCESS" as const;
 export const GET_POSTS_FAILURE = "post/GET_POSTS_FAILURE" as const;
 
+export const GET_MY_POSTS_REQUEST = "post/GET_MY_POSTS_REQUEST" as const;
+export const GET_MY_POSTS_SUCCESS = "post/GET_MY_POSTS_SUCCESS" as const;
+export const GET_MY_POSTS_FAILURE = "post/GET_MY_POSTS_FAILURE" as const;
+
 export const CREATE_POST_REQUEST = "post/CREATE_POST_REQUEST" as const;
 export const CREATE_POST_SUCCESS = "post/CREATE_POST_SUCCESS" as const;
 export const CREATE_POST_FAILURE = "post/CREATE_POST_FAILURE" as const;
@@ -22,6 +26,12 @@ export const getPostAction = createAsyncAction(
   GET_POST_SUCCESS,
   GET_POST_FAILURE,
 )<any, AxiosResponse<any>, string>();
+
+export const getMyPostsAction = createAsyncAction(
+  GET_MY_POSTS_REQUEST,
+  GET_MY_POSTS_SUCCESS,
+  GET_MY_POSTS_FAILURE,
+)<void, AxiosResponse, AxiosError<any>>();
 
 export const getPostsAction = createAsyncAction(
   GET_POSTS_REQUEST,

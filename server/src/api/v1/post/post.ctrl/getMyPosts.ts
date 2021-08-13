@@ -12,6 +12,14 @@ export default async (req: any, res: Response) => {
       where: {
         userId: user.id,
       },
+      select: [
+        "author",
+        "createdAt",
+        "post_id",
+        "thumnail",
+        "title",
+        "updatedAt",
+      ],
     });
     const totalLenth = posts.length;
 

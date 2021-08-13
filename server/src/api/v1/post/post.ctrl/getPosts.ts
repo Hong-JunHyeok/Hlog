@@ -6,7 +6,17 @@ import { getRepository } from "typeorm";
 export default async (req: Request, res: Response) => {
   try {
     const postRepo = getRepository(Post);
-    const posts = await postRepo.find({ order: { createdAt: "DESC" } });
+    const posts = await postRepo.find({
+      order: { createdAt: "DESC" },
+      select: [
+        "author",
+        "createdAt",
+        "post_id",
+        "thumnail",
+        "title",
+        "updatedAt",
+      ],
+    });
     const totalLenth = posts.length;
 
     if (!totalLenth) {
