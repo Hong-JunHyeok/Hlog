@@ -51,10 +51,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
         type: LOAD_MY_INFO_REQUEST,
       });
 
-      store.dispatch({
-        type: LOAD_MY_INFO_REQUEST,
-      });
-
       store.dispatch(END);
       await store.sagaTask.toPromise();
     },

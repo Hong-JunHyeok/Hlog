@@ -9,7 +9,7 @@ import { LOAD_MY_INFO_REQUEST } from "../../modules/user/actions";
 import ssrCookiePender from "../../utils/ssrCookiePender";
 
 const PostCreatePage: NextPage = () => {
-  const { loginDone } = useUserState();
+  const { loginDone, me } = useUserState();
   const { handlePushLink } = useLink("/post");
 
   useEffect(() => {
@@ -17,6 +17,10 @@ const PostCreatePage: NextPage = () => {
       handlePushLink();
     }
   }, [loginDone]);
+
+  if (!me) {
+    return null;
+  }
 
   return <CreatePageLayout />;
 };
