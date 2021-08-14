@@ -48,12 +48,13 @@ export default class Post extends BaseEntity {
   })
   updatedAt: Date;
 
-  @RelationId((post: Post) => post.user)
-  userId!: string;
-
-  @JoinColumn({ name: "fk_user_id" })
   @ManyToOne((type) => User, (user) => user.user_id, {
     onDelete: "CASCADE",
+    primary: true,
   })
-  user!: User;
+  @JoinColumn({ name: "fk_user_id" })
+  user: User;
+
+  @RelationId((post: Post) => post.user)
+  userId: string;
 }

@@ -1,4 +1,4 @@
-import { VFC } from "react";
+import { useCallback, VFC } from "react";
 import Image from "next/image";
 import { Post } from "../../../types/Post";
 import { getArrayLength } from "../../../utils/getArrayLength";
@@ -8,10 +8,21 @@ import { useLink } from "../../../hooks/useLink";
 import getDistanceToNow from "../../../utils/getDistanceToNow";
 
 const PostItem: VFC<Post> = (post) => {
-  const { handlePushLink } = useLink(`/post/${post.post_id}`);
+  console.log(post);
+  const { handlePushLink: handlePushPostPage } = useLink(
+    `/post/${post.post_id}`,
+  );
+  const { handlePushLink: handlePushUserPage } = useLink(
+    `/profile/${post.userId}`,
+  );
+
+  const handleClickAuthor = useCallback((e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+    handlePushUserPage();
+  }, []);
 
   return (
-    <StyledPost onClick={handlePushLink}>
+    <StyledPost onClick={handlePushPostPage}>
       <div className="thumnail">
         {post.thumnail && (
           <Image
@@ -27,7 +38,9 @@ const PostItem: VFC<Post> = (post) => {
       <div className="meta">
         <h1>{post.title}</h1>
         <div>
-          <span className="author">{post.author}</span>
+          <span className="author" onClick={handleClickAuthor}>
+            {post.author}
+          </span>
           <span className="createdAt">{getDistanceToNow(post.createdAt)}</span>
         </div>
         <div>
