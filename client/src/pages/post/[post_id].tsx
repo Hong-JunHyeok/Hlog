@@ -40,6 +40,13 @@ const ViewPostPage: NextPage = () => {
             </div>
           </header>
           <main className="post-main">
+            {post.thumnail && (
+              <img
+                src={`http://localhost:8080/${post.thumnail}`}
+                className="thumnail"
+              />
+            )}
+
             <div dangerouslySetInnerHTML={createMarkup(post.content)} />
           </main>
         </ViewPostLayout>

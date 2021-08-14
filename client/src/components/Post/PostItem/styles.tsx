@@ -20,6 +20,10 @@ export const StyledPost = styled.div`
   .thumnail {
     width: 100%;
     overflow: hidden;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
   }
   &:hover .thumnail img {
     transition: ease-in 0.2s;

@@ -19,8 +19,9 @@ export const StyledProfileLayout = styled.div`
   .profile-header {
     display: flex;
     align-items: center;
+    flex-direction: column;
     & > button {
-      margin-left: 2rem;
+      margin: 1rem 0;
     }
   }
   .user-post-conainer {

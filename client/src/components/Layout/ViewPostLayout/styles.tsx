@@ -31,5 +31,9 @@ export const StyledViewContainer = styled.div`
   .post-main {
     padding-top: 2rem;
     max-width: ${sizesModule.viewPostMaxWidth};
+    .thumnail {
+      width: 100%;
+      text-align: center;
+    }
   }
 `;
