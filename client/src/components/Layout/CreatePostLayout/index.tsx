@@ -24,7 +24,6 @@ const CreatePageLayout: VFC = () => {
       localStorage.getItem("savePostData"),
     );
 
-    console.log(document.location.href);
     // setTitle(saveData.title || "");
     // setContent(saveData.content || "");
   }, []);

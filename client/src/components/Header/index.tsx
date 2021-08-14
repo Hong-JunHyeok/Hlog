@@ -1,4 +1,5 @@
-import { CSSProperties, VFC } from "react";
+import { Router, useRouter } from "next/router";
+import { CSSProperties, useCallback, VFC } from "react";
 import { useUserDispatch } from "../../hooks/dispatches/useUserDispatch";
 import { useUserState } from "../../hooks/states/useUserState";
 import { useLink } from "../../hooks/useLink";
@@ -12,14 +13,20 @@ const buttonCustomStyle: CSSProperties = {
 };
 
 const HeaderComponent: VFC = () => {
-  const { loginDone, me, loginLoading } = useUserState();
+  const { loginDone, me, loginLoading, userInfo } = useUserState();
   const { dispatchLogout } = useUserDispatch();
 
   const { handlePushLink: pushMainPage } = useLink("/");
   const { handlePushLink: pushLoginPage } = useLink("/auth/login");
 
   const { handlePushLink: pushPostPage } = useLink("/post");
-  const { handlePushLink: pushProfilePage } = useLink("/profile");
+  const { handlePushLink: pushProfilePage } = useLink(
+    `/profile/${me?.user_id}`,
+  );
+
+  const handleLogout = useCallback(() => {
+    dispatchLogout();
+  }, []);
 
   return (
     <StyledHeader>
@@ -40,7 +47,7 @@ const HeaderComponent: VFC = () => {
 
           {loginDone ? (
             <ButtonComponent
-              handleFunc={dispatchLogout}
+              handleFunc={handleLogout}
               customStyle={buttonCustomStyle}
             >
               로그아웃

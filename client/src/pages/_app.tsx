@@ -7,12 +7,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const AppComponent = ({ Component, pageProps }: AppProps) => {
-  const { dispatchLoadMyInfo } = useUserDispatch();
-
-  // useEffect(() => {
-  //   dispatchLoadMyInfo();
-  // }, []);
-
   return (
     <>
       <link

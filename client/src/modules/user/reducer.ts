@@ -13,6 +13,9 @@ import {
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
   LOGOUT_FAILURE,
+  LOAD_USER_INFO_REQUEST,
+  LOAD_USER_INFO_SUCCESS,
+  LOAD_USER_INFO_FAILURE,
 } from "./actions";
 import { IUserState, UserAction } from "./types";
 
@@ -33,7 +36,12 @@ export const userInitialState: IUserState = {
   loadMyInfoError: null,
   loadMyInfoLoading: false,
 
+  loadUserInfoDone: false,
+  loadUserInfoError: null,
+  loadUserInfoLoading: false,
+
   me: null,
+  userInfo: null,
 };
 
 export default createReducer<IUserState, UserAction>(userInitialState, {
@@ -100,6 +108,29 @@ export default createReducer<IUserState, UserAction>(userInitialState, {
       draft.loadMyInfoDone = false;
 
       draft.me = null;
+    }),
+  [LOAD_USER_INFO_REQUEST]: (state) =>
+    produce(state, (draft) => {
+      draft.loadUserInfoLoading = true;
+      draft.loadUserInfoError = null;
+      draft.loadUserInfoDone = false;
+
+      draft.userInfo = null;
+    }),
+  [LOAD_USER_INFO_SUCCESS]: (state, action) =>
+    produce(state, (draft) => {
+      draft.loadUserInfoLoading = false;
+      draft.loadUserInfoDone = true;
+
+      draft.userInfo = action.payload.data.user;
+    }),
+  [LOAD_USER_INFO_FAILURE]: (state, action) =>
+    produce(state, (draft) => {
+      draft.loadUserInfoLoading = false;
+      draft.loadUserInfoError = action.payload;
+      draft.loadUserInfoDone = false;
+
+      draft.userInfo = null;
     }),
   [LOGOUT_REQUEST]: (state) =>
     produce(state, (draft) => {

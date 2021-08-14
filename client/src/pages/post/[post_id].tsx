@@ -1,14 +1,12 @@
 import lexer from "marked";
 import { NextPage } from "next";
 import Head from "next/head";
-import { useEffect } from "react";
 import { END } from "redux-saga";
 import Layout from "../../components/Layout/MainLayout";
 import ViewPostLayout from "../../components/Layout/ViewPostLayout";
-import CheckCreatePostModal from "../../components/Post/CheckCreatePostModal";
 import wrapper from "../../config/configureStore";
 import { usePostState } from "../../hooks/states/usePostState";
-import useModal from "../../hooks/useModal";
+import { useLink } from "../../hooks/useLink";
 import { GET_POST_REQUEST } from "../../modules/post/actions";
 import { LOAD_MY_INFO_REQUEST } from "../../modules/user/actions";
 import getDistanceToNow from "../../utils/getDistanceToNow";
@@ -16,6 +14,8 @@ import ssrCookiePender from "../../utils/ssrCookiePender";
 
 const ViewPostPage: NextPage = () => {
   const { post } = usePostState();
+
+  const { handlePushLink } = useLink(`/profile/${post?.userId}`);
 
   const createMarkup = (content: string) => {
     return { __html: lexer(content) };
@@ -31,7 +31,9 @@ const ViewPostPage: NextPage = () => {
           <header className="post-header">
             <h1>{post.title}</h1>
             <div className="meta">
-              <span className="author">{post.author}</span>
+              <span className="author" onClick={handlePushLink}>
+                {post.author}
+              </span>
               <span className="createdAt">
                 {getDistanceToNow(post.createdAt)}
               </span>

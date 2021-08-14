@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { mixinModules } from "../../../styles/modules";
 import { sizesModule } from "../../../styles/sizes";
 
 export const StyledProfileLayout = styled.div`
@@ -22,9 +23,10 @@ export const StyledProfileLayout = styled.div`
       margin-left: 2rem;
     }
   }
-  .my-post-conainer {
+  .user-post-conainer {
     width: 100%;
-
+    ${mixinModules.flexLayoutCenterSort}
+    flex-direction: column;
     max-width: 800px;
   }
 `;

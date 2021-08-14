@@ -1,7 +1,7 @@
 import { all, fork } from "redux-saga/effects";
 import {
   watchCreatePost,
-  watchGetMyPosts,
+  watchGetUserPosts,
   watchGetPost,
   watchGetPosts,
   watchThumnailUpload,
@@ -10,7 +10,7 @@ import {
 export default function* postSaga() {
   yield all([
     fork(watchGetPosts),
-    fork(watchGetMyPosts),
+    fork(watchGetUserPosts),
     fork(watchGetPost),
     fork(watchCreatePost),
     fork(watchThumnailUpload),

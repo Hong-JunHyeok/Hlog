@@ -2,12 +2,14 @@ import Post from "../../../../entity/Post";
 import { Request, Response } from "express";
 import * as logger from "../../../../lib/logger";
 import { getRepository } from "typeorm";
+import User from "../../../../entity/User";
 
 export default async (req: Request, res: Response) => {
   const idx: string = req.params.idx;
 
   try {
     const postRepo = getRepository(Post);
+
     const post = await postRepo.findOne({ where: { post_id: idx } });
 
     if (!post) {

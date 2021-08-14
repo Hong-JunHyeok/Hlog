@@ -22,5 +22,11 @@ export interface IUserState {
   loadMyInfoError: null | AxiosError;
   loadMyInfoLoading: boolean;
 
+  loadUserInfoDone: boolean;
+  loadUserInfoError: null | AxiosError;
+  loadUserInfoLoading: boolean;
+
+  userInfo: null | User;
+
   me: null | User;
 }

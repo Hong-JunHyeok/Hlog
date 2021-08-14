@@ -2,7 +2,7 @@ import { put, call } from "redux-saga/effects";
 import { AnyAction } from "redux";
 import {
   createPostAction,
-  getMyPostsAction,
+  getUserPostsAction,
   getPostAction,
   getPostsAction,
   thumnailUploadAction,
@@ -11,7 +11,7 @@ import { getPostAPI } from "../../utils/api/post/getPostAPI";
 import { getPostsAPI } from "../../utils/api/post/getPostsAPI";
 import { createPostAPI } from "../../utils/api/post/createPostAPI";
 import { thumnailUploadAPI } from "../../utils/api/post/thumnailUploadAPI";
-import { getMyPostsAPI } from "../../utils/api/post/getMyPostsAPI";
+import { getUserPostsAPI } from "../../utils/api/post/getUserPostsAPI";
 
 export function* handleGetPosts(action: AnyAction) {
   try {
@@ -22,12 +22,12 @@ export function* handleGetPosts(action: AnyAction) {
   }
 }
 
-export function* handleGetMyPosts() {
+export function* handleGetUserPosts(action: AnyAction) {
   try {
-    const response = yield call(getMyPostsAPI);
-    yield put(getMyPostsAction.success(response.data));
+    const response = yield call(getUserPostsAPI, action.payload);
+    yield put(getUserPostsAction.success(response.data));
   } catch (error) {
-    yield put(getMyPostsAction.failure(error.response.data));
+    yield put(getUserPostsAction.failure(error.response.data));
   }
 }
 

@@ -4,6 +4,7 @@ import { put, call } from "redux-saga/effects";
 import {
   joinAsyncAction,
   loadMyInfoAction,
+  loadUserInfoAction,
   loginAsyncAction,
   logoutAsyncAction,
 } from "../../modules/user/actions";
@@ -12,6 +13,7 @@ import { joinAPI } from "../../utils/api/auth/joinAPI";
 import { loginAPI } from "../../utils/api/auth/loginAPI";
 import { loadMyInfoAPI } from "../../utils/api/auth/loadMyInfoAPI";
 import { logoutAPI } from "../../utils/api/auth/logoutAPI";
+import { loadUserInfoAPI } from "../../utils/api/user/loadUserInfoAPI";
 
 export function* handleLogin(action: AnyAction) {
   try {
@@ -50,5 +52,15 @@ export function* handleLoadMyInfo() {
     yield put(loadMyInfoAction.success(response));
   } catch (error) {
     yield put(loadMyInfoAction.failure(error.response.data));
+  }
+}
+
+export function* handleLoadUserInfo(action: AnyAction) {
+  try {
+    const response = yield call(loadUserInfoAPI, action.payload);
+
+    yield put(loadUserInfoAction.success(response));
+  } catch (error) {
+    yield put(loadUserInfoAction.failure(error.response.data));
   }
 }

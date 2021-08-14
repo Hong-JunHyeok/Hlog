@@ -16,9 +16,9 @@ export const postInitialState: IPostState = {
   getPostsError: null,
   getPostsLoading: false,
 
-  getMyPostsDone: false,
-  getMyPostsError: null,
-  getMyPostsLoading: false,
+  getUserPostsDone: false,
+  getUserPostsError: null,
+  getUserPostsLoading: false,
 
   thumnailUploadDone: false,
   thumnailUploadError: null,
@@ -31,23 +31,23 @@ export const postInitialState: IPostState = {
 };
 
 export default createReducer<IPostState, PostAction>(postInitialState, {
-  [postActions.GET_MY_POSTS_REQUEST]: (state) =>
+  [postActions.GET_USER_POSTS_REQUEST]: (state) =>
     produce(state, (draft) => {
-      draft.getMyPostsDone = false;
-      draft.getMyPostsError = null;
-      draft.getMyPostsLoading = true;
+      draft.getUserPostsDone = false;
+      draft.getUserPostsError = null;
+      draft.getUserPostsLoading = true;
     }),
-  [postActions.GET_MY_POSTS_SUCCESS]: (state, action) =>
+  [postActions.GET_USER_POSTS_SUCCESS]: (state, action) =>
     produce(state, (draft) => {
-      draft.getMyPostsDone = true;
-      draft.getMyPostsLoading = false;
+      draft.getUserPostsDone = true;
+      draft.getUserPostsLoading = false;
 
       draft.posts = action.payload.data.posts;
     }),
-  [postActions.GET_MY_POSTS_FAILURE]: (state, action) =>
+  [postActions.GET_USER_POSTS_FAILURE]: (state, action) =>
     produce(state, (draft) => {
-      draft.getMyPostsError = action.payload;
-      draft.getMyPostsLoading = false;
+      draft.getUserPostsError = action.payload;
+      draft.getUserPostsLoading = false;
     }),
   [postActions.GET_POSTS_REQUEST]: (state) =>
     produce(state, (draft) => {

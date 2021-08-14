@@ -23,6 +23,10 @@ const MainPage = () => {
     }
   }, [loginDone]);
 
+  if (loginDone) {
+    return null;
+  }
+
   return (
     <Layout>
       <Head>

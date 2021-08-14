@@ -17,7 +17,10 @@ export const StyledViewContainer = styled.div`
       .author {
         &::before {
           content: "작성자 : ";
+          color: ${colorsModule.hlog_dark_1};
         }
+        cursor: pointer;
+        color: ${colorsModule.hlog_blue};
       }
       .createdAt {
         padding-left: 20px;

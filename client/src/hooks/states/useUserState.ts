@@ -15,6 +15,11 @@ export const useUserState = () => {
     logoutDone,
     logoutError,
     logoutLoading,
+
+    loadUserInfoDone,
+    loadUserInfoError,
+    loadUserInfoLoading,
+    userInfo,
   } = useTypedSelector((state) => state.user);
 
   return {
@@ -31,5 +36,9 @@ export const useUserState = () => {
     logoutDone,
     logoutError,
     logoutLoading,
+    loadUserInfoDone,
+    loadUserInfoError,
+    loadUserInfoLoading,
+    userInfo,
   };
 };

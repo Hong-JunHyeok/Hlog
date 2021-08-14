@@ -9,6 +9,10 @@ export const LOAD_MY_INFO_REQUEST = "user/LOAD_MY_INFO_REQUEST" as const;
 export const LOAD_MY_INFO_SUCCESS = "user/LOAD_MY_INFO_SUCCESS" as const;
 export const LOAD_MY_INFO_FAILURE = "user/LOAD_MY_INFO_FAILURE" as const;
 
+export const LOAD_USER_INFO_REQUEST = "user/LOAD_USER_INFO_REQUEST" as const;
+export const LOAD_USER_INFO_SUCCESS = "user/LOAD_USER_INFO_SUCCESS" as const;
+export const LOAD_USER_INFO_FAILURE = "user/LOAD_USER_INFO_FAILURE" as const;
+
 export const JOIN_REQUEST = "user/JOIN_REQUEST" as const;
 export const JOIN_SUCCESS = "user/JOIN_SUCCESS" as const;
 export const JOIN_FAILURE = "user/JOIN_FAILURE" as const;
@@ -39,4 +43,10 @@ export const loadMyInfoAction = createAsyncAction(
   LOAD_MY_INFO_REQUEST,
   LOAD_MY_INFO_SUCCESS,
   LOAD_MY_INFO_FAILURE,
+)<void, AxiosResponse, AxiosError<any>>();
+
+export const loadUserInfoAction = createAsyncAction(
+  LOAD_USER_INFO_REQUEST,
+  LOAD_USER_INFO_SUCCESS,
+  LOAD_USER_INFO_FAILURE,
 )<void, AxiosResponse, AxiosError<any>>();

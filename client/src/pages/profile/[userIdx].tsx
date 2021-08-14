@@ -11,41 +11,37 @@ import { usePostState } from "../../hooks/states/usePostState";
 import { useUserState } from "../../hooks/states/useUserState";
 import { useLink } from "../../hooks/useLink";
 import useModal from "../../hooks/useModal";
-import { GET_MY_POSTS_REQUEST } from "../../modules/post/actions";
-import { LOAD_MY_INFO_REQUEST } from "../../modules/user/actions";
+import {
+  GET_MY_POSTS_REQUEST,
+  GET_USER_POSTS_REQUEST,
+} from "../../modules/post/actions";
+import {
+  LOAD_MY_INFO_REQUEST,
+  LOAD_USER_INFO_REQUEST,
+} from "../../modules/user/actions";
 import { Post } from "../../types/Post";
 import { getArrayLength } from "../../utils/getArrayLength";
 import ssrCookiePender from "../../utils/ssrCookiePender";
 
 //* 내 정보 조희하는 페이지
 
-const ProfilePage = () => {
-  const { me, loginDone } = useUserState();
+const UserProfilePage = () => {
+  const { me, loginDone, userInfo } = useUserState();
   const { posts } = usePostState();
-  const { handlePushLink } = useLink("/");
-  const { ModalPortal, closeModal, openModal } = useModal({
-    position: "center",
-  });
+  const { handlePushLink } = useLink("/post");
 
-  useEffect(() => {
-    if (!loginDone || !me) {
-      handlePushLink();
-    }
-  }, [loginDone, me]);
-
-  if (!me) {
-    return null;
-  }
+  // useEffect(() => {
+  //   if (!loginDone || !me) {
+  //     handlePushLink();
+  //   }
+  // }, [loginDone, me]);
 
   return (
     <Layout>
       <Head>
-        <title>HLOG | 내 프로필</title>
+        <title>HLOG | 프로필</title>
       </Head>
-      <ProfileLayout openModal={openModal}>
-        <ModalPortal>
-          <ProfileEditForm />
-        </ModalPortal>
+      <ProfileLayout>
         {getArrayLength(posts) === 0 ? (
           <h1 className="no-posts">조회할 포스트가 없네요...</h1>
         ) : (
@@ -54,7 +50,7 @@ const ProfilePage = () => {
             renderItems={(post: Post) => (
               <PostItem {...post} key={post.post_id} />
             )}
-            className="my-post-conainer"
+            className="user-post-conainer"
           />
         )}
       </ProfileLayout>
@@ -64,15 +60,22 @@ const ProfilePage = () => {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
-    async ({ req }) => {
+    async ({ req, params }) => {
       ssrCookiePender(req);
+      const userIdx = params.userIdx;
+
+      store.dispatch({
+        type: LOAD_USER_INFO_REQUEST,
+        payload: userIdx,
+      });
 
       store.dispatch({
         type: LOAD_MY_INFO_REQUEST,
       });
 
       store.dispatch({
-        type: GET_MY_POSTS_REQUEST,
+        type: GET_USER_POSTS_REQUEST,
+        payload: userIdx,
       });
 
       store.dispatch(END);
@@ -80,4 +83,4 @@ export const getServerSideProps = wrapper.getServerSideProps(
     },
 );
 
-export default ProfilePage;
+export default UserProfilePage;

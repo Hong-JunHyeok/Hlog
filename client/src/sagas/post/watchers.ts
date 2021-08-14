@@ -1,16 +1,16 @@
 import { takeLatest } from "redux-saga/effects";
 import {
   CREATE_POST_REQUEST,
-  GET_MY_POSTS_REQUEST,
+  GET_USER_POSTS_REQUEST,
   GET_POSTS_REQUEST,
   GET_POST_REQUEST,
   THUMNAIL_UPLOAD_REQUEST,
 } from "../../modules/post/actions";
 import {
   handleCreatePost,
-  handleGetMyPosts,
   handleGetPost,
   handleGetPosts,
+  handleGetUserPosts,
   handleThumnailUpload,
 } from "./handlers";
 
@@ -18,8 +18,8 @@ export function* watchGetPosts() {
   yield takeLatest(GET_POSTS_REQUEST, handleGetPosts);
 }
 
-export function* watchGetMyPosts() {
-  yield takeLatest(GET_MY_POSTS_REQUEST, handleGetMyPosts);
+export function* watchGetUserPosts() {
+  yield takeLatest(GET_USER_POSTS_REQUEST, handleGetUserPosts);
 }
 
 export function* watchGetPost() {

@@ -3,9 +3,9 @@ import { Request, Response } from "express";
 import * as logger from "../../../../lib/logger";
 import { getRepository } from "typeorm";
 
-export default async (req: any, res: Response) => {
+export default async (req: Request, res: Response) => {
   try {
-    const userId = req.user.user_id;
+    const userId = req.params.user_idx;
     const postRepo = getRepository(Post);
 
     const posts = await postRepo
@@ -24,9 +24,9 @@ export default async (req: any, res: Response) => {
       });
     }
 
-    logger.green("모든 내 포스트 조회 성공");
+    logger.green("모든 유저 포스트 조회 성공");
     return res.status(200).json({
-      message: "모든 내 포스트 조회 성공",
+      message: "모든 유저 포스트 조회 성공",
       data: {
         posts,
         total: totalLenth,

@@ -18,9 +18,9 @@ export interface IPostState {
   getPostsError: null | AxiosError;
   getPostsLoading: boolean;
 
-  getMyPostsDone: boolean;
-  getMyPostsError: null | AxiosError;
-  getMyPostsLoading: boolean;
+  getUserPostsDone: boolean;
+  getUserPostsError: null | AxiosError;
+  getUserPostsLoading: boolean;
 
   thumnailUploadDone: boolean;
   thumnailUploadError: null | AxiosError;
