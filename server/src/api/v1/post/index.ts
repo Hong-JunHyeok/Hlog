@@ -32,7 +32,7 @@ router.delete("/:post_id", isLoggedIn, deletePost);
 router.get("/", getPosts);
 router.get("/userPosts/:user_idx", getUserPosts);
 router.get("/:idx", getPost);
-router.put("/:idx", modifyPost);
+router.put("/:idx", isLoggedIn, modifyPost);
 router.post("/thumnail", isLoggedIn, upload.single("thumnail"), uploadThumnail);
 
 export default router;
