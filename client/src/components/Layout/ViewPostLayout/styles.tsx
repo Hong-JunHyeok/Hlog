@@ -6,7 +6,7 @@ export const StyledViewContainer = styled.div`
   .post-header {
     margin: 0 auto;
     max-width: ${sizesModule.viewPostMaxWidth};
-    padding: 3rem 0;
+    padding: 3rem 0 1rem 0;
     border-bottom: 1px solid ${colorsModule.hlog_gray_1};
     h1 {
       font-size: ${sizesModule.bigFontSize};
@@ -24,6 +24,16 @@ export const StyledViewContainer = styled.div`
       }
       .createdAt {
         padding-left: 20px;
+      }
+    }
+    .options {
+      display: flex;
+
+      justify-content: flex-end;
+      & > li {
+        color: ${colorsModule.hlog_gray_1};
+        margin-left: 0.5rem;
+        cursor: pointer;
       }
     }
   }

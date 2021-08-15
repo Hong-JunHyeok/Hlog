@@ -4,15 +4,19 @@ import Head from "next/head";
 import { END } from "redux-saga";
 import Layout from "../../components/Layout/MainLayout";
 import ViewPostLayout from "../../components/Layout/ViewPostLayout";
+import DeleteModal from "../../components/Post/DeleteModal";
 import wrapper from "../../config/configureStore";
 import { usePostState } from "../../hooks/states/usePostState";
+import { useUserState } from "../../hooks/states/useUserState";
 import { useLink } from "../../hooks/useLink";
+import useModal from "../../hooks/useModal";
 import { GET_POST_REQUEST } from "../../modules/post/actions";
 import { LOAD_MY_INFO_REQUEST } from "../../modules/user/actions";
 import getDistanceToNow from "../../utils/getDistanceToNow";
 import ssrCookiePender from "../../utils/ssrCookiePender";
 
 const ViewPostPage: NextPage = () => {
+  const { me } = useUserState();
   const { post } = usePostState();
 
   const { handlePushLink } = useLink(`/profile/${post?.userId}`);
@@ -20,6 +24,12 @@ const ViewPostPage: NextPage = () => {
   const createMarkup = (content: string) => {
     return { __html: lexer(content) };
   };
+
+  const {
+    ModalPortal: DeleteModalPortal,
+    openModal: openDeleteModal,
+    closeModal: closeDeleteModal,
+  } = useModal({ position: "center" });
 
   return (
     <>
@@ -37,6 +47,12 @@ const ViewPostPage: NextPage = () => {
               <span className="createdAt">
                 {getDistanceToNow(post.createdAt)}
               </span>
+              {me.user_id === post.userId && (
+                <ul className="options">
+                  <li>수정</li>
+                  <li onClick={openDeleteModal}>삭제</li>
+                </ul>
+              )}
             </div>
           </header>
           <main className="post-main">
@@ -51,6 +67,12 @@ const ViewPostPage: NextPage = () => {
           </main>
         </ViewPostLayout>
       </Layout>
+      <DeleteModalPortal>
+        <DeleteModal
+          post_id={post.post_id}
+          closeDeleteModal={closeDeleteModal}
+        />
+      </DeleteModalPortal>
     </>
   );
 };
