@@ -24,6 +24,10 @@ export const postInitialState: IPostState = {
   thumnailUploadError: null,
   thumnailUploadLoading: false,
 
+  deletePostDone: false,
+  deletePostError: null,
+  deletePostLoading: false,
+
   thumnailURL: "",
 
   posts: [],
@@ -85,6 +89,22 @@ export default createReducer<IPostState, PostAction>(postInitialState, {
     produce(state, (draft) => {
       draft.getPostError = "조회할 포스트가 없습니다.";
       draft.getPostLoading = false;
+    }),
+  [postActions.DELETE_POST_REQUEST]: (state) =>
+    produce(state, (draft) => {
+      draft.deletePostDone = false;
+      draft.deletePostError = null;
+      draft.deletePostLoading = true;
+    }),
+  [postActions.DELETE_POST_SUCCESS]: (state, action) =>
+    produce(state, (draft) => {
+      draft.deletePostDone = true;
+      draft.deletePostLoading = false;
+    }),
+  [postActions.DELETE_POST_FAILURE]: (state, action) =>
+    produce(state, (draft) => {
+      draft.deletePostError = action.payload.response.data;
+      draft.deletePostLoading = false;
     }),
   [postActions.CREATE_POST_REQUEST]: (state) =>
     produce(state, (draft) => {

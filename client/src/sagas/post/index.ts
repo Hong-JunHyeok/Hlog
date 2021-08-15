@@ -5,6 +5,7 @@ import {
   watchGetPost,
   watchGetPosts,
   watchThumnailUpload,
+  watchDeletePost,
 } from "./watchers";
 
 export default function* postSaga() {
@@ -14,5 +15,6 @@ export default function* postSaga() {
     fork(watchGetPost),
     fork(watchCreatePost),
     fork(watchThumnailUpload),
+    fork(watchDeletePost),
   ]);
 }

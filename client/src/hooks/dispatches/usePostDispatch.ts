@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import {
   createPostAction,
+  deletePostAction,
   getPostsAction,
   thumnailUploadAction,
 } from "../../modules/post/actions";
@@ -28,9 +29,17 @@ export const usePostDispatch = () => {
     [dispatch],
   );
 
+  const dispatchDeletePost = useCallback(
+    (post_id: string) => {
+      dispatch(deletePostAction.request(post_id));
+    },
+    [dispatch],
+  );
+
   return {
     dispatchCreatePost,
     dispatchGetPosts,
     dispatchThumnailUpload,
+    dispatchDeletePost,
   };
 };

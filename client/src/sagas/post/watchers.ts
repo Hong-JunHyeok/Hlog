@@ -5,9 +5,11 @@ import {
   GET_POSTS_REQUEST,
   GET_POST_REQUEST,
   THUMNAIL_UPLOAD_REQUEST,
+  DELETE_POST_REQUEST,
 } from "../../modules/post/actions";
 import {
   handleCreatePost,
+  handleDeletePost,
   handleGetPost,
   handleGetPosts,
   handleGetUserPosts,
@@ -32,4 +34,8 @@ export function* watchCreatePost() {
 
 export function* watchThumnailUpload() {
   yield takeLatest(THUMNAIL_UPLOAD_REQUEST, handleThumnailUpload);
+}
+
+export function* watchDeletePost() {
+  yield takeLatest(DELETE_POST_REQUEST, handleDeletePost);
 }

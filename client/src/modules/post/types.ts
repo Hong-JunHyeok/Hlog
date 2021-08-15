@@ -22,6 +22,10 @@ export interface IPostState {
   getUserPostsError: null | AxiosError;
   getUserPostsLoading: boolean;
 
+  deletePostDone: boolean;
+  deletePostError: null | AxiosError;
+  deletePostLoading: boolean;
+
   thumnailUploadDone: boolean;
   thumnailUploadError: null | AxiosError;
   thumnailUploadLoading: boolean;

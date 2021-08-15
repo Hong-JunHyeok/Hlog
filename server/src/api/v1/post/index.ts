@@ -28,7 +28,7 @@ const upload = multer({
 });
 
 router.post("/", isLoggedIn, createPost);
-router.delete("/:idx", deletePost);
+router.delete("/:post_id", isLoggedIn, deletePost);
 router.get("/", getPosts);
 router.get("/userPosts/:user_idx", getUserPosts);
 router.get("/:idx", getPost);

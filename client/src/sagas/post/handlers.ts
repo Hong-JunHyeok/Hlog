@@ -6,12 +6,14 @@ import {
   getPostAction,
   getPostsAction,
   thumnailUploadAction,
+  deletePostAction,
 } from "../../modules/post/actions";
 import { getPostAPI } from "../../utils/api/post/getPostAPI";
 import { getPostsAPI } from "../../utils/api/post/getPostsAPI";
 import { createPostAPI } from "../../utils/api/post/createPostAPI";
 import { thumnailUploadAPI } from "../../utils/api/post/thumnailUploadAPI";
 import { getUserPostsAPI } from "../../utils/api/post/getUserPostsAPI";
+import { deletePostAPI } from "../../utils/api/post/deletePostAPI";
 
 export function* handleGetPosts(action: AnyAction) {
   try {
@@ -48,6 +50,16 @@ export function* handleCreatePost(action: AnyAction) {
     yield put(createPostAction.success(response));
   } catch (error) {
     yield put(createPostAction.failure(error.response.status));
+  }
+}
+
+export function* handleDeletePost(action: AnyAction) {
+  try {
+    const response = yield call(deletePostAPI, action.payload);
+
+    yield put(deletePostAction.success(response));
+  } catch (error) {
+    yield put(deletePostAction.failure(error));
   }
 }
 
