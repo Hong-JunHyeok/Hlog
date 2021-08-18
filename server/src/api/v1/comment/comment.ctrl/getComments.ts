@@ -12,8 +12,12 @@ export default async function (
 
     const commentRepo = Comment.getRepository();
 
-    const comments = await commentRepo.find();
+    const comments = await commentRepo
+      .createQueryBuilder()
+      .where("post_id = :postId", { postId })
+      .getMany();
 
+    console.log(comments);
     logger.green("댓글 조회성공");
     return res.status(200).json({
       message: "댓글 조회성공",

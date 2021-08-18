@@ -1,6 +1,7 @@
 import lexer from "marked";
 import { NextPage } from "next";
 import Head from "next/head";
+import { useEffect } from "react";
 import { END } from "redux-saga";
 import CommentInput from "../../components/Comment/CommentInput";
 import CommentList from "../../components/Comment/CommentList";
@@ -8,6 +9,7 @@ import Layout from "../../components/Layout/MainLayout";
 import ViewPostLayout from "../../components/Layout/ViewPostLayout";
 import DeleteModal from "../../components/Post/DeleteModal";
 import wrapper from "../../config/configureStore";
+import { useCommentDispatch } from "../../hooks/dispatches/useCommentDispatch";
 import { useCommentState } from "../../hooks/states/useCommentState";
 import { usePostState } from "../../hooks/states/usePostState";
 import { useUserState } from "../../hooks/states/useUserState";
@@ -24,6 +26,8 @@ const ViewPostPage: NextPage = () => {
   const { post } = usePostState();
   const { comments } = useCommentState();
 
+  const { getCommentsDispatch } = useCommentDispatch();
+
   const { handlePushLink } = useLink(`/profile/${post?.userId}`);
 
   const createMarkup = (content: string) => {
@@ -35,6 +39,10 @@ const ViewPostPage: NextPage = () => {
     openModal: openDeleteModal,
     closeModal: closeDeleteModal,
   } = useModal({ position: "center" });
+
+  useEffect(() => {
+    getCommentsDispatch(post.post_id);
+  }, []);
 
   return (
     <>
@@ -96,11 +104,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
       store.dispatch({
         type: GET_POST_REQUEST,
         payload: params.post_id,
-      });
-
-      store.dispatch({
-        type: GET_COMMENTS_REQUEST,
-        payload: "da82695b-86d6-4cfa-b3ba-e8cc05b071a5",
       });
 
       store.dispatch(END);

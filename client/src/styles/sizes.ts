@@ -1,5 +1,5 @@
 export const sizesModule = {
-  pageMaxWidth: "1800px",
+  pageMaxWidth: "1400px",
   viewPostMaxWidth: "800px",
   bigFontSize: "38px",
   middleFontSize: "24px",
