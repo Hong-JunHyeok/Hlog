@@ -2,6 +2,7 @@ import lexer from "marked";
 import { NextPage } from "next";
 import Head from "next/head";
 import { END } from "redux-saga";
+import CommentInput from "../../components/Comment/CommentInput";
 import CommentList from "../../components/Comment/CommentList";
 import Layout from "../../components/Layout/MainLayout";
 import ViewPostLayout from "../../components/Layout/ViewPostLayout";
@@ -65,6 +66,7 @@ const ViewPostPage: NextPage = () => {
             )}
 
             <div dangerouslySetInnerHTML={createMarkup(post.content)} />
+            <CommentInput />
             <CommentList
               commentsData={[
                 {

@@ -12,6 +12,7 @@
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
+    "autosize": "^5.0.1",
     "axios": "^0.21.1",
     "date-fns": "^2.23.0",
     "emotion-reset": "^3.0.1",
@@ -32,6 +33,7 @@
     "typesafe-actions": "^5.1.0"
   },
   "devDependencies": {
+    "@types/autosize": "^4.0.0",
     "@types/faker": "^5.5.7",
     "@types/marked": "^2.0.4",
     "@types/react-cookies": "^0.1.0",
