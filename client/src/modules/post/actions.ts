@@ -17,6 +17,10 @@ export const CREATE_POST_REQUEST = "post/CREATE_POST_REQUEST" as const;
 export const CREATE_POST_SUCCESS = "post/CREATE_POST_SUCCESS" as const;
 export const CREATE_POST_FAILURE = "post/CREATE_POST_FAILURE" as const;
 
+export const EDIT_POST_REQUEST = "post/EDIT_POST_REQUEST" as const;
+export const EDIT_POST_SUCCESS = "post/EDIT_POST_SUCCESS" as const;
+export const EDIT_POST_FAILURE = "post/EDIT_POST_FAILURE" as const;
+
 export const DELETE_POST_REQUEST = "post/DELETE_POST_REQUEST" as const;
 export const DELETE_POST_SUCCESS = "post/DELETE_POST_SUCCESS" as const;
 export const DELETE_POST_FAILURE = "post/DELETE_POST_FAILURE" as const;
@@ -35,6 +39,12 @@ export const deletePostAction = createAsyncAction(
   DELETE_POST_REQUEST,
   DELETE_POST_SUCCESS,
   DELETE_POST_FAILURE,
+)<any, AxiosResponse<any>, AxiosError<any>>();
+
+export const editPostAction = createAsyncAction(
+  EDIT_POST_REQUEST,
+  EDIT_POST_SUCCESS,
+  EDIT_POST_FAILURE,
 )<any, AxiosResponse<any>, AxiosError<any>>();
 
 export const getUserPostsAction = createAsyncAction(

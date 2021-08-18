@@ -12,9 +12,10 @@ export default async (req: Request, res: Response) => {
       .createQueryBuilder()
       .where("post.fk_user_id = :userId", { userId })
       .getMany();
+
     const totalLenth = posts.length;
 
-    if (!totalLenth) {
+    if (totalLenth === 0) {
       logger.yellow("조회할 포스트가 없습니다.");
       return res.status(200).json({
         message: "조회할 포스트가 없습니다.",

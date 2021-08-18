@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { KeyboardEvent, useCallback, useEffect, VFC } from "react";
+import { Flip, toast } from "react-toastify";
 import useInput from "../../../hooks/useInput";
 import CodeViewer from "../../Post/CodeViewer";
 import Editor from "../../Post/Editor";
@@ -15,7 +16,20 @@ const CreatePageLayout: VFC = () => {
   const [content, onChangeContent, setContent] = useInput<string>("");
 
   const contentEventHandler = useCallback(
-    (e: KeyboardEvent<HTMLTextAreaElement>) => {},
+    (e: KeyboardEvent<HTMLTextAreaElement>) => {
+      if (
+        e.key === "s" &&
+        (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)
+      ) {
+        e.preventDefault();
+        //TODO 저장하는 로직
+      }
+
+      if (e.key === "Tab") {
+        e.preventDefault();
+        //TODO 4칸 로직
+      }
+    },
     [content],
   );
 
@@ -24,8 +38,8 @@ const CreatePageLayout: VFC = () => {
       localStorage.getItem("savePostData"),
     );
 
-    // setTitle(saveData.title || "");
-    // setContent(saveData.content || "");
+    setTitle(saveData.title || "");
+    setContent(saveData.content || "");
   }, []);
 
   return (

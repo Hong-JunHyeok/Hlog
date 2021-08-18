@@ -28,6 +28,10 @@ export const postInitialState: IPostState = {
   deletePostError: null,
   deletePostLoading: false,
 
+  editPostDone: false,
+  editPostError: null,
+  editPostLoading: false,
+
   thumnailURL: "",
 
   posts: [],
@@ -71,7 +75,6 @@ export default createReducer<IPostState, PostAction>(postInitialState, {
       draft.getPostsError = action.payload;
       draft.getPostsLoading = false;
     }),
-
   [postActions.GET_POST_REQUEST]: (state) =>
     produce(state, (draft) => {
       draft.getPostDone = false;
@@ -102,6 +105,22 @@ export default createReducer<IPostState, PostAction>(postInitialState, {
       draft.deletePostLoading = false;
     }),
   [postActions.DELETE_POST_FAILURE]: (state, action) =>
+    produce(state, (draft) => {
+      draft.deletePostError = action.payload.response.data;
+      draft.deletePostLoading = false;
+    }),
+  [postActions.EDIT_POST_REQUEST]: (state) =>
+    produce(state, (draft) => {
+      draft.deletePostDone = false;
+      draft.deletePostError = null;
+      draft.deletePostLoading = true;
+    }),
+  [postActions.EDIT_POST_SUCCESS]: (state, action) =>
+    produce(state, (draft) => {
+      draft.deletePostDone = true;
+      draft.deletePostLoading = false;
+    }),
+  [postActions.EDIT_POST_FAILURE]: (state, action) =>
     produce(state, (draft) => {
       draft.deletePostError = action.payload.response.data;
       draft.deletePostLoading = false;

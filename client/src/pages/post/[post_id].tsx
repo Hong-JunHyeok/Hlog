@@ -2,6 +2,7 @@ import lexer from "marked";
 import { NextPage } from "next";
 import Head from "next/head";
 import { END } from "redux-saga";
+import CommentList from "../../components/Comment/CommentList";
 import Layout from "../../components/Layout/MainLayout";
 import ViewPostLayout from "../../components/Layout/ViewPostLayout";
 import DeleteModal from "../../components/Post/DeleteModal";
@@ -47,9 +48,9 @@ const ViewPostPage: NextPage = () => {
               <span className="createdAt">
                 {getDistanceToNow(post.createdAt)}
               </span>
-              {me.user_id === post.userId && (
+              {me?.user_id === post.userId && (
                 <ul className="options">
-                  <li>수정</li>
+                  {/* <li>수정</li> */}
                   <li onClick={openDeleteModal}>삭제</li>
                 </ul>
               )}
@@ -64,6 +65,22 @@ const ViewPostPage: NextPage = () => {
             )}
 
             <div dangerouslySetInnerHTML={createMarkup(post.content)} />
+            <CommentList
+              commentsData={[
+                {
+                  author: "홍준혁",
+                  content: "별로다...",
+                  comment_id: "123123123",
+                  createdAt: "2021년 3월 2일",
+                },
+                {
+                  author: "류수아",
+                  content: "ㅎㅎ",
+                  comment_id: "1223123123",
+                  createdAt: "2022년 3월 2일",
+                },
+              ]}
+            />
           </main>
         </ViewPostLayout>
       </Layout>
