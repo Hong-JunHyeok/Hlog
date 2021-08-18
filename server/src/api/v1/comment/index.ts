@@ -3,6 +3,6 @@ import getComments from "./comment.ctrl/getComments";
 
 const router = Router();
 
-router.get("/", getComments);
+router.get("/:post_id", getComments);
 
 export default router;

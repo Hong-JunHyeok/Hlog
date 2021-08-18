@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import Comment from "../../../../entity/Comment";
+import * as logger from "../../../../lib/logger";
 
 export default async function (
   req: Request,
@@ -11,12 +12,9 @@ export default async function (
 
     const commentRepo = Comment.getRepository();
 
-    const comments = await commentRepo.find({
-      where: {
-        post_id: postId,
-      },
-    });
+    const comments = await commentRepo.find();
 
+    logger.green("댓글 조회성공");
     return res.status(200).json({
       message: "댓글 조회성공",
       comments,

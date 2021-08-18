@@ -4,13 +4,16 @@ import { TypedUseSelectorHook, useSelector } from "react-redux";
 
 import { IUserState } from "./user/types";
 import { IPostState } from "./post/types";
+import { ICommentState } from "./comment/types";
 
 import user from "./user/reducer";
 import post from "./post/reducer";
+import comment from "./comment/reducer";
 
 interface State {
   user: IUserState;
   post: IPostState;
+  comment: ICommentState;
 }
 
 const rootReducer = (
@@ -24,6 +27,7 @@ const rootReducer = (
       const combinedReducer = combineReducers({
         user,
         post,
+        comment,
       });
       return combinedReducer(state, action);
     }

@@ -8,10 +8,12 @@ import Layout from "../../components/Layout/MainLayout";
 import ViewPostLayout from "../../components/Layout/ViewPostLayout";
 import DeleteModal from "../../components/Post/DeleteModal";
 import wrapper from "../../config/configureStore";
+import { useCommentState } from "../../hooks/states/useCommentState";
 import { usePostState } from "../../hooks/states/usePostState";
 import { useUserState } from "../../hooks/states/useUserState";
 import { useLink } from "../../hooks/useLink";
 import useModal from "../../hooks/useModal";
+import { GET_COMMENTS_REQUEST } from "../../modules/comment/actions";
 import { GET_POST_REQUEST } from "../../modules/post/actions";
 import { LOAD_MY_INFO_REQUEST } from "../../modules/user/actions";
 import getDistanceToNow from "../../utils/getDistanceToNow";
@@ -20,6 +22,7 @@ import ssrCookiePender from "../../utils/ssrCookiePender";
 const ViewPostPage: NextPage = () => {
   const { me } = useUserState();
   const { post } = usePostState();
+  const { comments } = useCommentState();
 
   const { handlePushLink } = useLink(`/profile/${post?.userId}`);
 
@@ -67,22 +70,7 @@ const ViewPostPage: NextPage = () => {
 
             <div dangerouslySetInnerHTML={createMarkup(post.content)} />
             <CommentInput />
-            <CommentList
-              commentsData={[
-                {
-                  author: "홍준혁",
-                  content: "별로다...",
-                  comment_id: "123123123",
-                  createdAt: "2021년 3월 2일",
-                },
-                {
-                  author: "류수아",
-                  content: "ㅎㅎ",
-                  comment_id: "1223123123",
-                  createdAt: "2022년 3월 2일",
-                },
-              ]}
-            />
+            <CommentList commentsData={comments} />
           </main>
         </ViewPostLayout>
       </Layout>
@@ -108,6 +96,11 @@ export const getServerSideProps = wrapper.getServerSideProps(
       store.dispatch({
         type: GET_POST_REQUEST,
         payload: params.post_id,
+      });
+
+      store.dispatch({
+        type: GET_COMMENTS_REQUEST,
+        payload: "da82695b-86d6-4cfa-b3ba-e8cc05b071a5",
       });
 
       store.dispatch(END);
