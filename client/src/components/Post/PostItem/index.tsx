@@ -8,7 +8,6 @@ import { useLink } from "../../../hooks/useLink";
 import getDistanceToNow from "../../../utils/getDistanceToNow";
 
 const PostItem: VFC<Post> = (post) => {
-  console.log(post);
   const { handlePushLink: handlePushPostPage } = useLink(
     `/post/${post.post_id}`,
   );
@@ -45,7 +44,7 @@ const PostItem: VFC<Post> = (post) => {
         </div>
         <div>
           <span className="likers">{getArrayLength([1, 2, 3])}</span>
-          <span className="comments">{getArrayLength([1, 2, 3])}</span>
+          {/* <span className="comments">{getArrayLength([1, 2, 3])}</span> */}
         </div>
       </div>
     </StyledPost>

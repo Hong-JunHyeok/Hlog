@@ -27,9 +27,7 @@ export default class Comment extends BaseEntity {
   })
   author: string;
 
-  @Column("text", {
-    nullable: false,
-  })
+  @Column("text")
   content: string;
 
   @Column("timestampz")
@@ -44,5 +42,5 @@ export default class Comment extends BaseEntity {
   post: Post;
 
   @RelationId((comment: Comment) => comment.post)
-  post_id: string;
+  postId: string;
 }

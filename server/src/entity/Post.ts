@@ -50,9 +50,6 @@ export default class Post extends BaseEntity {
   })
   updatedAt: Date;
 
-  @OneToMany((type) => Comment, (comment) => comment.comment_id)
-  comment: Comment[];
-
   @ManyToOne((type) => User, (user) => user.user_id, {
     onDelete: "CASCADE",
     primary: true,
@@ -62,4 +59,7 @@ export default class Post extends BaseEntity {
 
   @RelationId((post: Post) => post.user)
   userId: string;
+
+  @OneToMany((type) => Comment, (comment) => comment.comment_id)
+  comment: Comment[];
 }

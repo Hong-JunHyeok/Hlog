@@ -8,6 +8,10 @@ export const commentInitialState: ICommentState = {
   getCommentsDone: false,
   getCommentsError: null,
 
+  createCommentLoading: false,
+  createCommentDone: false,
+  createCommentError: null,
+
   comments: [],
 };
 
@@ -31,6 +35,22 @@ export default createReducer<ICommentState, CommentAction>(
       produce(state, (draft) => {
         draft.getCommentsError = action.payload;
         draft.getCommentsLoading = false;
+      }),
+    [commentActions.CREATE_COMMENT_REQUEST]: (state) =>
+      produce(state, (draft) => {
+        draft.createCommentDone = false;
+        draft.createCommentError = null;
+        draft.createCommentLoading = true;
+      }),
+    [commentActions.CREATE_COMMENT_SUCCESS]: (state) =>
+      produce(state, (draft) => {
+        draft.createCommentDone = true;
+        draft.createCommentLoading = false;
+      }),
+    [commentActions.CREATE_COMMENT_FAILURE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.createCommentError = action.payload;
+        draft.createCommentLoading = false;
       }),
   },
 );

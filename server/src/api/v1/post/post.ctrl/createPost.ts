@@ -31,7 +31,7 @@ export default async (req: any, res: Response, next: NextFunction) => {
     });
 
     logger.green("포스트 등록 성공");
-    res.status(200).json({
+    res.status(201).json({
       message: "포스트 등록 성공",
       data: {
         title,

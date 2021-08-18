@@ -9,5 +9,9 @@ export interface ICommentState {
   getCommentsError: null | AxiosError;
   getCommentsDone: boolean;
 
+  createCommentLoading: boolean;
+  createCommentDone: boolean;
+  createCommentError: null | AxiosError;
+
   comments: [];
 }

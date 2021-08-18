@@ -15,6 +15,7 @@ export default async function (
     const comments = await commentRepo
       .createQueryBuilder()
       .where("post_id = :postId", { postId })
+      .orderBy("created_at", "DESC")
       .getMany();
 
     console.log(comments);

@@ -1,6 +1,9 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { GET_COMMENTS_REQUEST } from "../../modules/comment/actions";
+import {
+  CREATE_COMMENT_REQUEST,
+  GET_COMMENTS_REQUEST,
+} from "../../modules/comment/actions";
 
 export const useCommentDispatch = () => {
   const dispatch = useDispatch();
@@ -15,5 +18,18 @@ export const useCommentDispatch = () => {
     [dispatch],
   );
 
-  return { getCommentsDispatch };
+  const createCommentDispatch = useCallback(
+    (post_id: string, content: string) => {
+      dispatch({
+        type: CREATE_COMMENT_REQUEST,
+        payload: {
+          post_id,
+          content,
+        },
+      });
+    },
+    [dispatch],
+  );
+
+  return { getCommentsDispatch, createCommentDispatch };
 };
