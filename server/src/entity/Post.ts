@@ -5,10 +5,12 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   RelationId,
   UpdateDateColumn,
 } from "typeorm";
+import Comment from "./Comment";
 import User from "./User";
 
 @Entity("post")
@@ -47,6 +49,9 @@ export default class Post extends BaseEntity {
     nullable: true,
   })
   updatedAt: Date;
+
+  @OneToMany((type) => Comment, (comment) => comment.comment_id)
+  comment: Comment[];
 
   @ManyToOne((type) => User, (user) => user.user_id, {
     onDelete: "CASCADE",
