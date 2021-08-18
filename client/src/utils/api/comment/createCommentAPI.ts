@@ -7,6 +7,6 @@ interface IParams {
 
 export const createCommentAPI = ({ post_id, content }: IParams) => {
   return axios.post(`/comment/${post_id}`, {
-    data: { content },
+    content,
   });
 };

@@ -4,9 +4,11 @@ import { useCallback, useEffect, useRef } from "react";
 import { useCommentDispatch } from "../../../hooks/dispatches/useCommentDispatch";
 import { usePostState } from "../../../hooks/states/usePostState";
 import useInput from "../../../hooks/useInput";
+import { useCommentState } from "../../../hooks/states/useCommentState";
 
 const CommentInput = () => {
   const { post } = usePostState();
+  const { createCommentLoading } = useCommentState();
   const { createCommentDispatch } = useCommentDispatch();
   const [comment, onChangeComment] = useInput("");
 
@@ -35,7 +37,7 @@ const CommentInput = () => {
       />
       <div className="button-wrapper">
         <button className="create-comment" type="submit">
-          댓글 작성
+          {createCommentLoading ? "작성 중..." : "댓글 작성"}
         </button>
       </div>
     </CommentInputContainer>

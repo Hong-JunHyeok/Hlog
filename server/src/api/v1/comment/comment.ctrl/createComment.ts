@@ -30,8 +30,10 @@ export default async function (
       });
     }
 
+    console.log(content);
+
     comment.author = user.name;
-    comment.content = "기본 댓글";
+    comment.content = content;
     comment.post = post;
     comment.user_id = user.user_id;
 
