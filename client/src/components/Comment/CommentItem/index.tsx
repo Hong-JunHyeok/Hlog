@@ -3,11 +3,15 @@ import { Comment } from "../../../types/Comment";
 import { CommentItemContainer } from "./styles";
 import ProfileImage from "../../../public/static/default_profile.png";
 import getDistanceToNow from "../../../utils/getDistanceToNow";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useToggle from "../../../hooks/useToggle";
 import RecommentList from "../RecommentList";
+import { useCommentDispatch } from "../../../hooks/dispatches/useCommentDispatch";
+import { useCommentState } from "../../../hooks/states/useCommentState";
 
 const CommentItem = (commentData: Comment) => {
+  const { getCommentsDone } = useCommentState();
+  const { deleteCommentDispatch, getCommentsDispatch } = useCommentDispatch();
   const [recommentToggle, toggleRecomment] = useToggle(false);
   const createdAtDistanceNow = getDistanceToNow(commentData.created_at);
 
@@ -22,9 +26,8 @@ const CommentItem = (commentData: Comment) => {
 
   const handleDeleteComment = useCallback(() => {
     const comment_id = commentData.comment_id;
-    console.log(comment_id);
 
-    // TODO DELETE COMMENT DISPATCH
+    deleteCommentDispatch(comment_id);
   }, []);
 
   return (

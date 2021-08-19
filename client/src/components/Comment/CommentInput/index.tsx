@@ -11,8 +11,8 @@ import { toast } from "react-toastify";
 const CommentInput = () => {
   const { me } = useUserState();
   const { post } = usePostState();
-  const { createCommentLoading } = useCommentState();
-  const { createCommentDispatch } = useCommentDispatch();
+  const { createCommentLoading, createCommentDone } = useCommentState();
+  const { createCommentDispatch, getCommentsDispatch } = useCommentDispatch();
   const [comment, onChangeComment, setComment] = useInput("");
 
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -23,7 +23,7 @@ const CommentInput = () => {
       if (!comment.trim()) {
         toast.error("댓글을 작성해주세요.");
       } else {
-        createCommentDispatch(me?.name, post.post_id, comment);
+        createCommentDispatch(me?.name, comment, post.post_id);
         setComment("");
       }
     },
@@ -33,6 +33,10 @@ const CommentInput = () => {
   useEffect(() => {
     autosize(textAreaRef.current);
   }, [textAreaRef.current]);
+
+  useEffect(() => {
+    getCommentsDispatch(post.post_id);
+  }, [createCommentDone]);
 
   return (
     <CommentInputContainer onSubmit={handleCommentSubmit}>

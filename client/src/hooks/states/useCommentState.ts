@@ -9,6 +9,9 @@ export const useCommentState = () => {
     createCommentDone,
     createCommentError,
     createCommentLoading,
+    deleteCommentDone,
+    deleteCommentError,
+    deleteCommentLoading,
   } = useTypedSelector((state) => state.comment);
 
   return {

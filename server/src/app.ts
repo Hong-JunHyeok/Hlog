@@ -1,4 +1,4 @@
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import { getConnection } from "./database";
 import { router as api } from "./api";
@@ -51,6 +51,11 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use("/api", api);
+
+app.use(function (err: Error, req: Request, res: Response, next: NextFunction) {
+  // Do logging and user-friendly error message display
+  res.status(500).send("internal server error");
+});
 
 app.listen(PORT, () => {
   console.log(

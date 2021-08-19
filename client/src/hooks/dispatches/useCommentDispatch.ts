@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import {
   CREATE_COMMENT_REQUEST,
+  DELETE_COMMENT_REQUEST,
   GET_COMMENTS_REQUEST,
 } from "../../modules/comment/actions";
 import { v4 as uuidv4 } from "uuid";
@@ -20,21 +21,29 @@ export const useCommentDispatch = () => {
   );
 
   const createCommentDispatch = useCallback(
-    (author: string, post_id: string, content: string) => {
-      const created_at = Date();
+    (author: string, content: string, post_id: string) => {
+      console.log(author, content);
       dispatch({
         type: CREATE_COMMENT_REQUEST,
         payload: {
           author,
           post_id,
           content,
-          created_at,
-          comment_id: uuidv4(),
         },
       });
     },
     [dispatch],
   );
 
-  return { getCommentsDispatch, createCommentDispatch };
+  const deleteCommentDispatch = useCallback(
+    (comment_id: string) => {
+      dispatch({
+        type: DELETE_COMMENT_REQUEST,
+        payload: comment_id,
+      });
+    },
+    [dispatch],
+  );
+
+  return { getCommentsDispatch, createCommentDispatch, deleteCommentDispatch };
 };

@@ -13,5 +13,9 @@ export interface ICommentState {
   createCommentDone: boolean;
   createCommentError: null | AxiosError;
 
+  deleteCommentLoading: boolean;
+  deleteCommentDone: boolean;
+  deleteCommentError: null | AxiosError;
+
   comments: Comment[];
 }

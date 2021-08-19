@@ -9,6 +9,10 @@ export const CREATE_COMMENT_REQUEST = "comment/CREATE_COMMENT_REQUEST" as const;
 export const CREATE_COMMENT_SUCCESS = "comment/CREATE_COMMENT_SUCCESS" as const;
 export const CREATE_COMMENT_FAILURE = "comment/CREATE_COMMENT_FAILURE" as const;
 
+export const DELETE_COMMENT_REQUEST = "comment/DELETE_COMMENT_REQUEST" as const;
+export const DELETE_COMMENT_SUCCESS = "comment/DELETE_COMMENT_SUCCESS" as const;
+export const DELETE_COMMENT_FAILURE = "comment/DELETE_COMMENT_FAILURE" as const;
+
 export const getCommentsActions = createAsyncAction(
   GET_COMMENTS_REQUEST,
   GET_COMMENTS_SUCCESS,
@@ -19,4 +23,10 @@ export const createCommentActions = createAsyncAction(
   CREATE_COMMENT_REQUEST,
   CREATE_COMMENT_SUCCESS,
   CREATE_COMMENT_FAILURE,
+)<any, any, AxiosError>();
+
+export const deleteCommentActions = createAsyncAction(
+  DELETE_COMMENT_REQUEST,
+  DELETE_COMMENT_SUCCESS,
+  DELETE_COMMENT_FAILURE,
 )<any, any, AxiosError>();
