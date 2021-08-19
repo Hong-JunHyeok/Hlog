@@ -6,7 +6,7 @@ import { usePostState } from "../../../hooks/states/usePostState";
 import useInput from "../../../hooks/useInput";
 import { useCommentState } from "../../../hooks/states/useCommentState";
 import { useUserState } from "../../../hooks/states/useUserState";
-import { format } from "date-fns";
+import { toast } from "react-toastify";
 
 const CommentInput = () => {
   const { me } = useUserState();
@@ -20,13 +20,12 @@ const CommentInput = () => {
   const handleCommentSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      createCommentDispatch(
-        me?.name,
-        post.post_id,
-        format(new Date(), "yyyy-MM-dd"),
-        comment,
-      );
-      setComment("");
+      if (!comment.trim()) {
+        toast.error("댓글을 작성해주세요.");
+      } else {
+        createCommentDispatch(me?.name, post.post_id, comment);
+        setComment("");
+      }
     },
     [me, comment],
   );

@@ -5,12 +5,10 @@ import { ButtonComponent } from "../../Common/Button";
 import { CommentItemContainer } from "./styles";
 import ProfileImage from "../../../public/static/default_profile.png";
 import { format } from "date-fns";
+import getDistanceToNow from "../../../utils/getDistanceToNow";
 
 const CommentItem = (commentData: Comment) => {
-  const commentCreatedAt = format(
-    new Date(commentData.created_at),
-    "yyyy-mm-dd",
-  );
+  const createdAtDistanceNow = getDistanceToNow(commentData.created_at);
 
   return (
     <CommentItemContainer>
@@ -18,7 +16,7 @@ const CommentItem = (commentData: Comment) => {
         <Image width={54} height={54} src={ProfileImage} className="profile" />
         <div>
           <div className="author">{commentData.author}</div>
-          <div className="createdAt">{commentCreatedAt}</div>
+          <div className="createdAt">{createdAtDistanceNow}</div>
         </div>
       </div>
       <p className="content">{commentData.content}</p>
