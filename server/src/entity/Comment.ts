@@ -7,8 +7,10 @@ import {
   ManyToOne,
   JoinColumn,
   RelationId,
+  OneToMany,
 } from "typeorm";
 import Post from "./Post";
+import Recomment from "./Recomment";
 
 @Entity("comment")
 export default class Comment extends BaseEntity {
@@ -43,4 +45,7 @@ export default class Comment extends BaseEntity {
 
   @RelationId((comment: Comment) => comment.post)
   postId: string;
+
+  @OneToMany((type) => Recomment, (recomment) => recomment.recomment_id)
+  recomment: Recomment[];
 }

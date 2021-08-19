@@ -3,22 +3,27 @@ import { Comment } from "../../../types/Comment";
 import { CommentItemContainer } from "./styles";
 import ProfileImage from "../../../public/static/default_profile.png";
 import getDistanceToNow from "../../../utils/getDistanceToNow";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, VFC } from "react";
 import useToggle from "../../../hooks/useToggle";
 import RecommentList from "../RecommentList";
 import { useCommentDispatch } from "../../../hooks/dispatches/useCommentDispatch";
 import { useCommentState } from "../../../hooks/states/useCommentState";
 
-const CommentItem = (commentData: Comment) => {
-  const { getCommentsDone } = useCommentState();
-  const { deleteCommentDispatch, getCommentsDispatch } = useCommentDispatch();
+interface ICommentProps {
+  commentData: Comment;
+  mode: "comment" | "recomment";
+}
+
+const CommentItem: VFC<ICommentProps> = ({ commentData, mode }) => {
+  const isCommentMode = mode === "comment";
+
+  const { deleteCommentDispatch } = useCommentDispatch();
   const [recommentToggle, toggleRecomment] = useToggle(false);
   const createdAtDistanceNow = getDistanceToNow(commentData.created_at);
 
   const handleToggleRecomment = useCallback(() => {
     if (!recommentToggle) {
       const comment_id = commentData.comment_id;
-      console.log(comment_id);
     }
 
     toggleRecomment();
@@ -43,10 +48,13 @@ const CommentItem = (commentData: Comment) => {
         </div>
       </div>
       <p className="content">{commentData.content}</p>
-      <span className="open-recomment" onClick={handleToggleRecomment}>
-        {recommentToggle ? "-" : "+"} 답글
-      </span>
-      {recommentToggle && <RecommentList />}
+      {isCommentMode && (
+        <span className="open-recomment" onClick={handleToggleRecomment}>
+          {recommentToggle ? "-" : "+"} 답글
+        </span>
+      )}
+
+      {isCommentMode && recommentToggle && <RecommentList />}
     </CommentItemContainer>
   );
 };

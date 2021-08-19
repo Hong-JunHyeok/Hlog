@@ -14,7 +14,11 @@ const CommentList: VFC<IProps> = ({ commentsData }) => {
       <List
         items={commentsData}
         renderItems={(commentData: Comment) => (
-          <CommentItem key={commentData.comment_id} {...commentData} />
+          <CommentItem
+            key={commentData.comment_id}
+            commentData={commentData}
+            mode="comment"
+          />
         )}
       />
     </CommentListContainer>
