@@ -1,47 +1,46 @@
-import { END } from "@redux-saga/core";
-import axios from "axios";
+import { END } from "redux-saga";
 import Head from "next/head";
-import React, { useEffect } from "react";
-import { ButtonComponent } from "../components/Common/Button";
-import { StyledHomeLayout } from "../components/Home/HomeLayout/styles";
-import { StyledWelcome } from "../components/Home/Welcome/styles";
+import List from "../components/Common/List";
 import Layout from "../components/Layout/MainLayout";
+import PostItem from "../components/Post/PostItem";
+import PostsPageLayout from "../components/Layout/PostsPageLayout";
+import { Post } from "../types/Post";
 import wrapper from "../config/configureStore";
-import { useUserDispatch } from "../hooks/dispatches/useUserDispatch";
-import { useUserState } from "../hooks/states/useUserState";
-import { useLink } from "../hooks/useLink";
+import { GET_POSTS_REQUEST } from "../modules/post/actions";
+import { NextPage } from "next";
+import { usePostState } from "../hooks/states/usePostState";
+import { getArrayLength } from "../utils/getArrayLength";
 import { LOAD_MY_INFO_REQUEST } from "../modules/user/actions";
+import { useEffect } from "react";
+import { usePostDispatch } from "../hooks/dispatches/usePostDispatch";
 import ssrCookiePender from "../utils/ssrCookiePender";
 
-const MainPage = () => {
-  const { loginDone } = useUserState();
-  const { handlePushLink } = useLink("/post");
+const ViewPostsPage: NextPage = () => {
+  const { posts } = usePostState();
+  const { dispatchGetPosts } = usePostDispatch();
 
   useEffect(() => {
-    if (loginDone) {
-      handlePushLink();
-    }
-  }, [loginDone]);
-
-  if (loginDone) {
-    return null;
-  }
+    dispatchGetPosts();
+  }, []);
 
   return (
     <Layout>
       <Head>
-        <title>HLOG | 메인</title>
+        <title>HLOG | 포스트</title>
       </Head>
-      <StyledHomeLayout>
-        <StyledWelcome>
-          Welcome, <span className="special">HLOG</span>
-          <p>
-            HLOG는 소프트웨어 정보 공유 플렛폼입니다. 누구나, 언제든지,
-            어디에서든 정보를 공유해보세요!
-          </p>
-        </StyledWelcome>
-        <ButtonComponent handleFunc={handlePushLink}>시작하기</ButtonComponent>
-      </StyledHomeLayout>
+      <PostsPageLayout>
+        {getArrayLength(posts) === 0 ? (
+          <h1 className="no-posts">조회할 포스트가 없네요...</h1>
+        ) : (
+          <List
+            items={posts}
+            renderItems={(post: Post) => (
+              <PostItem {...post} key={post.post_id} />
+            )}
+            className="post-conainer"
+          />
+        )}
+      </PostsPageLayout>
     </Layout>
   );
 };
@@ -52,6 +51,10 @@ export const getServerSideProps = wrapper.getServerSideProps(
       ssrCookiePender(req);
 
       store.dispatch({
+        type: GET_POSTS_REQUEST,
+      });
+
+      store.dispatch({
         type: LOAD_MY_INFO_REQUEST,
       });
 
@@ -60,4 +63,4 @@ export const getServerSideProps = wrapper.getServerSideProps(
     },
 );
 
-export default MainPage;
+export default ViewPostsPage;

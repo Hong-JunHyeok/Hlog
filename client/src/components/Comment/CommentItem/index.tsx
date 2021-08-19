@@ -11,7 +11,7 @@ const CommentItem = (commentData: Comment) => {
   const [recommentToggle, toggleRecomment] = useToggle(false);
   const createdAtDistanceNow = getDistanceToNow(commentData.created_at);
 
-  const handleRecomment = useCallback(() => {
+  const handleToggleRecomment = useCallback(() => {
     if (!recommentToggle) {
       const comment_id = commentData.comment_id;
       console.log(comment_id);
@@ -19,6 +19,13 @@ const CommentItem = (commentData: Comment) => {
 
     toggleRecomment();
   }, [recommentToggle]);
+
+  const handleDeleteComment = useCallback(() => {
+    const comment_id = commentData.comment_id;
+    console.log(comment_id);
+
+    // TODO DELETE COMMENT DISPATCH
+  }, []);
 
   return (
     <CommentItemContainer>
@@ -28,9 +35,12 @@ const CommentItem = (commentData: Comment) => {
           <div className="author">{commentData.author}</div>
           <div className="createdAt">{createdAtDistanceNow}</div>
         </div>
+        <div className="delete" onClick={handleDeleteComment}>
+          삭제
+        </div>
       </div>
       <p className="content">{commentData.content}</p>
-      <span className="open-recomment" onClick={handleRecomment}>
+      <span className="open-recomment" onClick={handleToggleRecomment}>
         {recommentToggle ? "-" : "+"} 답글
       </span>
       {recommentToggle && <RecommentList />}

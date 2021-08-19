@@ -18,7 +18,7 @@ const RecommentInput = () => {
       <textarea
         ref={textAreaRef}
         className="comment"
-        placeholder="댓글을 작성하세요."
+        placeholder="답글을 작성하세요."
         value={recomment}
         onChange={onChangeRecomment}
       />

@@ -24,6 +24,13 @@ export const CommentItemContainer = styled.div`
       font-weight: lighter;
       font-size: 12px;
     }
+    .delete {
+      flex: 1;
+      text-align: end;
+      color: ${colorsModule.hlog_gray_1};
+      user-select: none;
+      cursor: pointer;
+    }
   }
 
   .content {

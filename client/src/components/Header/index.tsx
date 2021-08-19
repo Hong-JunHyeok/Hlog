@@ -18,8 +18,6 @@ const HeaderComponent: VFC = () => {
 
   const { handlePushLink: pushMainPage } = useLink("/");
   const { handlePushLink: pushLoginPage } = useLink("/auth/login");
-
-  const { handlePushLink: pushPostPage } = useLink("/post");
   const { handlePushLink: pushProfilePage } = useLink(
     `/profile/${me?.user_id}`,
   );
@@ -31,14 +29,11 @@ const HeaderComponent: VFC = () => {
   return (
     <StyledHeader>
       <div className="container">
-        <div
-          className="logo special"
-          onClick={loginDone ? pushPostPage : pushMainPage}
-        >
+        <div className="logo special" onClick={pushMainPage}>
           HLOG
         </div>
         <ul className="menus">
-          <li onClick={pushPostPage}>포스트</li>
+          <li onClick={pushMainPage}>메인</li>
           {me && (
             <>
               <li onClick={pushProfilePage}>프로필</li>
