@@ -42,10 +42,12 @@ export default createReducer<ICommentState, CommentAction>(
         draft.createCommentError = null;
         draft.createCommentLoading = true;
       }),
-    [commentActions.CREATE_COMMENT_SUCCESS]: (state) =>
+    [commentActions.CREATE_COMMENT_SUCCESS]: (state, action) =>
       produce(state, (draft) => {
         draft.createCommentDone = true;
         draft.createCommentLoading = false;
+
+        draft.comments.unshift(action.payload);
       }),
     [commentActions.CREATE_COMMENT_FAILURE]: (state, action) =>
       produce(state, (draft) => {

@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { AnyAction } from "redux";
 import { call, put } from "redux-saga/effects";
 import {
@@ -20,10 +21,10 @@ export function* handleGetComments(action: AnyAction) {
 
 export function* handleCreateComment(action: AnyAction) {
   try {
-    const response = yield call(createCommentAPI, action.payload);
-    console.log(response);
+    yield call(createCommentAPI, action.payload);
 
-    yield put(createCommentActions.success());
+    toast.success("성공적으로 댓글작성을 완료하였습니다.");
+    yield put(createCommentActions.success(action.payload));
   } catch (error) {
     yield put(createCommentActions.failure(error));
   }

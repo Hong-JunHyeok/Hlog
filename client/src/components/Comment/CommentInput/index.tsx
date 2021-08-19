@@ -5,21 +5,24 @@ import { useCommentDispatch } from "../../../hooks/dispatches/useCommentDispatch
 import { usePostState } from "../../../hooks/states/usePostState";
 import useInput from "../../../hooks/useInput";
 import { useCommentState } from "../../../hooks/states/useCommentState";
+import { useUserState } from "../../../hooks/states/useUserState";
 
 const CommentInput = () => {
+  const { me } = useUserState();
   const { post } = usePostState();
   const { createCommentLoading } = useCommentState();
   const { createCommentDispatch } = useCommentDispatch();
-  const [comment, onChangeComment] = useInput("");
+  const [comment, onChangeComment, setComment] = useInput("");
 
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const handleCommentSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      createCommentDispatch(post.post_id, comment);
+      createCommentDispatch(me?.name, post.post_id, comment);
+      setComment("");
     },
-    [comment],
+    [me, comment],
   );
 
   useEffect(() => {

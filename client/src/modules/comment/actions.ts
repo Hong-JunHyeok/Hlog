@@ -19,4 +19,4 @@ export const createCommentActions = createAsyncAction(
   CREATE_COMMENT_REQUEST,
   CREATE_COMMENT_SUCCESS,
   CREATE_COMMENT_FAILURE,
-)<any, void, AxiosError>();
+)<any, any, AxiosError>();
