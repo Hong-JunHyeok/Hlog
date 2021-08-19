@@ -20,13 +20,14 @@ export const useCommentDispatch = () => {
   );
 
   const createCommentDispatch = useCallback(
-    (author: string, post_id: string, content: string) => {
+    (author: string, post_id: string, createdAt: string, content: string) => {
       dispatch({
         type: CREATE_COMMENT_REQUEST,
         payload: {
           author,
           post_id,
           content,
+          createdAt,
           comment_id: uuidv4(),
         },
       });
