@@ -1,14 +1,24 @@
 import Image from "next/image";
-import { colorsModule } from "../../../styles/colors";
 import { Comment } from "../../../types/Comment";
-import { ButtonComponent } from "../../Common/Button";
 import { CommentItemContainer } from "./styles";
 import ProfileImage from "../../../public/static/default_profile.png";
-import { format } from "date-fns";
 import getDistanceToNow from "../../../utils/getDistanceToNow";
+import { useCallback, useState } from "react";
+import useToggle from "../../../hooks/useToggle";
+import RecommentList from "../RecommentList";
 
 const CommentItem = (commentData: Comment) => {
+  const [recommentToggle, toggleRecomment] = useToggle(false);
   const createdAtDistanceNow = getDistanceToNow(commentData.created_at);
+
+  const handleRecomment = useCallback(() => {
+    if (!recommentToggle) {
+      const comment_id = commentData.comment_id;
+      console.log(comment_id);
+    }
+
+    toggleRecomment();
+  }, [recommentToggle]);
 
   return (
     <CommentItemContainer>
@@ -20,16 +30,10 @@ const CommentItem = (commentData: Comment) => {
         </div>
       </div>
       <p className="content">{commentData.content}</p>
-      <ButtonComponent
-        customStyle={{
-          width: "100%",
-          background: "inherit",
-          color: colorsModule.hlog_primary,
-          border: `1px solid ${colorsModule.hlog_primary}`,
-        }}
-      >
-        답글
-      </ButtonComponent>
+      <span className="open-recomment" onClick={handleRecomment}>
+        {recommentToggle ? "-" : "+"} 답글
+      </span>
+      {recommentToggle && <RecommentList />}
     </CommentItemContainer>
   );
 };
