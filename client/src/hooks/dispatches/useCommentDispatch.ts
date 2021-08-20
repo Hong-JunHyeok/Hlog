@@ -5,7 +5,6 @@ import {
   DELETE_COMMENT_REQUEST,
   GET_COMMENTS_REQUEST,
 } from "../../modules/comment/actions";
-import { v4 as uuidv4 } from "uuid";
 
 export const useCommentDispatch = () => {
   const dispatch = useDispatch();

@@ -5,15 +5,18 @@ import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { IUserState } from "./user/types";
 import { IPostState } from "./post/types";
 import { ICommentState } from "./comment/types";
+import { IRecommentState } from "./recomment/types";
 
 import user from "./user/reducer";
 import post from "./post/reducer";
 import comment from "./comment/reducer";
+import recomment from "./recomment/reducer";
 
 interface State {
   user: IUserState;
   post: IPostState;
   comment: ICommentState;
+  recomment: IRecommentState;
 }
 
 const rootReducer = (
@@ -28,6 +31,7 @@ const rootReducer = (
         user,
         post,
         comment,
+        recomment,
       });
       return combinedReducer(state, action);
     }

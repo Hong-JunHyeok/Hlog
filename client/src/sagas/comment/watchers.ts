@@ -1,4 +1,4 @@
-import { takeLatest } from "@redux-saga/core/effects";
+import { takeLatest } from "redux-saga/effects";
 import {
   CREATE_COMMENT_REQUEST,
   DELETE_COMMENT_REQUEST,

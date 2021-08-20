@@ -30,8 +30,6 @@ export default async function (
       });
     }
 
-    console.log(content);
-
     comment.author = user.name;
     comment.content = content;
     comment.post = post;

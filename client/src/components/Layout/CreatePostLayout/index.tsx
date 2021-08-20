@@ -38,8 +38,8 @@ const CreatePageLayout: VFC = () => {
       localStorage.getItem("savePostData"),
     );
 
-    setTitle(saveData.title || "");
-    setContent(saveData.content || "");
+    setTitle(saveData?.title || "");
+    setContent(saveData?.content || "");
   }, []);
 
   return (

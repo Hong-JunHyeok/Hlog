@@ -37,7 +37,7 @@ const Editor: VFC<IEditorProps> = ({
     position: "bottom",
   });
 
-  const { handlePushLink } = useLink("/post");
+  const { handlePushLink } = useLink("/");
   const { createPostDone } = usePostState();
 
   const handleOpenCheckCreatePostModal = useCallback(() => {

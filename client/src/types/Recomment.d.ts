@@ -1,4 +1,4 @@
-export interface Comment {
+export interface Recomment {
   recomment_id: string;
   author: string;
   content: string;

@@ -5,10 +5,16 @@ import { isDevMode } from "../utils/isDevMode";
 import userSaga from "./user";
 import postSaga from "./post";
 import commentSaga from "./comment";
+import recommentSaga from "./recomment";
 
 axios.defaults.baseURL = isDevMode() ? "http://localhost:8080/api/v1" : "";
 axios.defaults.withCredentials = true;
 
 export default function* rootSaga() {
-  yield all([fork(userSaga), fork(postSaga), fork(commentSaga)]);
+  yield all([
+    fork(userSaga),
+    fork(postSaga),
+    fork(commentSaga),
+    fork(recommentSaga),
+  ]);
 }

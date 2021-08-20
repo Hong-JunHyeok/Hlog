@@ -1,5 +1,6 @@
 import { AxiosError } from "axios";
 import { ActionType } from "typesafe-actions";
+import { Comment } from "../../types/Comment";
 import * as commentActions from "./actions";
 
 export type CommentAction = ActionType<typeof commentActions>;
