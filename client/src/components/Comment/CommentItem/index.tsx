@@ -3,11 +3,10 @@ import { Comment } from "../../../types/Comment";
 import { CommentItemContainer } from "./styles";
 import ProfileImage from "../../../public/static/default_profile.png";
 import getDistanceToNow from "../../../utils/getDistanceToNow";
-import { useCallback, useEffect, useState, VFC } from "react";
+import { useCallback, VFC } from "react";
 import useToggle from "../../../hooks/useToggle";
 import RecommentList from "../RecommentList";
 import { useCommentDispatch } from "../../../hooks/dispatches/useCommentDispatch";
-import { useCommentState } from "../../../hooks/states/useCommentState";
 
 interface ICommentProps {
   commentData: Comment;
@@ -24,6 +23,7 @@ const CommentItem: VFC<ICommentProps> = ({ commentData, mode }) => {
   const handleToggleRecomment = useCallback(() => {
     if (!recommentToggle) {
       const comment_id = commentData.comment_id;
+      //TODO Get recomment list
     }
 
     toggleRecomment();
@@ -47,14 +47,23 @@ const CommentItem: VFC<ICommentProps> = ({ commentData, mode }) => {
           삭제
         </div>
       </div>
-      <p className="content">{commentData.content}</p>
+      <p className="content">
+        {commentData.content.split("\n").map((line) => (
+          <span>
+            {line}
+            <br />
+          </span>
+        ))}
+      </p>
       {isCommentMode && (
         <span className="open-recomment" onClick={handleToggleRecomment}>
           {recommentToggle ? "-" : "+"} 답글
         </span>
       )}
 
-      {isCommentMode && recommentToggle && <RecommentList />}
+      {isCommentMode && recommentToggle && (
+        <RecommentList comment_id={commentData.comment_id} recomments={[]} />
+      )}
     </CommentItemContainer>
   );
 };

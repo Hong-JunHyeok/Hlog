@@ -1,3 +1,4 @@
+import { VFC } from "react";
 import { Comment } from "../../../types/Comment";
 import List from "../../Common/List";
 import CommentItem from "../CommentItem";
@@ -6,22 +7,16 @@ import RecommentInput from "../RecommentInput";
 import { RecommentListContainer } from "./styles";
 
 interface IRecommentProps {
+  comment_id: string;
   recomments: Comment[];
 }
 
-const RecommentList = () => {
+const RecommentList: VFC<IRecommentProps> = ({ comment_id, recomments }) => {
   return (
     <RecommentListContainer>
       <div className="recomment-wrapper">
         <List
-          items={[
-            {
-              comment_id: "12hsiabdijqwjebqwe",
-              author: "홍준혁",
-              content: "답글11111111",
-              created_at: "2021-08-19",
-            },
-          ]}
+          items={recomments}
           renderItems={(commentData: Comment) => (
             <CommentItem
               key={commentData.comment_id}
@@ -30,7 +25,7 @@ const RecommentList = () => {
             />
           )}
         />
-        <RecommentInput />
+        <RecommentInput comment_id={comment_id} />
       </div>
     </RecommentListContainer>
   );
