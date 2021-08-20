@@ -4,7 +4,6 @@ import { CommentItemContainer } from "./styles";
 import ProfileImage from "../../../public/static/default_profile.png";
 import getDistanceToNow from "../../../utils/getDistanceToNow";
 import { useCallback, VFC } from "react";
-import useToggle from "../../../hooks/useToggle";
 import RecommentList from "../RecommentList";
 import { useCommentDispatch } from "../../../hooks/dispatches/useCommentDispatch";
 import { useRecommentState } from "../../../hooks/states/useRecommentState";
@@ -13,26 +12,31 @@ import { useRecommentDispatch } from "../../../hooks/dispatches/useRecommentDisp
 interface ICommentProps {
   commentData: Comment;
   mode: "comment" | "recomment";
+  changeToggleListByIndex?: () => void;
+  toggleState?: boolean;
 }
 
-const CommentItem: VFC<ICommentProps> = ({ commentData, mode }) => {
+const CommentItem: VFC<ICommentProps> = ({
+  commentData,
+  mode,
+  changeToggleListByIndex,
+  toggleState,
+}) => {
   const isCommentMode = mode === "comment";
 
   const { recomments } = useRecommentState();
   const { getRecommentDispatch } = useRecommentDispatch();
   const { deleteCommentDispatch } = useCommentDispatch();
-  const [recommentToggle, toggleRecomment] = useToggle(false);
   const createdAtDistanceNow = getDistanceToNow(commentData.created_at);
 
   const handleToggleRecomment = useCallback(() => {
-    if (!recommentToggle) {
+    console.log(toggleState);
+    changeToggleListByIndex();
+    if (!toggleState) {
       const comment_id = commentData.comment_id;
       getRecommentDispatch(comment_id);
-      //TODO Get recomment list
     }
-
-    toggleRecomment();
-  }, [recommentToggle]);
+  }, [toggleState]);
 
   const handleDeleteComment = useCallback(() => {
     const comment_id = commentData.comment_id;
@@ -53,8 +57,8 @@ const CommentItem: VFC<ICommentProps> = ({ commentData, mode }) => {
         </div>
       </div>
       <p className="content">
-        {commentData.content.split("\n").map((line) => (
-          <span>
+        {commentData.content.split("\n").map((line, index) => (
+          <span key={index}>
             {line}
             <br />
           </span>
@@ -62,11 +66,11 @@ const CommentItem: VFC<ICommentProps> = ({ commentData, mode }) => {
       </p>
       {isCommentMode && (
         <span className="open-recomment" onClick={handleToggleRecomment}>
-          {recommentToggle ? "-" : "+"} 답글
+          {toggleState ? "-" : "+"} 답글
         </span>
       )}
 
-      {isCommentMode && recommentToggle && (
+      {isCommentMode && toggleState && (
         <RecommentList
           comment_id={commentData.comment_id}
           recomments={recomments}

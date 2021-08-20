@@ -26,8 +26,6 @@ const ViewPostPage: NextPage = () => {
   const { post } = usePostState();
   const { comments } = useCommentState();
 
-  const { getCommentsDispatch } = useCommentDispatch();
-
   const { handlePushLink } = useLink(`/profile/${post?.userId}`);
 
   const createMarkup = (content: string) => {
@@ -39,10 +37,6 @@ const ViewPostPage: NextPage = () => {
     openModal: openDeleteModal,
     closeModal: closeDeleteModal,
   } = useModal({ position: "center" });
-
-  useEffect(() => {
-    getCommentsDispatch(post.post_id);
-  }, []);
 
   return (
     <>
@@ -103,6 +97,11 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
       store.dispatch({
         type: GET_POST_REQUEST,
+        payload: params.post_id,
+      });
+
+      store.dispatch({
+        type: GET_COMMENTS_REQUEST,
         payload: params.post_id,
       });
 
