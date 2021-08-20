@@ -1,8 +1,12 @@
 import { toast } from "react-toastify";
 import { AnyAction } from "redux";
 import { call, put } from "redux-saga/effects";
-import { createRecommentActions } from "../../modules/recomment/actions";
+import {
+  createRecommentActions,
+  getRecommentActions,
+} from "../../modules/recomment/actions";
 import { createRecommentAPI } from "../../utils/api/recomment/createRecommentAPI";
+import { getRecommentsAPI } from "../../utils/api/recomment/getRecommentsAPI";
 
 export function* handleCreateRecomment(action: AnyAction) {
   try {
@@ -13,5 +17,16 @@ export function* handleCreateRecomment(action: AnyAction) {
   } catch (error) {
     console.log(error.response);
     yield put(createRecommentActions.failure(error));
+  }
+}
+
+export function* handleGetRecomments(action: AnyAction) {
+  try {
+    const response = yield call(getRecommentsAPI, action.payload);
+
+    yield put(getRecommentActions.success(response));
+  } catch (error) {
+    toast.error(error.response);
+    yield put(getRecommentActions.failure(error));
   }
 }

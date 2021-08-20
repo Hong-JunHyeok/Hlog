@@ -5,13 +5,18 @@ import useInput from "../../../hooks/useInput";
 import { useUserState } from "../../../hooks/states/useUserState";
 import useModal from "../../../hooks/useModal";
 import GoLoginModal from "../../Post/GoLoginModal";
+import { useRecommentDispatch } from "../../../hooks/dispatches/useRecommentDispatch";
 import { toast } from "react-toastify";
+import { useRecommentState } from "../../../hooks/states/useRecommentState";
 
 interface IRecommentInputProps {
   comment_id: string;
 }
 
 const RecommentInput: VFC<IRecommentInputProps> = ({ comment_id }) => {
+  const { createRecommentDone, createRecommentLoading } = useRecommentState();
+  const { createRecommentDispatch, getRecommentDispatch } =
+    useRecommentDispatch();
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
   const [recomment, onChangeRecomment, setRecomment] = useInput("");
   const { me } = useUserState();
@@ -28,9 +33,11 @@ const RecommentInput: VFC<IRecommentInputProps> = ({ comment_id }) => {
         if (!recomment.trim()) {
           toast.error("답글을 작성해주세요.");
         } else {
-          console.log(comment_id);
-          //TODO create recomment dispatch
-          // createRecommentDispatch(me?.name, comment, post.post_id);
+          createRecommentDispatch({
+            author: me?.name,
+            comment_id,
+            content: recomment,
+          });
           setRecomment("");
         }
       }
@@ -41,6 +48,13 @@ const RecommentInput: VFC<IRecommentInputProps> = ({ comment_id }) => {
   useEffect(() => {
     autosize(textAreaRef.current);
   }, [textAreaRef.current]);
+
+  useEffect(() => {
+    if (createRecommentDone) {
+      //TODO get recomments list
+      getRecommentDispatch(comment_id);
+    }
+  }, [createRecommentDone]);
 
   return (
     <>
@@ -54,7 +68,7 @@ const RecommentInput: VFC<IRecommentInputProps> = ({ comment_id }) => {
         />
         <div className="button-wrapper">
           <button className="create-comment" type="submit">
-            {false ? "작성 중..." : "답글 작성"}
+            {createRecommentLoading ? "작성 중..." : "답글 작성"}
           </button>
         </div>
       </CommentInputContainer>

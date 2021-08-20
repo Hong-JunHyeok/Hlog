@@ -1,6 +1,6 @@
 import { all, fork } from "redux-saga/effects";
-import { watchCreateRecomment } from "./watchers";
+import { watchCreateRecomment, watchGetRecomments } from "./watchers";
 
 export default function* recommentSaga() {
-  yield all([fork(watchCreateRecomment)]);
+  yield all([fork(watchCreateRecomment), fork(watchGetRecomments)]);
 }

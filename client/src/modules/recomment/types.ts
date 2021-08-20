@@ -10,5 +10,9 @@ export interface IRecommentState {
   createRecommentDone: boolean;
   createRecommentError: null | AxiosError;
 
+  getRecommentsLoading: boolean;
+  getRecommentsDone: boolean;
+  getRecommentsError: null | AxiosError;
+
   recomments: Recomment[];
 }

@@ -7,6 +7,8 @@ import { useCallback, VFC } from "react";
 import useToggle from "../../../hooks/useToggle";
 import RecommentList from "../RecommentList";
 import { useCommentDispatch } from "../../../hooks/dispatches/useCommentDispatch";
+import { useRecommentState } from "../../../hooks/states/useRecommentState";
+import { useRecommentDispatch } from "../../../hooks/dispatches/useRecommentDispatch";
 
 interface ICommentProps {
   commentData: Comment;
@@ -16,6 +18,8 @@ interface ICommentProps {
 const CommentItem: VFC<ICommentProps> = ({ commentData, mode }) => {
   const isCommentMode = mode === "comment";
 
+  const { recomments } = useRecommentState();
+  const { getRecommentDispatch } = useRecommentDispatch();
   const { deleteCommentDispatch } = useCommentDispatch();
   const [recommentToggle, toggleRecomment] = useToggle(false);
   const createdAtDistanceNow = getDistanceToNow(commentData.created_at);
@@ -23,6 +27,7 @@ const CommentItem: VFC<ICommentProps> = ({ commentData, mode }) => {
   const handleToggleRecomment = useCallback(() => {
     if (!recommentToggle) {
       const comment_id = commentData.comment_id;
+      getRecommentDispatch(comment_id);
       //TODO Get recomment list
     }
 
@@ -62,7 +67,10 @@ const CommentItem: VFC<ICommentProps> = ({ commentData, mode }) => {
       )}
 
       {isCommentMode && recommentToggle && (
-        <RecommentList comment_id={commentData.comment_id} recomments={[]} />
+        <RecommentList
+          comment_id={commentData.comment_id}
+          recomments={recomments}
+        />
       )}
     </CommentItemContainer>
   );
