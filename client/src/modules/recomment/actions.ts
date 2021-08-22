@@ -19,10 +19,10 @@ export const createRecommentActions = createAsyncAction(
   CREATE_RECOMMENT_REQUEST,
   CREATE_RECOMMENT_SUCCESS,
   CREATE_RECOMMENT_FAILURE,
-)<any, any, AxiosError>();
+)<any, AxiosResponse, AxiosError>();
 
 export const getRecommentActions = createAsyncAction(
   GET_RECOMMENTS_REQUEST,
   GET_RECOMMENTS_SUCCESS,
   GET_RECOMMENTS_FAILURE,
-)<any, any, AxiosError>();
+)<any, AxiosResponse, AxiosError>();

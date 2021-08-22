@@ -52,6 +52,7 @@ const RecommentInput: VFC<IRecommentInputProps> = ({ comment_id }) => {
   useEffect(() => {
     if (createRecommentDone) {
       //TODO get recomments list
+      console.log("GET");
       getRecommentDispatch(comment_id);
     }
   }, [createRecommentDone]);

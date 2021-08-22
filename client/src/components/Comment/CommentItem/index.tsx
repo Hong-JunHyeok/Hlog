@@ -4,6 +4,7 @@ import { CommentItemContainer } from "./styles";
 import ProfileImage from "../../../public/static/default_profile.png";
 import getDistanceToNow from "../../../utils/getDistanceToNow";
 import { useCallback, VFC } from "react";
+import useToggle from "../../../hooks/useToggle";
 import RecommentList from "../RecommentList";
 import { useCommentDispatch } from "../../../hooks/dispatches/useCommentDispatch";
 import { useRecommentState } from "../../../hooks/states/useRecommentState";
@@ -12,31 +13,26 @@ import { useRecommentDispatch } from "../../../hooks/dispatches/useRecommentDisp
 interface ICommentProps {
   commentData: Comment;
   mode: "comment" | "recomment";
-  changeToggleListByIndex?: () => void;
-  toggleState?: boolean;
 }
 
-const CommentItem: VFC<ICommentProps> = ({
-  commentData,
-  mode,
-  changeToggleListByIndex,
-  toggleState,
-}) => {
+const CommentItem: VFC<ICommentProps> = ({ commentData, mode }) => {
   const isCommentMode = mode === "comment";
 
   const { recomments } = useRecommentState();
   const { getRecommentDispatch } = useRecommentDispatch();
   const { deleteCommentDispatch } = useCommentDispatch();
+  const [recommentToggle, toggleRecomment] = useToggle(false);
   const createdAtDistanceNow = getDistanceToNow(commentData.created_at);
 
   const handleToggleRecomment = useCallback(() => {
-    console.log(toggleState);
-    changeToggleListByIndex();
-    if (!toggleState) {
+    if (!recommentToggle) {
       const comment_id = commentData.comment_id;
       getRecommentDispatch(comment_id);
+      //TODO Get recomment list
     }
-  }, [toggleState]);
+
+    toggleRecomment();
+  }, [recommentToggle]);
 
   const handleDeleteComment = useCallback(() => {
     const comment_id = commentData.comment_id;
@@ -66,14 +62,14 @@ const CommentItem: VFC<ICommentProps> = ({
       </p>
       {isCommentMode && (
         <span className="open-recomment" onClick={handleToggleRecomment}>
-          {toggleState ? "-" : "+"} 답글
+          {recommentToggle ? "-" : "+"} 답글
         </span>
       )}
 
-      {isCommentMode && toggleState && (
+      {isCommentMode && recommentToggle && (
         <RecommentList
           comment_id={commentData.comment_id}
-          recomments={recomments}
+          recomments={recomments[commentData.comment_id]}
         />
       )}
     </CommentItemContainer>

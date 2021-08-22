@@ -12,7 +12,7 @@ export const recommentInitialState: IRecommentState = {
   getRecommentsDone: false,
   getRecommentsError: null,
 
-  recomments: [],
+  recomments: {},
 };
 
 export default createReducer<IRecommentState, RecommentAction>(
@@ -46,7 +46,8 @@ export default createReducer<IRecommentState, RecommentAction>(
         draft.getRecommentsDone = true;
         draft.getRecommentsLoading = false;
 
-        draft.recomments = action.payload.data.recomments;
+        const recomments = action.payload.data.recomments;
+        draft.recomments[recomments[0].commentId] = recomments;
       }),
     [recommentActions.GET_RECOMMENTS_FAILURE]: (state, action) =>
       produce(state, (draft) => {

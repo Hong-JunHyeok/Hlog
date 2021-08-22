@@ -5,6 +5,9 @@ export const useRecommentState = () => {
     createRecommentDone,
     createRecommentError,
     createRecommentLoading,
+    getRecommentsDone,
+    getRecommentsError,
+    getRecommentsLoading,
     recomments,
   } = useTypedSelector((state) => state.recomment);
 

@@ -13,13 +13,11 @@ interface ICheckCreatePostProps {
   content: string;
   openModal: () => void;
   closeModal: () => void;
-  // handlePublish: () => void;
 }
 
 const CheckCreatePostModal: VFC<ICheckCreatePostProps> = ({
   title,
   content,
-  // handlePublish,
   openModal,
   closeModal,
 }) => {
@@ -49,6 +47,7 @@ const CheckCreatePostModal: VFC<ICheckCreatePostProps> = ({
   );
 
   const handlePublish = useCallback(() => {
+    localStorage.removeItem("savePostData");
     dispatchCreatePost({
       title,
       content,

@@ -21,7 +21,6 @@ export const useCommentDispatch = () => {
 
   const createCommentDispatch = useCallback(
     (author: string, content: string, post_id: string) => {
-      console.log(author, content);
       dispatch({
         type: CREATE_COMMENT_REQUEST,
         payload: {
