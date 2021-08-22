@@ -3,9 +3,11 @@ import { AnyAction } from "redux";
 import { call, put } from "redux-saga/effects";
 import {
   createRecommentActions,
+  deleteRecommentActions,
   getRecommentActions,
 } from "../../modules/recomment/actions";
 import { createRecommentAPI } from "../../utils/api/recomment/createRecommentAPI";
+import { deleteRecommentAPI } from "../../utils/api/recomment/deleteRecommentAPI";
 import { getRecommentsAPI } from "../../utils/api/recomment/getRecommentsAPI";
 
 export function* handleCreateRecomment(action: AnyAction) {
@@ -17,6 +19,18 @@ export function* handleCreateRecomment(action: AnyAction) {
   } catch (error) {
     console.log(error.response);
     yield put(createRecommentActions.failure(error));
+  }
+}
+
+export function* handleDeleteRecomment(action: AnyAction) {
+  try {
+    yield call(deleteRecommentAPI, action.payload);
+
+    toast.success("성공적으로 답글을 삭제했습니다.");
+    yield put(deleteRecommentActions.success(action.payload));
+  } catch (error) {
+    console.log(error.response);
+    yield put(deleteRecommentActions.failure(error));
   }
 }
 

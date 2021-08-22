@@ -8,6 +8,10 @@ export const recommentInitialState: IRecommentState = {
   createRecommentDone: false,
   createRecommentError: null,
 
+  deleteRecommentLoading: false,
+  deleteRecommentDone: false,
+  deleteRecommentError: null,
+
   getRecommentsLoading: false,
   getRecommentsDone: false,
   getRecommentsError: null,
@@ -33,6 +37,24 @@ export default createReducer<IRecommentState, RecommentAction>(
       produce(state, (draft) => {
         draft.createRecommentError = action.payload;
         draft.createRecommentLoading = false;
+      }),
+    [recommentActions.DELETE_RECOMMENT_REQUEST]: (state) =>
+      produce(state, (draft) => {
+        draft.deleteRecommentDone = false;
+        draft.deleteRecommentLoading = true;
+        draft.deleteRecommentError = null;
+      }),
+    [recommentActions.DELETE_RECOMMENT_SUCCESS]: (state) =>
+      produce(state, (draft) => {
+        draft.deleteRecommentDone = true;
+        draft.deleteRecommentLoading = false;
+
+        draft.recomments = {};
+      }),
+    [recommentActions.DELETE_RECOMMENT_FAILURE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.deleteRecommentError = action.payload;
+        draft.deleteRecommentLoading = false;
       }),
 
     [recommentActions.GET_RECOMMENTS_REQUEST]: (state) =>

@@ -3,7 +3,7 @@ import { Comment } from "../../../types/Comment";
 import { CommentItemContainer } from "./styles";
 import ProfileImage from "../../../public/static/default_profile.png";
 import getDistanceToNow from "../../../utils/getDistanceToNow";
-import { useCallback, VFC } from "react";
+import { useCallback, useEffect, VFC } from "react";
 import useToggle from "../../../hooks/useToggle";
 import RecommentList from "../RecommentList";
 import { useCommentDispatch } from "../../../hooks/dispatches/useCommentDispatch";
@@ -18,10 +18,11 @@ interface ICommentProps {
 const CommentItem: VFC<ICommentProps> = ({ commentData, mode }) => {
   const isCommentMode = mode === "comment";
 
-  const { recomments } = useRecommentState();
-  const { getRecommentDispatch } = useRecommentDispatch();
+  const { recomments, deleteRecommentDone } = useRecommentState();
+  const { getRecommentDispatch, deleteRecommentDisaptch } =
+    useRecommentDispatch();
   const { deleteCommentDispatch } = useCommentDispatch();
-  const [recommentToggle, toggleRecomment] = useToggle(false);
+  const [recommentToggle, toggleRecomment, setToggleState] = useToggle(false);
   const createdAtDistanceNow = getDistanceToNow(commentData.created_at);
 
   const handleToggleRecomment = useCallback(() => {
@@ -34,11 +35,23 @@ const CommentItem: VFC<ICommentProps> = ({ commentData, mode }) => {
     toggleRecomment();
   }, [recommentToggle]);
 
+  const handleDeleteRecomment = useCallback(() => {
+    const { recomment_id } = commentData;
+    console.log(commentData);
+    deleteRecommentDisaptch(recomment_id);
+  }, [commentData]);
+
   const handleDeleteComment = useCallback(() => {
     const comment_id = commentData.comment_id;
 
     deleteCommentDispatch(comment_id);
   }, []);
+
+  useEffect(() => {
+    if (deleteRecommentDone) {
+      setToggleState(false);
+    }
+  }, [deleteRecommentDone, setToggleState]);
 
   return (
     <CommentItemContainer>
@@ -48,7 +61,12 @@ const CommentItem: VFC<ICommentProps> = ({ commentData, mode }) => {
           <div className="author">{commentData.author}</div>
           <div className="createdAt">{createdAtDistanceNow}</div>
         </div>
-        <div className="delete" onClick={handleDeleteComment}>
+        <div
+          className="delete"
+          onClick={
+            mode === "comment" ? handleDeleteComment : handleDeleteRecomment
+          }
+        >
           삭제
         </div>
       </div>

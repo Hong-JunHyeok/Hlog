@@ -1,4 +1,5 @@
-import { useState, VFC } from "react";
+import { useEffect, useState, VFC } from "react";
+import { useRecommentDispatch } from "../../../hooks/dispatches/useRecommentDispatch";
 import { useRecommentState } from "../../../hooks/states/useRecommentState";
 import useAccordion from "../../../hooks/useAccordion";
 import { Comment } from "../../../types/Comment";
@@ -14,16 +15,14 @@ interface IRecommentProps {
 }
 
 const RecommentList: VFC<IRecommentProps> = ({ comment_id, recomments }) => {
-  console.log(recomments);
-
   return (
     <RecommentListContainer>
       <div className="recomment-wrapper">
         <List
           items={recomments ? recomments : []}
-          renderItems={(commentData: Comment) => (
+          renderItems={(commentData: Comment, index: number) => (
             <CommentItem
-              key={commentData.comment_id}
+              key={index}
               commentData={commentData}
               mode="recomment"
             />

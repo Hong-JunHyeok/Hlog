@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import {
   CREATE_RECOMMENT_REQUEST,
+  DELETE_RECOMMENT_REQUEST,
   GET_RECOMMENTS_REQUEST,
 } from "../../modules/recomment/actions";
 
@@ -38,5 +39,19 @@ export const useRecommentDispatch = () => {
     [dispatch],
   );
 
-  return { createRecommentDispatch, getRecommentDispatch };
+  const deleteRecommentDisaptch = useCallback(
+    (recomment_id: string) => {
+      dispatch({
+        type: DELETE_RECOMMENT_REQUEST,
+        payload: recomment_id,
+      });
+    },
+    [dispatch],
+  );
+
+  return {
+    createRecommentDispatch,
+    getRecommentDispatch,
+    deleteRecommentDisaptch,
+  };
 };

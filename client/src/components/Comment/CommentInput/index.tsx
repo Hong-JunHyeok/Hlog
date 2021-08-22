@@ -9,12 +9,16 @@ import { useUserState } from "../../../hooks/states/useUserState";
 import { toast } from "react-toastify";
 import GoLoginModal from "../../Post/GoLoginModal";
 import useModal from "../../../hooks/useModal";
+import { useRecommentDispatch } from "../../../hooks/dispatches/useRecommentDispatch";
+import { useRecommentState } from "../../../hooks/states/useRecommentState";
 
 const CommentInput = () => {
   const { me } = useUserState();
   const { post } = usePostState();
   const { createCommentLoading, createCommentDone } = useCommentState();
   const { createCommentDispatch, getCommentsDispatch } = useCommentDispatch();
+  const { getRecommentDispatch } = useRecommentDispatch();
+  const { deleteRecommentDone } = useRecommentState();
   const [comment, onChangeComment, setComment] = useInput("");
 
   const { openModal, closeModal, ModalPortal } = useModal({

@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from "express";
 import { getRepository } from "typeorm";
 import Comment from "../../../../entity/Comment";
 import Recomment from "../../../../entity/Recomment";
-import User from "../../../../entity/User";
 import * as logger from "../../../../lib/logger";
 
 export default async function (

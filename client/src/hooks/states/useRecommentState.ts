@@ -8,6 +8,9 @@ export const useRecommentState = () => {
     getRecommentsDone,
     getRecommentsError,
     getRecommentsLoading,
+    deleteRecommentDone,
+    deleteRecommentError,
+    deleteRecommentLoading,
     recomments,
   } = useTypedSelector((state) => state.recomment);
 
@@ -15,6 +18,12 @@ export const useRecommentState = () => {
     createRecommentDone,
     createRecommentError,
     createRecommentLoading,
+    getRecommentsDone,
+    getRecommentsError,
+    getRecommentsLoading,
+    deleteRecommentDone,
+    deleteRecommentError,
+    deleteRecommentLoading,
     recomments,
   };
 };

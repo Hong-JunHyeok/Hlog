@@ -3,14 +3,14 @@ import { Comment } from "../../../types/Comment";
 import List from "../../Common/List";
 import CommentItem from "../CommentItem";
 import { useEffect, VFC } from "react";
+import { useRecommentState } from "../../../hooks/states/useRecommentState";
+import { useRecommentDispatch } from "../../../hooks/dispatches/useRecommentDispatch";
 
 interface IProps {
   commentsData: Comment[];
 }
 
 const CommentList: VFC<IProps> = ({ commentsData }) => {
-  useEffect(() => {}, []);
-
   return (
     <CommentListContainer>
       <List
