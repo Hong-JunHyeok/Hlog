@@ -10,7 +10,7 @@ import ssrCookiePender from "../../utils/ssrCookiePender";
 
 const PostCreatePage: NextPage = () => {
   const { loginDone, me } = useUserState();
-  const { handlePushLink } = useLink("/post");
+  const { handlePushLink } = useLink("/");
 
   useEffect(() => {
     if (!loginDone) {

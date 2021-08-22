@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { useUserDispatch } from "../../../hooks/dispatches/useUserDispatch";
 import { useUserState } from "../../../hooks/states/useUserState";
 import useInput from "../../../hooks/useInput";
@@ -16,29 +17,43 @@ const JoinForm = () => {
   const [name, onChangeName] = useInput("");
   const [desc, onChangeDesc] = useInput("");
 
+  const [notSamePasswordError, setNotSamePasswordError] = useState(false);
+
   const { joinDone, joinLoading, joinError } = useUserState();
   const { dispatchJoin } = useUserDispatch();
 
   const handleJoin = useCallback(
     (e: React.FormEvent<HTMLElement>) => {
       e.preventDefault();
+      if (pw !== checkPw) {
+        toast.error("비밀번호가 같지 않습니다.");
+        setNotSamePasswordError(true);
+        return;
+      }
+
       dispatchJoin({ id, pw, name, desc });
     },
-    [id, pw, checkPw, name, desc],
+    [id, pw, checkPw, name, desc, notSamePasswordError],
   );
 
   useEffect(() => {
     if (joinDone) {
+      toast.success("유저 등록에 성공했습니다.");
       handlePushLogin();
     }
   }, [joinDone]);
 
   useEffect(() => {
-    // TODO: 에러 메시지 toastr에 연동하기
     if (joinError) {
-      alert(joinError.message);
+      toast.error(joinError.message);
     }
   }, [joinError]);
+
+  useEffect(() => {
+    if (pw === checkPw) {
+      setNotSamePasswordError(false);
+    }
+  }, [pw, checkPw, notSamePasswordError]);
 
   return (
     <FormLayout formTitle="회원가입" handleSubmit={handleJoin}>
@@ -54,7 +69,7 @@ const JoinForm = () => {
           />
         </section>
         <section className="join-section">
-          <h1>비밀번호</h1>
+          <h1 className={notSamePasswordError && "error"}>비밀번호</h1>
           <input
             type="password"
             className="join-input"
@@ -71,7 +86,7 @@ const JoinForm = () => {
           />
         </section>
         <section className="join-section">
-          <h1>이름</h1>
+          <h1>이름 (닉네임)</h1>
           <input
             type="text"
             className="join-input"

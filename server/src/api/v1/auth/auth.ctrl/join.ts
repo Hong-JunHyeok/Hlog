@@ -16,9 +16,21 @@ export default async (req: Request, res: Response) => {
     const existUser = await User.findOne({ where: { id } });
 
     if (existUser) {
-      logger.yellow("이미 존재하는 유저입니다.");
+      logger.yellow("이미 존재하는 아이디입니다.");
       res.status(401).json({
-        message: "이미 존재하는 유저입니다.",
+        message: "이미 존재하는 아이디입니다.",
+      });
+      return;
+    }
+
+    const sameName = await User.findOne({
+      where: { name },
+    });
+
+    if (sameName) {
+      logger.yellow("이름이 중복됩니다.");
+      res.status(401).json({
+        message: "이미 존재하는 이름입니다.",
       });
       return;
     }

@@ -9,6 +9,7 @@ import RecommentList from "../RecommentList";
 import { useCommentDispatch } from "../../../hooks/dispatches/useCommentDispatch";
 import { useRecommentState } from "../../../hooks/states/useRecommentState";
 import { useRecommentDispatch } from "../../../hooks/dispatches/useRecommentDispatch";
+import { useUserState } from "../../../hooks/states/useUserState";
 
 interface ICommentProps {
   commentData: Comment;
@@ -18,6 +19,8 @@ interface ICommentProps {
 const CommentItem: VFC<ICommentProps> = ({ commentData, mode }) => {
   const isCommentMode = mode === "comment";
 
+  const { me } = useUserState();
+  const isMyComment = me?.name === commentData.author;
   const { recomments, deleteRecommentDone } = useRecommentState();
   const { getRecommentDispatch, deleteRecommentDisaptch } =
     useRecommentDispatch();
@@ -37,7 +40,6 @@ const CommentItem: VFC<ICommentProps> = ({ commentData, mode }) => {
 
   const handleDeleteRecomment = useCallback(() => {
     const { recomment_id } = commentData;
-    console.log(commentData);
     deleteRecommentDisaptch(recomment_id);
   }, [commentData]);
 
@@ -61,14 +63,16 @@ const CommentItem: VFC<ICommentProps> = ({ commentData, mode }) => {
           <div className="author">{commentData.author}</div>
           <div className="createdAt">{createdAtDistanceNow}</div>
         </div>
-        <div
-          className="delete"
-          onClick={
-            mode === "comment" ? handleDeleteComment : handleDeleteRecomment
-          }
-        >
-          삭제
-        </div>
+        {isMyComment && (
+          <div
+            className="delete"
+            onClick={
+              mode === "comment" ? handleDeleteComment : handleDeleteRecomment
+            }
+          >
+            삭제
+          </div>
+        )}
       </div>
       <p className="content">
         {commentData.content.split("\n").map((line, index) => (

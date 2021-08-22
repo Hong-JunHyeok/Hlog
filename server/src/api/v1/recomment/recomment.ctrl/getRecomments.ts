@@ -15,7 +15,7 @@ export default async function (
     const recomments = await recommentRepo
       .createQueryBuilder()
       .where("comment_id = :comment_id", { comment_id })
-      .orderBy("created_at", "DESC")
+      .orderBy("created_at", "ASC")
       .getMany();
 
     logger.green("답글 조회성공");

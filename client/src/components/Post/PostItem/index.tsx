@@ -29,7 +29,7 @@ const PostItem: VFC<Post> = (post) => {
             alt={post.thumnail}
             width={sizesModule.pageMaxWidth}
             height={800}
-            blurDataURL={post.thumnail}
+            blurDataURL={`http://localhost:8080/${post.thumnail}`}
             placeholder="blur"
           />
         )}

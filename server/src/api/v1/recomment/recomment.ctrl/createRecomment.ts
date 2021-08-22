@@ -43,6 +43,7 @@ export default async function (
       message: "답글 작성완료",
     });
   } catch (error) {
+    logger.red(error);
     next(error);
   }
 }

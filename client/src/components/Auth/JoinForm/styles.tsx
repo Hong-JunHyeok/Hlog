@@ -6,11 +6,15 @@ export const JoinFormContainer = styled.form`
   display: flex;
   flex-direction: column;
   padding: 10%;
+  .error {
+    color: ${colorsModule.hlog_error};
+  }
   .join {
     &-section {
       & > h1 {
         font-weight: bold;
         margin-bottom: 10px;
+
         &::after {
           content: "·";
           color: ${colorsModule.hlog_primary};

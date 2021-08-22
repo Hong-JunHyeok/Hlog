@@ -1,7 +1,6 @@
 import lexer from "marked";
 import { NextPage } from "next";
 import Head from "next/head";
-import { useEffect } from "react";
 import { END } from "redux-saga";
 import CommentInput from "../../components/Comment/CommentInput";
 import CommentList from "../../components/Comment/CommentList";
@@ -9,7 +8,6 @@ import Layout from "../../components/Layout/MainLayout";
 import ViewPostLayout from "../../components/Layout/ViewPostLayout";
 import DeleteModal from "../../components/Post/DeleteModal";
 import wrapper from "../../config/configureStore";
-import { useCommentDispatch } from "../../hooks/dispatches/useCommentDispatch";
 import { useCommentState } from "../../hooks/states/useCommentState";
 import { usePostState } from "../../hooks/states/usePostState";
 import { useUserState } from "../../hooks/states/useUserState";
@@ -41,7 +39,7 @@ const ViewPostPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>HLOG | 포스트 제목</title>
+        <title>HLOG | {post.title}</title>
       </Head>
       <Layout>
         <ViewPostLayout>
@@ -54,7 +52,7 @@ const ViewPostPage: NextPage = () => {
               <span className="createdAt">
                 {getDistanceToNow(post.createdAt)}
               </span>
-              <span className="like">{postCommentLength}</span>
+              <span className="like">{postCommentLength}개</span>
               {me?.user_id === post.userId && (
                 <ul className="options">
                   {/* <li>수정</li> */}
