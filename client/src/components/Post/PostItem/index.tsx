@@ -43,8 +43,8 @@ const PostItem: VFC<Post> = (post) => {
           <span className="createdAt">{getDistanceToNow(post.createdAt)}</span>
         </div>
         <div>
-          <span className="likers">{getArrayLength([1, 2, 3])}</span>
-          {/* <span className="comments">{getArrayLength([1, 2, 3])}</span> */}
+          {/* <span className="likers">{getArrayLength([1, 2, 3])}</span>
+          <span className="comments">{getArrayLength([1, 2, 3])}</span> */}
         </div>
       </div>
     </StyledPost>

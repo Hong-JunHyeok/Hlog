@@ -23,7 +23,7 @@ import ssrCookiePender from "../../utils/ssrCookiePender";
 
 const ViewPostPage: NextPage = () => {
   const { me } = useUserState();
-  const { post } = usePostState();
+  const { post, postCommentLength } = usePostState();
   const { comments } = useCommentState();
 
   const { handlePushLink } = useLink(`/profile/${post?.userId}`);
@@ -54,6 +54,7 @@ const ViewPostPage: NextPage = () => {
               <span className="createdAt">
                 {getDistanceToNow(post.createdAt)}
               </span>
+              <span className="like">{postCommentLength}</span>
               {me?.user_id === post.userId && (
                 <ul className="options">
                   {/* <li>수정</li> */}

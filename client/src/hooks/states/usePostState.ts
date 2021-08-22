@@ -21,6 +21,7 @@ export const usePostState = () => {
     getUserPostsDone,
     getUserPostsError,
     getUserPostsLoading,
+    postCommentLength,
     post,
     posts,
   } = useTypedSelector((state) => state.post);
@@ -45,6 +46,7 @@ export const usePostState = () => {
     getUserPostsDone,
     getUserPostsError,
     getUserPostsLoading,
+    postCommentLength,
     post,
     posts,
   };

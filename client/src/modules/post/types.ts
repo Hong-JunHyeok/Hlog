@@ -38,4 +38,6 @@ export interface IPostState {
 
   posts: Post[];
   post: Post;
+
+  postCommentLength: number;
 }

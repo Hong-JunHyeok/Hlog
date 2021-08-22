@@ -36,6 +36,8 @@ export const postInitialState: IPostState = {
 
   posts: [],
   post: null,
+
+  postCommentLength: 0,
 };
 
 export default createReducer<IPostState, PostAction>(postInitialState, {
@@ -87,6 +89,7 @@ export default createReducer<IPostState, PostAction>(postInitialState, {
       draft.getPostLoading = false;
 
       draft.post = action.payload.data.post;
+      draft.postCommentLength = action.payload.data.commentLength;
     }),
   [postActions.GET_POST_FAILURE]: (state, action) =>
     produce(state, (draft) => {

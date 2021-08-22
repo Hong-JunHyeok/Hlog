@@ -56,7 +56,6 @@ export default createReducer<IRecommentState, RecommentAction>(
         draft.deleteRecommentError = action.payload;
         draft.deleteRecommentLoading = false;
       }),
-
     [recommentActions.GET_RECOMMENTS_REQUEST]: (state) =>
       produce(state, (draft) => {
         draft.getRecommentsDone = false;

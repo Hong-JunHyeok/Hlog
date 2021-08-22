@@ -25,6 +25,12 @@ export const StyledViewContainer = styled.div`
       .createdAt {
         padding-left: 20px;
       }
+      .like {
+        margin-left: 1rem;
+        &::before {
+          content: "댓글 : ";
+        }
+      }
     }
     .options {
       display: flex;
