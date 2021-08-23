@@ -7,6 +7,7 @@ import CommentList from "../../components/Comment/CommentList";
 import Layout from "../../components/Layout/MainLayout";
 import ViewPostLayout from "../../components/Layout/ViewPostLayout";
 import DeleteModal from "../../components/Post/DeleteModal";
+import { backUrl } from "../../config/config";
 import wrapper from "../../config/configureStore";
 import { useCommentState } from "../../hooks/states/useCommentState";
 import { usePostState } from "../../hooks/states/usePostState";
@@ -63,10 +64,7 @@ const ViewPostPage: NextPage = () => {
           </header>
           <main className="post-main">
             {post.thumnail && (
-              <img
-                src={`http://localhost:8080/${post.thumnail}`}
-                className="thumnail"
-              />
+              <img src={`${backUrl}/${post.thumnail}`} className="thumnail" />
             )}
 
             <div dangerouslySetInnerHTML={createMarkup(post.content)} />

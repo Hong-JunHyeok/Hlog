@@ -5,6 +5,7 @@ import { StyledPost } from "./styles";
 import { sizesModule } from "../../../styles/sizes";
 import { useLink } from "../../../hooks/useLink";
 import getDistanceToNow from "../../../utils/getDistanceToNow";
+import { backUrl } from "../../../config/config";
 
 const PostItem: VFC<Post> = (post) => {
   const { handlePushLink: handlePushPostPage } = useLink(
@@ -24,11 +25,11 @@ const PostItem: VFC<Post> = (post) => {
       <div className="thumnail">
         {post.thumnail && (
           <Image
-            src={`http://localhost:8080/${post.thumnail}`}
+            src={`${backUrl}/${post.thumnail}`}
             alt={post.thumnail}
             width={sizesModule.pageMaxWidth}
             height={800}
-            blurDataURL={`http://localhost:8080/${post.thumnail}`}
+            blurDataURL={`${backUrl}/${post.thumnail}`}
             placeholder="blur"
           />
         )}

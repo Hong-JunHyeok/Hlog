@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ChangeEvent, useCallback, useRef, VFC } from "react";
+import { backUrl } from "../../../config/config";
 import { usePostDispatch } from "../../../hooks/dispatches/usePostDispatch";
 import { usePostState } from "../../../hooks/states/usePostState";
 import { colorsModule } from "../../../styles/colors";
@@ -82,11 +83,11 @@ const CheckCreatePostModal: VFC<ICheckCreatePostProps> = ({
         </ButtonComponent>
         {thumnailUploadDone && (
           <Image
-            src={`http://localhost:8080/${thumnailURL}`}
+            src={`${backUrl}/${thumnailURL}`}
             alt={thumnailURL}
             width={400}
             height={300}
-            blurDataURL={`http://localhost:8080/${thumnailURL}`}
+            blurDataURL={`${backUrl}/${thumnailURL}`}
             placeholder="blur"
           />
         )}

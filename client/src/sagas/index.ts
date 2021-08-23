@@ -1,13 +1,14 @@
 import { all, fork } from "redux-saga/effects";
 import axios from "axios";
-import { isDevMode } from "../utils/isDevMode";
 
 import userSaga from "./user";
 import postSaga from "./post";
 import commentSaga from "./comment";
 import recommentSaga from "./recomment";
 
-axios.defaults.baseURL = isDevMode() ? "http://localhost:8080/api/v1" : "";
+import { backUrl } from "../config/config";
+
+axios.defaults.baseURL = backUrl;
 axios.defaults.withCredentials = true;
 
 export default function* rootSaga() {
