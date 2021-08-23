@@ -8,6 +8,8 @@ import chalk from "chalk";
 import passportConfig from "./passport";
 import passport = require("passport");
 import fs from "fs";
+import hpp from "hpp";
+import helmet from "helmet";
 import path from "path";
 
 const PORT = process.env.PORT || 8080;
@@ -24,11 +26,16 @@ getConnection();
 
 passportConfig();
 
+if (process.env.NODE_ENV === "production") {
+  app.use(hpp());
+  app.use(helmet());
+}
+
 app.use(express.static("uploads"));
 
 app.use(
   cors({
-    origin: "http://localhost:3060",
+    origin: ["http://localhost:3060", "hlog.website"],
     credentials: true,
   })
 );
