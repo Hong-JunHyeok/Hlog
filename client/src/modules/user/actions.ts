@@ -1,25 +1,25 @@
 import { createAction, createAsyncAction } from "typesafe-actions";
 import { AxiosError, AxiosResponse } from "axios";
 
-export const LOG_IN_REQUEST = "user/LOG_IN_REQUEST" as const;
-export const LOG_IN_SUCCESS = "user/LOG_IN_SUCCESS" as const;
-export const LOG_IN_FAILURE = "user/LOG_IN_FAILURE" as const;
+export const LOG_IN_REQUEST = "user/LOG_IN_REQUEST";
+export const LOG_IN_SUCCESS = "user/LOG_IN_SUCCESS";
+export const LOG_IN_FAILURE = "user/LOG_IN_FAILURE";
 
-export const LOAD_MY_INFO_REQUEST = "user/LOAD_MY_INFO_REQUEST" as const;
-export const LOAD_MY_INFO_SUCCESS = "user/LOAD_MY_INFO_SUCCESS" as const;
-export const LOAD_MY_INFO_FAILURE = "user/LOAD_MY_INFO_FAILURE" as const;
+export const LOAD_MY_INFO_REQUEST = "user/LOAD_MY_INFO_REQUEST";
+export const LOAD_MY_INFO_SUCCESS = "user/LOAD_MY_INFO_SUCCESS";
+export const LOAD_MY_INFO_FAILURE = "user/LOAD_MY_INFO_FAILURE";
 
-export const LOAD_USER_INFO_REQUEST = "user/LOAD_USER_INFO_REQUEST" as const;
-export const LOAD_USER_INFO_SUCCESS = "user/LOAD_USER_INFO_SUCCESS" as const;
-export const LOAD_USER_INFO_FAILURE = "user/LOAD_USER_INFO_FAILURE" as const;
+export const LOAD_USER_INFO_REQUEST = "user/LOAD_USER_INFO_REQUEST";
+export const LOAD_USER_INFO_SUCCESS = "user/LOAD_USER_INFO_SUCCESS";
+export const LOAD_USER_INFO_FAILURE = "user/LOAD_USER_INFO_FAILURE";
 
-export const JOIN_REQUEST = "user/JOIN_REQUEST" as const;
-export const JOIN_SUCCESS = "user/JOIN_SUCCESS" as const;
-export const JOIN_FAILURE = "user/JOIN_FAILURE" as const;
+export const JOIN_REQUEST = "user/JOIN_REQUEST";
+export const JOIN_SUCCESS = "user/JOIN_SUCCESS";
+export const JOIN_FAILURE = "user/JOIN_FAILURE";
 
-export const LOGOUT_REQUEST = "user/LOGOUT_REQUEST" as const;
-export const LOGOUT_SUCCESS = "user/LOGOUT_SUCCESS" as const;
-export const LOGOUT_FAILURE = "user/LOGOUT_FAILURE" as const;
+export const LOGOUT_REQUEST = "user/LOGOUT_REQUEST";
+export const LOGOUT_SUCCESS = "user/LOGOUT_SUCCESS";
+export const LOGOUT_FAILURE = "user/LOGOUT_FAILURE";
 
 export const loginAsyncAction = createAsyncAction(
   LOG_IN_REQUEST,

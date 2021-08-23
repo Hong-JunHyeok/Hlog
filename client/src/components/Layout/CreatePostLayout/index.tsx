@@ -1,15 +1,14 @@
 import Head from "next/head";
 import { KeyboardEvent, useCallback, useEffect, VFC } from "react";
-import { Flip, toast } from "react-toastify";
 import useInput from "../../../hooks/useInput";
 import CodeViewer from "../../Post/CodeViewer";
 import Editor from "../../Post/Editor";
 import { StyledCreatePageContainer } from "./styles";
 
-interface StorageData {
-  title: string;
-  content: string;
-}
+// interface StorageData {
+//   title: string;
+//   content: string;
+// }
 
 const CreatePageLayout: VFC = () => {
   const [title, onChangeTitle, setTitle] = useInput<string>("");
@@ -33,14 +32,14 @@ const CreatePageLayout: VFC = () => {
     [content],
   );
 
-  useEffect(() => {
-    const saveData: StorageData = JSON.parse(
-      localStorage.getItem("savePostData"),
-    );
+  // useEffect(() => {
+  //   const saveData: StorageData = JSON.parse(
+  //     localStorage.getItem("savePostData"),
+  //   );
 
-    setTitle(saveData?.title || "");
-    setContent(saveData?.content || "");
-  }, []);
+  //   setTitle(saveData?.title || "");
+  //   setContent(saveData?.content || "");
+  // }, []);
 
   return (
     <>

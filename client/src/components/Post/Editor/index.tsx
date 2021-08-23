@@ -7,6 +7,7 @@ import {
   useEffect,
   VFC,
 } from "react";
+// import CircularJSON from "circular-json";
 import { EditorContainer } from "./styles";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { useLink } from "../../../hooks/useLink";
@@ -51,20 +52,20 @@ const Editor: VFC<IEditorProps> = ({
   }, [title, content]);
 
   const handleSave = useCallback(() => {
-    if (!title || !content) {
-      toast.error("제목, 내용에 공백이 있으면 안됩니다.", {
-        transition: Flip,
-      });
-    } else {
-      const savePostData = JSON.stringify({
-        title,
-        content,
-      });
-      localStorage.setItem("savePostData", savePostData);
-      toast.success("임시 저장에 성공했습니다.", {
-        transition: Flip,
-      });
-    }
+    // if (!title || !content) {
+    //   toast.error("제목, 내용에 공백이 있으면 안됩니다.", {
+    //     transition: Flip,
+    //   });
+    // } else {
+    //   const savePostData = CircularJSON.stringify({
+    //     title,
+    //     content,
+    //   }).toString();
+    //   localStorage.setItem("savePostData", savePostData);
+    //   toast.success("임시 저장에 성공했습니다.", {
+    //     transition: Flip,
+    //   });
+    // }
   }, [title, content]);
 
   useEffect(() => {

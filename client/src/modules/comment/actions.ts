@@ -1,17 +1,17 @@
 import { AxiosError, AxiosResponse } from "axios";
 import { createAsyncAction } from "typesafe-actions";
 
-export const GET_COMMENTS_REQUEST = "comment/GET_COMMENTS_REQUEST" as const;
-export const GET_COMMENTS_SUCCESS = "comment/GET_COMMENTS_SUCCESS" as const;
-export const GET_COMMENTS_FAILURE = "comment/GET_COMMENTS_FAILURE" as const;
+export const GET_COMMENTS_REQUEST = "comment/GET_COMMENTS_REQUEST";
+export const GET_COMMENTS_SUCCESS = "comment/GET_COMMENTS_SUCCESS";
+export const GET_COMMENTS_FAILURE = "comment/GET_COMMENTS_FAILURE";
 
-export const CREATE_COMMENT_REQUEST = "comment/CREATE_COMMENT_REQUEST" as const;
-export const CREATE_COMMENT_SUCCESS = "comment/CREATE_COMMENT_SUCCESS" as const;
-export const CREATE_COMMENT_FAILURE = "comment/CREATE_COMMENT_FAILURE" as const;
+export const CREATE_COMMENT_REQUEST = "comment/CREATE_COMMENT_REQUEST";
+export const CREATE_COMMENT_SUCCESS = "comment/CREATE_COMMENT_SUCCESS";
+export const CREATE_COMMENT_FAILURE = "comment/CREATE_COMMENT_FAILURE";
 
-export const DELETE_COMMENT_REQUEST = "comment/DELETE_COMMENT_REQUEST" as const;
-export const DELETE_COMMENT_SUCCESS = "comment/DELETE_COMMENT_SUCCESS" as const;
-export const DELETE_COMMENT_FAILURE = "comment/DELETE_COMMENT_FAILURE" as const;
+export const DELETE_COMMENT_REQUEST = "comment/DELETE_COMMENT_REQUEST";
+export const DELETE_COMMENT_SUCCESS = "comment/DELETE_COMMENT_SUCCESS";
+export const DELETE_COMMENT_FAILURE = "comment/DELETE_COMMENT_FAILURE";
 
 export const getCommentsActions = createAsyncAction(
   GET_COMMENTS_REQUEST,

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
 import { useUserDispatch } from "../../../hooks/dispatches/useUserDispatch";
 import { useUserState } from "../../../hooks/states/useUserState";

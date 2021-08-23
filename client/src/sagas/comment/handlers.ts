@@ -16,7 +16,6 @@ export function* handleGetComments(action: AnyAction) {
 
     yield put(getCommentsActions.success(response));
   } catch (error) {
-    console.log(error.response);
     yield put(getCommentsActions.failure(error));
   }
 }

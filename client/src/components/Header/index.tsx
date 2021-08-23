@@ -1,4 +1,3 @@
-import { Router, useRouter } from "next/router";
 import { CSSProperties, useCallback, VFC } from "react";
 import { useUserDispatch } from "../../hooks/dispatches/useUserDispatch";
 import { useUserState } from "../../hooks/states/useUserState";
@@ -13,7 +12,7 @@ const buttonCustomStyle: CSSProperties = {
 };
 
 const HeaderComponent: VFC = () => {
-  const { loginDone, me, loginLoading, userInfo } = useUserState();
+  const { loginDone, me, loginLoading } = useUserState();
   const { dispatchLogout } = useUserDispatch();
 
   const { handlePushLink: pushMainPage } = useLink("/");

@@ -1,4 +1,4 @@
-import { FC, VFC } from "react";
+import { VFC } from "react";
 import { ButtonComponent } from "../Button";
 import { ModalContainer, ModalLayout } from "./styles";
 

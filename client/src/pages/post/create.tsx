@@ -1,4 +1,4 @@
-import { END } from "@redux-saga/core";
+import { END } from "redux-saga";
 import { NextPage } from "next";
 import { useEffect } from "react";
 import CreatePageLayout from "../../components/Layout/CreatePostLayout";
@@ -26,7 +26,7 @@ const PostCreatePage: NextPage = () => {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  (store) =>
+  (store): any =>
     async ({ req }) => {
       ssrCookiePender(req);
 

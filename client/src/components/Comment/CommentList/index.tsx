@@ -2,9 +2,7 @@ import { CommentListContainer } from "./styles";
 import { Comment } from "../../../types/Comment";
 import List from "../../Common/List";
 import CommentItem from "../CommentItem";
-import { useEffect, VFC } from "react";
-import { useRecommentState } from "../../../hooks/states/useRecommentState";
-import { useRecommentDispatch } from "../../../hooks/dispatches/useRecommentDispatch";
+import { VFC } from "react";
 
 interface IProps {
   commentsData: Comment[];

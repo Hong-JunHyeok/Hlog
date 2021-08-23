@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { AppProps } from "next/app";
 import GlobalStyle from "../styles/GlobalStyle";
 import wrapper from "../config/configureStore";
-import { useUserDispatch } from "../hooks/dispatches/useUserDispatch";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

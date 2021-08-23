@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useUserState } from "../../../hooks/states/useUserState";
 import { ButtonComponent } from "../../Common/Button";
 import { StyledProfileLayout } from "./styles";

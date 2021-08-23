@@ -1,7 +1,6 @@
 import { useCallback, VFC } from "react";
 import Image from "next/image";
 import { Post } from "../../../types/Post";
-import { getArrayLength } from "../../../utils/getArrayLength";
 import { StyledPost } from "./styles";
 import { sizesModule } from "../../../styles/sizes";
 import { useLink } from "../../../hooks/useLink";

@@ -86,7 +86,7 @@ const ViewPostPage: NextPage = () => {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  (store) =>
+  (store): any =>
     async ({ params, req }) => {
       ssrCookiePender(req);
 

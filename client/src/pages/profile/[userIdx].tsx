@@ -1,20 +1,15 @@
-import { END } from "@redux-saga/core";
+import { END } from "redux-saga";
 import Head from "next/head";
-import React, { useEffect } from "react";
+import React from "react";
 import List from "../../components/Common/List";
 import Layout from "../../components/Layout/MainLayout";
 import ProfileLayout from "../../components/Layout/ProfileLayout";
 import PostItem from "../../components/Post/PostItem";
-import ProfileEditForm from "../../components/Profile/ProfileEditForm";
 import wrapper from "../../config/configureStore";
 import { usePostState } from "../../hooks/states/usePostState";
 import { useUserState } from "../../hooks/states/useUserState";
 import { useLink } from "../../hooks/useLink";
-import useModal from "../../hooks/useModal";
-import {
-  GET_MY_POSTS_REQUEST,
-  GET_USER_POSTS_REQUEST,
-} from "../../modules/post/actions";
+import { GET_USER_POSTS_REQUEST } from "../../modules/post/actions";
 import {
   LOAD_MY_INFO_REQUEST,
   LOAD_USER_INFO_REQUEST,
@@ -59,7 +54,7 @@ const UserProfilePage = () => {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  (store) =>
+  (store): any =>
     async ({ req, params }) => {
       ssrCookiePender(req);
       const userIdx = params.userIdx;

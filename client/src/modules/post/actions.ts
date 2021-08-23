@@ -1,33 +1,33 @@
 import { createAsyncAction } from "typesafe-actions";
 import { AxiosError, AxiosResponse } from "axios";
 
-export const GET_POST_REQUEST = "post/GET_POST_REQUEST" as const;
-export const GET_POST_SUCCESS = "post/GET_POST_SUCCESS" as const;
-export const GET_POST_FAILURE = "post/GET_POST_FAILURE" as const;
+export const GET_POST_REQUEST = "post/GET_POST_REQUEST";
+export const GET_POST_SUCCESS = "post/GET_POST_SUCCESS";
+export const GET_POST_FAILURE = "post/GET_POST_FAILURE";
 
-export const GET_POSTS_REQUEST = "post/GET_POSTS_REQUEST" as const;
-export const GET_POSTS_SUCCESS = "post/GET_POSTS_SUCCESS" as const;
-export const GET_POSTS_FAILURE = "post/GET_POSTS_FAILURE" as const;
+export const GET_POSTS_REQUEST = "post/GET_POSTS_REQUEST";
+export const GET_POSTS_SUCCESS = "post/GET_POSTS_SUCCESS";
+export const GET_POSTS_FAILURE = "post/GET_POSTS_FAILURE";
 
-export const GET_USER_POSTS_REQUEST = "post/GET_USER_POSTS_REQUEST" as const;
-export const GET_USER_POSTS_SUCCESS = "post/GET_USER_POSTS_SUCCESS" as const;
-export const GET_USER_POSTS_FAILURE = "post/GET_USER_POSTS_FAILURE" as const;
+export const GET_USER_POSTS_REQUEST = "post/GET_USER_POSTS_REQUEST";
+export const GET_USER_POSTS_SUCCESS = "post/GET_USER_POSTS_SUCCESS";
+export const GET_USER_POSTS_FAILURE = "post/GET_USER_POSTS_FAILURE";
 
-export const CREATE_POST_REQUEST = "post/CREATE_POST_REQUEST" as const;
-export const CREATE_POST_SUCCESS = "post/CREATE_POST_SUCCESS" as const;
-export const CREATE_POST_FAILURE = "post/CREATE_POST_FAILURE" as const;
+export const CREATE_POST_REQUEST = "post/CREATE_POST_REQUEST";
+export const CREATE_POST_SUCCESS = "post/CREATE_POST_SUCCESS";
+export const CREATE_POST_FAILURE = "post/CREATE_POST_FAILURE";
 
-export const EDIT_POST_REQUEST = "post/EDIT_POST_REQUEST" as const;
-export const EDIT_POST_SUCCESS = "post/EDIT_POST_SUCCESS" as const;
-export const EDIT_POST_FAILURE = "post/EDIT_POST_FAILURE" as const;
+export const EDIT_POST_REQUEST = "post/EDIT_POST_REQUEST";
+export const EDIT_POST_SUCCESS = "post/EDIT_POST_SUCCESS";
+export const EDIT_POST_FAILURE = "post/EDIT_POST_FAILURE";
 
-export const DELETE_POST_REQUEST = "post/DELETE_POST_REQUEST" as const;
-export const DELETE_POST_SUCCESS = "post/DELETE_POST_SUCCESS" as const;
-export const DELETE_POST_FAILURE = "post/DELETE_POST_FAILURE" as const;
+export const DELETE_POST_REQUEST = "post/DELETE_POST_REQUEST";
+export const DELETE_POST_SUCCESS = "post/DELETE_POST_SUCCESS";
+export const DELETE_POST_FAILURE = "post/DELETE_POST_FAILURE";
 
-export const THUMNAIL_UPLOAD_REQUEST = "post/THUMNAIL_UPLOAD_REQUEST" as const;
-export const THUMNAIL_UPLOAD_SUCCESS = "post/THUMNAIL_UPLOAD_SUCCESS" as const;
-export const THUMNAIL_UPLOAD_FAILURE = "post/THUMNAIL_UPLOAD_FAILURE" as const;
+export const THUMNAIL_UPLOAD_REQUEST = "post/THUMNAIL_UPLOAD_REQUEST";
+export const THUMNAIL_UPLOAD_SUCCESS = "post/THUMNAIL_UPLOAD_SUCCESS";
+export const THUMNAIL_UPLOAD_FAILURE = "post/THUMNAIL_UPLOAD_FAILURE";
 
 export const getPostAction = createAsyncAction(
   GET_POST_REQUEST,

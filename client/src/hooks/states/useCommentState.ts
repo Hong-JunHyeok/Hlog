@@ -22,5 +22,8 @@ export const useCommentState = () => {
     createCommentDone,
     createCommentError,
     createCommentLoading,
+    deleteCommentDone,
+    deleteCommentError,
+    deleteCommentLoading,
   };
 };

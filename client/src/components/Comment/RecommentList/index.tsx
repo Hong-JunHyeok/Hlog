@@ -1,7 +1,4 @@
-import { useEffect, useState, VFC } from "react";
-import { useRecommentDispatch } from "../../../hooks/dispatches/useRecommentDispatch";
-import { useRecommentState } from "../../../hooks/states/useRecommentState";
-import useAccordion from "../../../hooks/useAccordion";
+import { VFC } from "react";
 import { Comment } from "../../../types/Comment";
 import List from "../../Common/List";
 import CommentItem from "../CommentItem";

@@ -17,7 +17,6 @@ export function* handleCreateRecomment(action: AnyAction) {
     toast.success("성공적으로 답글작성을 완료하였습니다.");
     yield put(createRecommentActions.success(action.payload));
   } catch (error) {
-    console.log(error.response);
     yield put(createRecommentActions.failure(error));
   }
 }
@@ -29,7 +28,6 @@ export function* handleDeleteRecomment(action: AnyAction) {
     toast.success("성공적으로 답글을 삭제했습니다.");
     yield put(deleteRecommentActions.success(action.payload));
   } catch (error) {
-    console.log(error.response);
     yield put(deleteRecommentActions.failure(error));
   }
 }

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useRef, useEffect, useState, useCallback } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 interface IModalProps {

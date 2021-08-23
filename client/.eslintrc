@@ -58,10 +58,7 @@
   "overrides": [
     {
       // TypeScript 파일에 대해 특별히 규칙 활성화
-      "files": ["*.ts", "*.tsx"],
-      "rules": {
-        "@typescript-eslint/explicit-function-return-type": ["warning"]
-      }
+      "files": ["*.ts", "*.tsx"]
     }
   ]
 }

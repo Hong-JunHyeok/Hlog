@@ -1,5 +1,4 @@
-import { SerializedStyles } from "@emotion/utils";
-import { CSSProperties, FC, ReactNode } from "react";
+import { CSSProperties, FC } from "react";
 import { StyledButton } from "./styles";
 
 interface ButtonProps {

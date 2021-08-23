@@ -3,7 +3,6 @@ import { ChangeEvent, useCallback, useRef, VFC } from "react";
 import { usePostDispatch } from "../../../hooks/dispatches/usePostDispatch";
 import { usePostState } from "../../../hooks/states/usePostState";
 import { colorsModule } from "../../../styles/colors";
-import { sizesModule } from "../../../styles/sizes";
 import { stringCutter } from "../../../utils/stringCutter";
 import { ButtonComponent } from "../../Common/Button";
 import { ModalContainer } from "./styles";
