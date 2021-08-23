@@ -35,7 +35,7 @@ app.use(express.static("uploads"));
 
 app.use(
   cors({
-    origin: ["http://localhost:3060", "hlog.website"],
+    origin: ["http://localhost:3060", "hlog.website", "http://3.35.131.183"],
     credentials: true,
   })
 );
